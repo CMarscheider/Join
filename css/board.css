@@ -1,0 +1,36 @@
+.board {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.board h1 {
+  font-size: 60px;
+}
+
+#boardSearch-input {
+  outline: 0;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px 25px;
+  background: transparent url('../assets/img/search-icon.png') no-repeat;
+  background-position: right center;
+}
+
+#addTask-btn {
+  all: unset;
+  cursor: pointer;
+  background-color: #2a3647;
+  color: #fff;
+  padding: 10px 25px;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+  margin-left: 10px;
+}
+
+#addTask-btn:hover {
+  background-color: #03a9f4;
+  transition: all 0.3s ease-in-out;
+}

@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="./script/mainjs.js"></script>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/board.css">
-    <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/aside.css">
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/board.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/aside.css" />
     <title>Document</title>
-</head>
-<body  onload="init()">
+  </head>
+  <body onload="init()">
     <div class="maincontainer">
-        <div w3-include-html="./assets/templates/aside.html" class="aside">
-    
-    
+      <div w3-include-html="./assets/templates/aside.html" class="aside"></div>
+      <div class="right-container">
+        <div class="header">
+          <div w3-include-html="./assets/templates/header.html" class=""></div>
         </div>
-        <div class="right-container">
-    
-            <div class="header">
-                <div w3-include-html="./assets/templates/header.html" class=""></div>
-    
-            </div>
-    
+
+        <div class="board">
+          <h1>Board</h1>
+          <form>
+            <input type="search" id="boardSearch-input" placeholder="Find Task" />
+            <button id="addTask-btn">Add Task +</button>
+          </form>
         </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
