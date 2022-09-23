@@ -5,7 +5,7 @@
 
 async function init() {
     await includeHTML();
-    document.getElementById('headline').innerHTML = 'Herzlich willkommen!';
+
 }
 /**
  * This function is used to include the header
