@@ -15,8 +15,14 @@
   border: 1px solid black;
   border-radius: 10px;
   padding: 10px 25px;
-  background: transparent url('../assets/img/search-icon.png') no-repeat;
   background-position: right center;
+  position: relative;
+}
+
+.search-icon {
+  position: relative;
+  right: 35px;
+  top: 5px;
 }
 
 #addTask-btn {
@@ -28,9 +34,78 @@
   border-radius: 10px;
   transition: all 0.3s ease-in-out;
   margin-left: 10px;
+  font-weight: bold;
 }
 
 #addTask-btn:hover {
   background-color: #03a9f4;
   transition: all 0.3s ease-in-out;
+}
+
+.all-tasks-contnet {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 12%;
+  padding-right: 12%;
+}
+
+.todo-content {
+  display: flex;
+}
+
+.todo {
+  display: flex;
+  flex-direction: column;
+  margin-right: 30px;
+}
+
+.create-todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todo-content {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+  border-radius: 30px;
+  padding: 18px 19px;
+}
+
+.create-todo span {
+  font-size: 25px;
+  font-weight: bold;
+  border: 2px solid #2a3647;
+  padding: 2px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.create-todo span:hover {
+  transition: all 0.3s ease-in-out;
+  border: 2px solid #03a9f4;
+  color: #03a9f4;
+}
+
+.todo-content span:first-child {
+  background-color: #ff7a00;
+  color: #fff;
+  width: 50px;
+  padding: 5px 15px;
+  border-radius: 8px;
+}
+
+.todo-content p {
+  color: #a8a8a8;
+}
+
+.progress-bar-container {
+  display: flex;
+}
+
+label {
+  margin-left: 50px;
 }
