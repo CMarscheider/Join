@@ -124,7 +124,10 @@ a {
     display: flex;
 }
 
+.urgentpicture{
+    background-color: rgb(255 61 0)!important;
 
+}
 .deadline:hover{
     scale: 1.1;
     cursor: pointer;
@@ -141,10 +144,18 @@ a {
 }
 
 .box img {
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
     border-radius: 100%;
-    border: 2px solid white;
+    padding: 15px;
+    background-color: rgb(42, 54, 71);
+}
+
+.box:hover img{
+    background-color: black;
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
 }
 
 .box-text {
