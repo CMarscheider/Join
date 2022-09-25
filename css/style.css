@@ -103,6 +103,13 @@ a {
     width: 130px;
 }
 
+.tasks:hover{
+    scale: 1.1;
+    cursor: pointer;
+    background-color: rgb(42, 54, 71);
+    color: white;
+}
+
 .tasks h2 {
     margin: 0;
     font-size: 4rem;
@@ -117,6 +124,14 @@ a {
     display: flex;
 }
 
+
+.deadline:hover{
+    scale: 1.1;
+    cursor: pointer;
+    background-color: rgb(42, 54, 71);
+    color: white;
+}
+
 .box {
     display: flex;
     width: 50%;
@@ -128,6 +143,8 @@ a {
 .box img {
     width: 60px;
     height: 60px;
+    border-radius: 100%;
+    border: 2px solid white;
 }
 
 .box-text {
