@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,20 +15,103 @@
 
     <title>Document</title>
 </head>
-<body  onload="init()">
+
+<body onload="init()">
     <div class="maincontainer">
         <div w3-include-html="./assets/templates/aside.html" class="aside">
-    
-    
+
+
         </div>
         <div class="right-container">
-    
+
             <div class="header">
                 <div w3-include-html="./assets/templates/header.html" class=""></div>
-    
             </div>
-    
+
+
+            <div class="headline">
+                <h1>Add tasks</h1>
+            </div>
+
+            <div class="addtask-content">
+                <div class="middleline"></div>
+
+                <div class="leftside-content">
+
+                    <div class="title-container">
+                        <p>Title</p>
+                        <input placeholder="Enter a title" type="text">
+                    </div>
+
+                    <div class="description-container">
+                        <p>Description</p>
+                        <input placeholder="Enter a Description" type="text">
+                    </div>
+
+                    <div class="category-container">
+                        <p>Category</p>
+                        <select id="category">                   <!--  Wie fügt man einen Placeholder bei dem selecttag ein? -->
+                            <option>New category</option>
+                            <option>Sales</option>
+                            <option>Backoffice</option>
+                        </select>
+                    </div>
+
+                    <div class="category-container">
+                        <p>Assigned to</p>
+                        <select id="assigned">
+                            <option>New</option>
+                            <option>Maximilian Vogel</option>
+                            <option>Invite new contact</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="rightside-content">
+
+                    <div class="date-container">
+                        <p>Due date</p>
+                        <input type="date">
+                    </div>
+
+                    <div class="prio-container">
+                        <p>Prio</p>
+                        <div class="button-container">
+                            <button><b>Urgent</b>
+                                <img src="assets/img/highprio.svg" alt="">
+                            </button>
+                            <button><b>Medium</b>
+                                <img src="assets/img/mediumprio.svg" alt="">
+                            </button>
+                            <button><b>Low</b>
+                                <img src="assets/img/lowprio.svg" alt="">
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="subtasks-container">
+                        <p>Subtasks</p>
+                        <input placeholder="Add new subtask" type="text">
+                        <div class="checkbox-container">
+                            <input type="checkbox">
+                            <p>Subtask 1</p>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+
+
+
+
+
         </div>
     </div>
 </body>
+
 </html>

@@ -1,0 +1,121 @@
+.addtask-content {
+    display: flex;
+    position: relative;
+    width: 90vh;
+    height: 78vh;
+}
+
+.leftside-content {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    background-color: #F6F7F8;
+    padding-left: 8%;
+    padding-right: 5%;
+}
+
+.rightside-content {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    background-color: #F6F7F8;
+    padding-right: 8%;
+    padding-left: 5%;
+
+}
+
+.title-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.title-container input {
+    height: 4vh;
+}
+
+.description-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.description-container input {
+    height: 10vh;
+}
+
+.category-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.date-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.date-container input {
+    height: 4vh;
+}
+
+.prio-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.prio-container button {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 4vh;
+    width: 10vh;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.subtasks-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.subtasks-container input {
+    height: 4vh;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+
+
+.middleline {
+    background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    z-index: 999;
+    height: 50%;
+    width: 1px;
+    right: 50%;
+    top: 5%
+}
+
+input {
+    border-radius: 10px;
+    color: rgba(0, 0, 0, 0.2);
+}
+
+select {
+    border-radius: 10px;
+    height: 4vh;
+    color: rgba(0, 0, 0,);
+}
+
+option {
+    border-radius: 10px;
+    height: 4vh;
+}
