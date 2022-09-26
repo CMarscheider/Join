@@ -2,8 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 8%;
+  padding-right: 8%;
 }
 
 .board h1 {
@@ -45,8 +45,9 @@
 .all-tasks-contnet {
   display: flex;
   justify-content: space-between;
-  padding-left: 12%;
-  padding-right: 12%;
+  flex-wrap: wrap;
+  padding-left: 8%;
+  padding-right: 8%;
 }
 
 .todo-content {
@@ -56,7 +57,7 @@
 .todo {
   display: flex;
   flex-direction: column;
-  margin-right: 30px;
+  margin-right: 10px;
 }
 
 .create-todo {
@@ -93,9 +94,10 @@
 .todo-content span:first-child {
   background-color: #ff7a00;
   color: #fff;
-  width: 50px;
+  width: 65px;
   padding: 5px 15px;
   border-radius: 8px;
+  text-align: center;
 }
 
 .todo-content p {
@@ -108,4 +110,46 @@
 
 label {
   margin-left: 50px;
+}
+
+.box-footer {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-images-container {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.footer-images-container img {
+  margin-top: -2px;
+}
+
+.footer-circels span:first-child {
+  background-color: #ffa800;
+  padding: 8px;
+  border-radius: 100%;
+  color: #fff;
+}
+
+.footer-circels span:nth-child(2) {
+  background-color: #9327ff;
+  padding: 8px;
+  border-radius: 100%;
+  color: #fff;
+}
+
+.footer-circels span:last-child {
+  background-color: #2a3647;
+  padding: 8px;
+  color: #fff;
+  border-radius: 100%;
+}
+
+.box-footer span {
+  margin-left: -12px;
 }
