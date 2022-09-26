@@ -1,3 +1,25 @@
+let contacts = [
+    {
+        "name": "Klaus Müller",
+        "mail": "klaus@gmx.de",
+        "phone": "+4917674633948",
+        "projects": ""
+    },
+    {
+        "name": "Annegret Piepmatz",
+        "mail": "anne@web.de",
+        "phone": "+4917674374913",
+        "projects": ""
+    },
+    {
+        "name": "Jochen Kramer",
+        "mail": "jochen12@t-online.de",
+        "phone": "+839400364",
+        "projects": ""
+    },
+]
+
+
 /**
  * This functin is used to initialize the webpage
  * 
@@ -23,3 +45,4 @@ async function includeHTML() {
         }
     }
 }
+
