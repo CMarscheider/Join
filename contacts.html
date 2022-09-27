@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./script/mainjs.js"></script>
+    <script src="./script/mini_backend.js"></script>
+
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/contacts.css">
     <link rel="stylesheet" href="./css/header.css">
@@ -13,7 +15,7 @@
     <title>Document</title>
 </head>
 
-<body onload="init()">
+<body onload="init(), renderContactList()">
     <div class="maincontainer">
         <div w3-include-html="./assets/templates/aside.html" class="aside">
 
@@ -26,7 +28,7 @@
 
             </div>
             <div class="contacts-content">
-                <div class="contactlist">ddddddddddd</div>
+                <div class="contactlist" id="contactlist">ddddddddddd</div>
                 <div class="contactinfo">
                     <div class="headline">
                         <h1>Contacts</h1> <span>Better with a team</span>
@@ -50,7 +52,7 @@
                         <h3>Email</h3>
                         <p class="mail">klaus@web.de</p>
                         <h3>Phone</h3>
-                        <p>018475633948s</p>
+                        <p>018475633948</p>
                     </div>
 
                     <div class="addcontact">
