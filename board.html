@@ -4,13 +4,18 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- JS Files -->
+    <script src="./script/board.js"></script>
     <script src="./script/mainjs.js"></script>
     <script src="./script/mini_backend.js"></script>
+    <!-- //JS Files// -->
+    <!-- CSS Files -->
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/board.css" />
     <link rel="stylesheet" href="./css/header.css" />
     <link rel="stylesheet" href="./css/aside.css" />
-    <title>Document</title>
+    <!-- CSS Files -->
+    <title>Join-Board</title>
   </head>
   <body onload="init()">
     <div class="maincontainer">
@@ -25,7 +30,7 @@
           <form>
             <input type="search" id="boardSearch-input" placeholder="Find Task" />
             <img class="search-icon" src="./assets/img/search-icon.png" alt="" />
-            <button id="addTask-btn">Add Task +</button>
+            <button id="addTask-btn" onclick="addTask()">Add Task +</button>
           </form>
         </div>
 
@@ -33,7 +38,7 @@
           <div class="todo">
             <div class="create-todo">
               <h2>Todo</h2>
-              <span>+</span>
+              <span onclick="addTask()">+</span>
             </div>
 
             <div class="todo-content">
@@ -64,7 +69,7 @@
           <div class="todo">
             <div class="create-todo">
               <h2>In Progress</h2>
-              <span>+</span>
+              <span onclick="addTask()">+</span>
             </div>
 
             <div class="todo-content">
@@ -90,7 +95,7 @@
           <div class="todo">
             <div class="create-todo">
               <h2>Awaiting Feedback</h2>
-              <span>+</span>
+              <span onclick="addTask()">+</span>
             </div>
 
             <div class="todo-content">
@@ -116,7 +121,7 @@
           <div class="todo">
             <div class="create-todo">
               <h2>Done</h2>
-              <span>+</span>
+              <span onclick="addTask()">+</span>
             </div>
 
             <div class="todo-content">
@@ -145,10 +150,95 @@
           </div> 
         </div>
 
-      
+        <!-- Task Form -->
+          
+        <div class="addtask-content d-none" id="taskContent">
+          <div class="middleline"></div>
 
-          
-          
+          <div class="leftside-content">
+
+              <div class="title-container">
+                  <p>Title</p>
+                  <input placeholder="Enter a title" type="text" id="title">
+              </div>
+
+              <div class="description-container">
+                  <p>Description</p>
+                  <input placeholder="Enter a Description" type="text" id="description">
+              </div>
+
+              <div class="category-container">
+                  <p>Category</p>
+                  <select id="category" >                  
+                      <option>New category</option>
+                      <option>Sales</option>
+                      <option>Backoffice</option>
+                  </select>
+              </div>
+
+              <div class="category-container">
+                  <p>Assigned to</p>
+                  <select id="assigned">
+                      <option>New</option>
+                      <option>Maximilian Vogel</option>
+                      <option>Invite new contact</option>
+                  </select>
+              </div>
+
+          </div>
+
+          <div class="rightside-content">
+
+
+              <div class="date-container">
+                  <p>Due date</p>
+                  <input type="date" id="date">
+              </div>
+
+
+              <div class="prio-container">
+                  <p>Prio</p>
+                  <div class="button-container">
+                      <button id="urgent"><b>Urgent</b>
+                          <img src="assets/img/highprio.svg" alt="">
+                      </button>
+                      <button id="medium"><b>Medium</b>
+                          <img src="assets/img/mediumprio.svg" alt="">
+                      </button>
+                      <button id="low"><b>Low</b>
+                          <img src="assets/img/lowprio.svg" alt="">
+                      </button>
+                  </div>
+              </div>
+
+
+              <div class="subtasks-container">
+                  <p>Subtasks</p>
+                  <input placeholder="Add new subtask" type="text" id="subtask">
+                  <div class="checkbox-container">
+                      <input type="checkbox">
+                      <p>Subtask 1</p>
+                  </div>
+              </div>
+
+
+              <div class="button-container-end">
+                  <button class="clear-button"><b>Clear</b>
+                      <img src="assets/img/cancelimg.svg" alt="cancel">
+                  </button>
+                  <button class="create-button" onclick="createTask()"><b>Create task</b>
+                      <img src="assets/img/acceptimg.svg" alt="cancel">
+                  </button>
+
+
+
+              </div>
+
+
+          </div>
+      </div>
+          <!-- //Task Form// -->
+
         </div> 
       </div>
     </div>
