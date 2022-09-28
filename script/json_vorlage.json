@@ -1,0 +1,28 @@
+let contacts = [
+    {
+        "name": "Jochen Kramer",
+        "mail": "jochen12@t-online.de",
+        "phone": "+839400364",
+        "projects": "",
+        "contacts": {
+            "name": "Kontakt1",
+            "phone": "kontaktphone2",
+            "email": "kontaktemail1"
+        }
+    },
+
+]
+let tasks = [
+    {
+        "title": "title",
+        "description": "this is a description",
+        "category": "category",
+        "assignedBy": "assignedBy",
+        "date": "date",
+        "prio": "prio",
+        "subtask": "subtask"
+
+    }
+
+
+]
