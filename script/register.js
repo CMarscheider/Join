@@ -11,7 +11,8 @@ async function init() {
 async function addUser() {
     let email = document.getElementById('email');
     let password = document.getElementById('password');
+    let name = document.getElementById('name');
 
-    users.push({email: email.value, password: password.value});
+    users.push({email: email.value, password: password.value, name: name.value});
      await backend.setItem('users', JSON.stringify(users));
 }
