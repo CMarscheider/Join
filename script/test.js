@@ -1,7 +1,7 @@
 
 setURL('https://gruppe-318.developerakademie.net/smallest_backend_ever');
 
-let users = [];
+/* let users = []; */
 
 async function init() {
     await downloadFromServer();
