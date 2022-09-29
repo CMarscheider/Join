@@ -15,18 +15,5 @@ let username = document.getElementById('setUsername');
     users.push(username);
     await backend.setItem('users', JSON.stringify(users));
 
-    printUser();
-}
 
-function printUser(){
-
-    for (let i = 0; i < users.length; i++) {
-        const user = users[i];
-        document.getElementById('users').innerHTML +=`${user}`;
-    }
-}
-
-function clear(){
-    document.getElementById('users').innerHTML =``;
-    init();
 }
