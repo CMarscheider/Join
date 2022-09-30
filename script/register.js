@@ -15,4 +15,5 @@ async function addUser() {
 
     users.push({email: email.value, password: password.value, name: name.value});
      await backend.setItem('users', JSON.stringify(users));
+     window.location.href ='login.html?msg=Du hast dich erfolgreich registriert';
 }
