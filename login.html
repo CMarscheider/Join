@@ -8,18 +8,40 @@
     <script src="./script/mini_backend.js"></script>
     <script src="./script/register.js"></script>
     <script src="./script/login.js"></script>
+    <link rel="stylesheet" href="./css/login.css">
+
     <title>Login</title>
 </head>
 
 <body>
 
+    <div class="logincontainer">
 
-    <form onsubmit="login(); return false;">
-        <input type="email" required id="email">
-        <input type="password" required id="password">
-        <button>Login</button>
-    </form>
-<a href="./register.html">Register</a>
+        <div class="loginform">
+            <h1> Log in</h1>
+            <form onsubmit="login(); return false;">
+                <div class="input">
+                <input type="email" placeholder="Email" required id="email">
+                <img src="./assets/img/letter.png">
+            </div>
+            <div class="input">
+                <input type="password" placeholder="Password" required id="password">
+                <img src="./assets/img/lock.png">
+            </div>
+                <div class="logincontent">
+                    <input type="checkbox">Remember me</input>
+                    <a href="">Forgot my password</a>
+                </div>
+
+                <div class="buttons">
+                    <button class ="login-btn">Log in</button>
+                    <button class ="guest-btn">Guest Log in</button>
+
+                </div>
+            </form>
+            <a href="./register.html">Register</a>
+        </div>
+    </div>
     <div id="msgBox"></div>
 
 </body>
