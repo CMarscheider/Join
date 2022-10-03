@@ -1,0 +1,89 @@
+<div class="headline">
+    <h1>Add tasks</h1>
+</div>
+
+<div class="addtask-content">
+    <div class="middleline"></div>
+
+    <div class="leftside-content">
+
+        <div class="title-container">
+            <p>Title</p>
+            <input placeholder="Enter a title" type="text">
+        </div>
+
+        <div class="description-container">
+            <p>Description</p>
+            <input placeholder="Enter a Description" type="text">
+        </div>
+
+        <div class="category-container">
+            <p>Category</p>
+            <select id="category">                   <!--  Wie fügt man einen Placeholder bei dem selecttag ein? -->
+                <option>New category</option>
+                <option>Sales</option>
+                <option>Backoffice</option>
+            </select>
+        </div>
+
+        <div class="category-container">
+            <p>Assigned to</p>
+            <select id="assigned">
+                <option>New</option>
+                <option>Maximilian Vogel</option>
+                <option>Invite new contact</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="rightside-content">
+
+
+        <div class="date-container">
+            <p>Due date</p>
+            <input type="date">
+        </div>
+
+
+        <div class="prio-container">
+            <p>Prio</p>
+            <div class="button-container">
+                <button><b>Urgent</b>
+                    <img src="assets/img/highprio.svg" alt="">
+                </button>
+                <button><b>Medium</b>
+                    <img src="assets/img/mediumprio.svg" alt="">
+                </button>
+                <button><b>Low</b>
+                    <img src="assets/img/lowprio.svg" alt="">
+                </button>
+            </div>
+        </div>
+
+
+        <div class="subtasks-container">
+            <p>Subtasks</p>
+            <input placeholder="Add new subtask" type="text">
+            <div class="checkbox-container">
+                <input type="checkbox">
+                <p>Subtask 1</p>
+            </div>
+        </div>
+
+
+        <div class="button-container-end">
+            <button class="clear-button"><b>Clear</b>
+                <img src="assets/img/cancelimg.svg" alt="cancel">
+            </button>
+            <button class="create-button"><b>Create task</b>
+                <img src="assets/img/acceptimg.svg" alt="cancel">
+            </button>
+
+
+
+        </div>
+
+
+    </div>
+</div>

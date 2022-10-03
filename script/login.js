@@ -16,7 +16,7 @@ const msg = urlParams.get('msg');
 
 if (msg) {
     let msgBox= document.getElementById('msgBox');
-   msgBox.innerHtml = msg;
+   msgBox.innerHtml = `${msg}`;
 } else{
     //display none
 }
