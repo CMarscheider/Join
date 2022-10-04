@@ -1,4 +1,5 @@
 let allTasks = [];
+let prio;
 
 function addTask(){
     let title = document.getElementById('title').value;
@@ -31,4 +32,8 @@ function loadAllTasks(){
    let allTasksAsString = localStorage.getItem('allTasks');
    allTasks = JSON.parse(allTasksAsString);
    console.log(allTasks);
+}
+
+function checkPriority(priority){
+    prio = priority;
 }
