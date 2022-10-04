@@ -9,17 +9,18 @@
 
         <div class="title-container">
             <p>Title</p>
-            <input placeholder="Enter a title" type="text">
+            <input id= "title" placeholder="Enter a title" type="text">
         </div>
 
         <div class="description-container">
             <p>Description</p>
-            <input placeholder="Enter a Description" type="text">
+            <input id="description" placeholder="Enter a Description" type="text">
         </div>
 
         <div class="category-container">
             <p>Category</p>
             <select id="category">                   <!--  Wie fügt man einen Placeholder bei dem selecttag ein? -->
+                <option selected disabled>Select task category</option>
                 <option>New category</option>
                 <option>Sales</option>
                 <option>Backoffice</option>
@@ -29,9 +30,14 @@
         <div class="category-container">
             <p>Assigned to</p>
             <select id="assigned">
-                <option>New</option>
-                <option>Maximilian Vogel</option>
-                <option>Invite new contact</option>
+                <option selected disabled>Select contacts to assign</option>
+                <option>You
+                </option>
+                <option>Maximilian Vogel
+                </option>
+                <option>Invite new contact 
+                    <button></button>
+                </option>
             </select>
         </div>
 
@@ -42,7 +48,7 @@
 
         <div class="date-container">
             <p>Due date</p>
-            <input type="date">
+            <input id="date" type="date">
         </div>
 
 
@@ -64,7 +70,7 @@
 
         <div class="subtasks-container">
             <p>Subtasks</p>
-            <input placeholder="Add new subtask" type="text">
+            <input id="subtask" placeholder="Add new subtask" type="text">
             <div class="checkbox-container">
                 <input type="checkbox">
                 <p>Subtask 1</p>
@@ -76,7 +82,7 @@
             <button class="clear-button"><b>Clear</b>
                 <img src="assets/img/cancelimg.svg" alt="cancel">
             </button>
-            <button class="create-button"><b>Create task</b>
+            <button onclick="addTask()" class="create-button"><b>Create task</b>
                 <img src="assets/img/acceptimg.svg" alt="cancel">
             </button>
 
