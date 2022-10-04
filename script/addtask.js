@@ -24,10 +24,11 @@ let task = {
 allTasks.push(task);
 let allTasksAsString = JSON.stringify(allTasks);
 localStorage.setItem('allTasks', allTasksAsString);
-
+console.log(allTasks);
 }
 
 function loadAllTasks(){
    let allTasksAsString = localStorage.getItem('allTasks');
    allTasks = JSON.parse(allTasksAsString);
+   console.log(allTasks);
 }

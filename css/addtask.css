@@ -125,7 +125,7 @@
 
 input {
     border-radius: 10px;
-    color: rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 1);
 }
 
 select {
