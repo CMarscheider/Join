@@ -1,8 +1,18 @@
-.logincontainer{
-
+body {
+    margin: 0;
+    font-size: 0.7rem;
 }
 
-.loginform{
+
+.logincontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgrey;
+    height: 90vh;
+}
+
+.loginform {
     border-radius: 30px;
     border: 1px;
     box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
@@ -10,28 +20,44 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 50%;
+    height: 50%;
+    background-color: white;
+    padding: 15px;
+
 }
 
-.loginform form{
+.loginform a{
+    text-decoration: none;
+}
+
+.loginform form {
     display: flex;
     flex-direction: column;
 }
 
+.logincontent{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
 
-.input{
+.input {
     border-radius: 10px;
     border: 1px solid grey;
     display: flex;
     justify-content: space-between;
     padding: 5px;
+    margin-bottom: 10px;
 }
 
-.input input{
+.input input {
     border: 0;
     width: 100%;
 }
 
-.login-btn{
+.login-btn {
     border: 1px solid white;
     background-color: #2A3647;
     color: white;
@@ -39,9 +65,20 @@
     padding: 5px;
 }
 
-.guest-btn{
+.guest-btn {
     border-radius: 8px;
     border: 1px solid black;
     padding: 5px;
     background-color: white;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-between;
 }
