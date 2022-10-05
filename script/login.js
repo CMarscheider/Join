@@ -1,22 +1,37 @@
 let users;
+let user;
 
-function login(){
+function login() {
     let email = document.getElementById('email');
     let password = document.getElementById('password');
-    let user = users.find( u => u.email == email.value && u.password == password.value);
+    user = users.find(u => u.email == email.value && u.password == password.value);
     console.log(user);
     if (user) {
-        console.log('User gefunden');
+        window.location.href ='summary.html';
+    } else {
+        document.getElementById('msgBox').innerHTML = `Login leider nicht erfolgreich.`;
     }
 }
 
+function guestLogin(){
+let user = users[1]; // USER 1 Muss ein Testuser sein
+window.location.href ='summary.html';
+}
 
-const urlParams = new URLSearchParams(window.location.search);
-const msg = urlParams.get('msg');
+function onload() {
+    init();
+    const urlParams = new URLSearchParams(window.location.search);
+    const msg = urlParams.get('msg');
 
-if (msg) {
-    let msgBox= document.getElementById('msgBox');
-   msgBox.innerHtml = `${msg}`;
-} else{
-    //display none
+    if (msg) {
+        let msgBox = document.getElementById('msgBox');
+        msgBox.innerHTML = `${msg}`;
+    } else {
+        //display none
+    }
+}
+
+async function init() {
+    await downloadFromServer();
+    users = JSON.parse(backend.getItem('users')) || [];
 }

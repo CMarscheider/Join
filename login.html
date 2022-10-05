@@ -14,7 +14,7 @@
     <title>Login</title>
 </head>
 
-<body>
+<body onload="onload()">
 
     <div class="logincontainer">
 
@@ -35,8 +35,8 @@
                 </div>
 
                 <div class="buttons">
-                    <button class ="login-btn">Log in</button>
-                    <button class ="guest-btn">Guest Log in</button>
+                    <button class ="login-btn" type="submit">Log in</button>
+                    <button class ="guest-btn" type="button" onclick="guestLogin()">Guest Log in</button>
 
                 </div>
             </form>
