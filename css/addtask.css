@@ -1,161 +1,195 @@
 .addtask-content {
-    display: flex;
-    position: relative;
+  display: flex;
+  position: relative;
 }
 
 .leftside-content {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    background-color: #F6F7F8;
-    padding-left: 8%;
-    padding-right: 5%;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  background-color: #f6f7f8;
+  padding-left: 8%;
+  padding-right: 5%;
 }
 
 .rightside-content {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    height: 60vh;
-    background-color: #F6F7F8;
-    padding-right: 8%;
-    padding-left: 5%;
-
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 60vh;
+  background-color: #f6f7f8;
+  padding-right: 8%;
+  padding-left: 5%;
 }
 
 .title-container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .title-container input {
-    height: 4vh;
+  height: 4vh;
 }
 
 .description-container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .description-container input {
-    height: 10vh;
+  height: 10vh;
 }
 
 .category-container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .date-container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .date-container input {
-    height: 4vh;
+  height: 4vh;
 }
 
 .prio-container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .prio-container button {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 4vh;
-    width: 10vh;
-    border-radius: 10px;
-    background-color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 4vh;
+  width: 10vh;
+  border-radius: 10px;
+  background-color: white;
 }
 
 .button-container {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .subtasks-container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .subtasks-container input {
-    height: 4vh;
+  height: 4vh;
 }
 
 .checkbox-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .button-container-end {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 170px;
-    margin-left: 80px;
-    
-
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 170px;
+  margin-left: 80px;
 }
 
 .button-container-end button {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 50px;
-    width: 150px;
-    border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 50px;
+  width: 150px;
+  border-radius: 10px;
 }
 
-
-
-
 .middleline {
-    background-color: rgba(0, 0, 0, 0.1);
-    position: absolute;
-    z-index: 999;
-    height: 65%;
-    width: 1px;
-    right: 50%;
-    top: 5%
+  background-color: rgba(0, 0, 0, 0.1);
+  position: absolute;
+  z-index: 999;
+  height: 65%;
+  width: 1px;
+  right: 50%;
+  top: 5%;
 }
 
 input {
-    border-radius: 10px;
-    color: rgba(0, 0, 0, 1);
+  border-radius: 10px;
+  color: rgba(0, 0, 0, 1);
 }
 
 select {
-    border-radius: 10px;
-    height: 4vh;
-    color: rgba(0, 0, 0, );
+  border-radius: 10px;
+  height: 4vh;
+  color: rgba(0, 0, 0);
 }
 
 option {
-    border-radius: 10px;
-    height: 4vh;
+  border-radius: 10px;
+  height: 4vh;
 }
 
 .clear-button {
-    background-color: white;
+  background-color: white;
 }
 
 .clear-button:hover {
-    border-color: #29ABE2;
-    transition: all 0.3s ease-in-out;
+  border-color: #29abe2;
+  transition: all 0.3s ease-in-out;
 }
 
 .create-button {
-    background-color: #2A3647;
-    color: white;
+  background-color: #2a3647;
+  color: white;
 }
 
 .create-button:hover {
-    background-color: #29ABE2;
-    border-color: #29ABE2;
-    transition: all 0.3s ease-in-out;
-    
+  background-color: #29abe2;
+  border-color: #29abe2;
+  transition: all 0.3s ease-in-out;
 }
+
+/********** Assigned to ***************/
+.multiselect {
+  width: 200px;
+}
+
+.selectBox {
+  position: relative;
+}
+
+.selectBox select {
+  width: 100%;
+  font-weight: bold;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#checkboxes {
+  display: none;
+  border: 1px #dadada solid;
+}
+
+#checkboxes label {
+  display: block;
+}
+
+#checkboxes label:hover {
+  background-color: #1e90ff;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+/******* Assigned to ***************/
