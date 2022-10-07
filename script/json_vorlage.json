@@ -12,6 +12,7 @@ let contacts = [
     },
 
 ]
+
 let tasks = [
     {
         "title": "title",
