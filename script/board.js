@@ -1,5 +1,3 @@
-const { arrow } = require('@popperjs/core');
-
 let title = document.getElementById('title');
 let description = document.getElementById('description');
 let category = document.getElementById('category');
