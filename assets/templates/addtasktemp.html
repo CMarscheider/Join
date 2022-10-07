@@ -86,15 +86,15 @@
     <div class="prio-container">
       <p>Prio</p>
       <div class="button-container">
-        <button onclick="checkPriority('urgent')">
+        <button id="urgentButton" onclick="checkPriority('urgent'), changeColorofUrgentButton()">
           <b>Urgent</b>
           <img src="assets/img/highprio.svg" alt="" />
         </button>
-        <button onclick="checkPriority('medium')">
+        <button id="mediumButton" onclick="checkPriority('medium'),changeColorofMediumButton()">
           <b>Medium</b>
           <img src="assets/img/mediumprio.svg" alt="" />
         </button>
-        <button onclick="checkPriority('low')">
+        <button id="lowButton" onclick="checkPriority('low'),changeColorofLowButton()">
           <b>Low</b>
           <img src="assets/img/lowprio.svg" alt="" />
         </button>

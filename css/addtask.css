@@ -155,7 +155,7 @@ option {
 
 /********** Assigned to ***************/
 .multiselect {
-  width: 200px;
+  width: 100%;
 }
 
 .selectBox {
@@ -191,5 +191,21 @@ option {
 .flex {
   display: flex;
   justify-content: space-between;
+  background-color: white;
+  padding: 20px;
 }
+
+.urgentButtonBackground {
+  background-color: #FF3D00!important;
+}
+
+.mediumButtonBackground {
+  background-color: #FFA800!important;
+}
+
+.lowButtonBackground {
+  background-color: #7AE229!important;
+}
+
+
 /******* Assigned to ***************/

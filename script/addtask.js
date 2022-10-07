@@ -49,3 +49,24 @@ function showCheckboxes() {
   }
 }
 // Assigned to function
+
+
+// This functions changes the colors of the Prio-Buttons
+
+function changeColorofUrgentButton() {
+  document.getElementById('urgentButton').classList.add('urgentButtonBackground');
+  document.getElementById('mediumButton').classList.remove('mediumButtonBackground');
+  document.getElementById('lowButton').classList.remove('lowButtonBackground');
+}
+
+function changeColorofMediumButton() {
+  document.getElementById('urgentButton').classList.remove('urgentButtonBackground');
+  document.getElementById('mediumButton').classList.add('mediumButtonBackground');
+  document.getElementById('lowButton').classList.remove('lowButtonBackground');
+}
+
+function changeColorofLowButton() {
+  document.getElementById('urgentButton').classList.remove('urgentButtonBackground');
+  document.getElementById('mediumButton').classList.remove('mediumButtonBackground');
+  document.getElementById('lowButton').classList.add('lowButtonBackground');
+}
