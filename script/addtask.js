@@ -70,3 +70,4 @@ function changeColorofLowButton() {
   document.getElementById('mediumButton').classList.remove('mediumButtonBackground');
   document.getElementById('lowButton').classList.add('lowButtonBackground');
 }
+

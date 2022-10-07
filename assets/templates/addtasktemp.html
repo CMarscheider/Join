@@ -2,40 +2,43 @@
   <h1>Add tasks</h1>
 </div>
 
-<div class="addtask-content">
-  <div class="middleline"></div>
+<form onsubmit="addTask();return false">
+  <div class="addtask-content">
+    <div class="middleline"></div>
 
-  <div class="leftside-content">
-    <div class="title-container">
-      <p>Title</p>
-      <input id="title" placeholder="Enter a title" type="text" />
-    </div>
+    <div class="leftside-content">
 
-    <div class="description-container">
-      <p>Description</p>
-      <input id="description" placeholder="Enter a Description" type="text" />
-    </div>
+      <div class="title-container">
 
-    <div class="category-container">
-      <p>Category</p>
-      <select id="category">
-        <!--  Wie fügt man einen Placeholder bei dem selecttag ein? -->
-        <option selected disabled>Select task category</option>
-        <option>New category</option>
-        <option>Sales</option>
-        <option>Backoffice</option>
-        <div>
-          <span>aaa</span>
-          <span>aaa</span>
-          <span>aa</span>
-          <span>aa</span>
-          <span>aa</span>
-          <span>aa</span>
-        </div>
-      </select>
-    </div>
+        <p>Title</p>
+        <input required id="title" placeholder="Enter a title" type="text" />
+      </div>
 
-    <!-- <div class="category-container">
+      <div class="description-container">
+        <p>Description</p>
+        <input required id="description" placeholder="Enter a Description" type="text" />
+      </div>
+
+      <div class="category-container">
+        <p>Category</p>
+        <select id="category">
+          <!--  Wie fügt man einen Placeholder bei dem selecttag ein? -->
+          <option selected disabled>Select task category</option>
+          <option>New category</option>
+          <option>Sales</option>
+          <option>Backoffice</option>
+          <div>
+            <span>aaa</span>
+            <span>aaa</span>
+            <span>aa</span>
+            <span>aa</span>
+            <span>aa</span>
+            <span>aa</span>
+          </div>
+        </select>
+      </div>
+
+      <!-- <div class="category-container">
             <p>Assigned to</p>
             <select id="assigned">
                 <option selected disabled>Select contacts to assign</option>
@@ -49,7 +52,7 @@
             </select>
         </div> -->
 
-    <form>
+
       <div class="multiselect">
         <div class="selectBox" onclick="showCheckboxes()">
           <select>
@@ -74,51 +77,55 @@
           </div>
         </div>
       </div>
-    </form>
-  </div>
 
-  <div class="rightside-content">
-    <div class="date-container">
-      <p>Due date</p>
-      <input id="date" type="date" />
     </div>
 
-    <div class="prio-container">
-      <p>Prio</p>
-      <div class="button-container">
-        <button id="urgentButton" onclick="checkPriority('urgent'), changeColorofUrgentButton()">
-          <b>Urgent</b>
-          <img src="assets/img/highprio.svg" alt="" />
+    <div class="rightside-content">
+      <div class="date-container">
+        <p>Due date</p>
+        <input required id="date" type="date" />
+      </div>
+
+      <div class="prio-container">
+        <p>Prio</p>
+        <div class="button-container">
+          <button type="button" id="urgentButton" onclick="checkPriority('urgent'), changeColorofUrgentButton()">
+            <b>Urgent</b>
+            <img src="assets/img/highprio.svg" alt="" />
+          </button>
+          <button type="button" id="mediumButton" onclick="checkPriority('medium'),changeColorofMediumButton()">
+            <b>Medium</b>
+            <img src="assets/img/mediumprio.svg" alt="" />
+          </button>
+          <button type="button" id="lowButton" onclick="checkPriority('low'),changeColorofLowButton()">
+            <b>Low</b>
+            <img src="assets/img/lowprio.svg" alt="" />
+          </button>
+        </div>
+      </div>
+
+      <div class="subtasks-container">
+        <p>Subtasks</p>
+        <input required id="subtask" placeholder="Add new subtask" type="text" />
+        <div class="checkbox-container">
+          <input type="checkbox" />
+          <p>Subtask 1</p>
+        </div>
+      </div>
+
+      <div class="button-container-end">
+        <button type="button" class="clear-button">
+          <b>Clear</b>
+          <img src="assets/img/cancelimg.svg" alt="cancel" />
         </button>
-        <button id="mediumButton" onclick="checkPriority('medium'),changeColorofMediumButton()">
-          <b>Medium</b>
-          <img src="assets/img/mediumprio.svg" alt="" />
+        <button type="submit" class="create-button">
+          <b>Create task</b>
+          <img src="assets/img/acceptimg.svg" alt="cancel" />
         </button>
-        <button id="lowButton" onclick="checkPriority('low'),changeColorofLowButton()">
-          <b>Low</b>
-          <img src="assets/img/lowprio.svg" alt="" />
-        </button>
+
+        <input type="button">
+
       </div>
     </div>
-
-    <div class="subtasks-container">
-      <p>Subtasks</p>
-      <input id="subtask" placeholder="Add new subtask" type="text" />
-      <div class="checkbox-container">
-        <input type="checkbox" />
-        <p>Subtask 1</p>
-      </div>
-    </div>
-
-    <div class="button-container-end">
-      <button class="clear-button">
-        <b>Clear</b>
-        <img src="assets/img/cancelimg.svg" alt="cancel" />
-      </button>
-      <button onclick="addTask()" class="create-button">
-        <b>Create task</b>
-        <img src="assets/img/acceptimg.svg" alt="cancel" />
-      </button>
-    </div>
-  </div>
+</form>
 </div>
