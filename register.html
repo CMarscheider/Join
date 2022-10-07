@@ -9,22 +9,48 @@
     <!-- JS Files -->
 
     <script src="./script/mini_backend.js"></script>
-   <!--  <script src="./script/test.js"></script> -->
     <script src="./script/register.js"></script>
 
     <!-- //JS Files// -->
+
+    <link rel="stylesheet" href="./css/login.css">
+
     <title>Register</title>
 </head>
 
 <body onload="init()">
-    <form onsubmit="addUser(); return false;">
-        <input id="name" type="text" placeholder="name" required>
-        <input id="email" type="email" placeholder="email" required>
-        <input id="password" type="password" placeholder="passwort" required>
-        <button>Registrieren</button>
-    </form>
+
+    <div class="header">
+        <img src="./assets/img/logo_blue.png" alt="logo">
+    </div>
 
 
+
+    <div class="logincontainer">
+
+        <div class="loginform">
+            <h1> Sign Up</h1>
+            <form onsubmit="addUser(); return false;">
+                <div class="input">
+                    <input type="text" placeholder="Name" required id="name">
+                    <img src="./assets/img/nameicon.png">
+                </div>
+                <div class="input">
+                    <input type="email" placeholder="Email" required id="password">
+                    <img src="./assets/img/letter.png">
+                </div>
+                <div class="input">
+                    <input type="password" placeholder="Password" required id="password">
+                    <img src="./assets/img/lock.png">
+                </div>
+
+                <div class="center">
+                    <button class="login-btn" type="submit">Sign Up</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
     GEHT NICHT? aktivier das C!!!
 
 </body>

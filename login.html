@@ -15,28 +15,35 @@
 </head>
 
 <body onload="onload()">
-
+    <div class="header">
+        <img src="./assets/img/logo_blue.png" alt="logo">
+        <div class="center">
+            <p>Not a Join user?</p>
+            <button class="login-btn" onclick="openSignUp()">Sign Up</button>
+        
+        </div>
+    </div>
     <div class="logincontainer">
 
         <div class="loginform">
             <h1> Log in</h1>
             <form onsubmit="login(); return false;">
                 <div class="input">
-                <input type="email" placeholder="Email" required id="email">
-                <img src="./assets/img/letter.png">
-            </div>
-            <div class="input">
-                <input type="password" placeholder="Password" required id="password">
-                <img src="./assets/img/lock.png">
-            </div>
+                    <input type="email" placeholder="Email" required id="email">
+                    <img src="./assets/img/letter.png">
+                </div>
+                <div class="input">
+                    <input type="password" placeholder="Password" required id="password">
+                    <img src="./assets/img/lock.png">
+                </div>
                 <div class="logincontent">
                     <div class="center"><input type="checkbox">Remember me</div>
                     <a href="">Forgot my password</a>
                 </div>
 
                 <div class="buttons">
-                    <button class ="login-btn" type="submit">Log in</button>
-                    <button class ="guest-btn" type="button" onclick="guestLogin()">Guest Log in</button>
+                    <button class="login-btn" type="submit">Log in</button>
+                    <button class="guest-btn" type="button" onclick="guestLogin()">Guest Log in</button>
 
                 </div>
             </form>

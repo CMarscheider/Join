@@ -7,15 +7,15 @@ function login() {
     user = users.find(u => u.email == email.value && u.password == password.value);
     console.log(user);
     if (user) {
-        window.location.href ='summary.html';
+        window.location.href = 'summary.html';
     } else {
         document.getElementById('msgBox').innerHTML = `Login leider nicht erfolgreich.`;
     }
 }
 
-function guestLogin(){
-let user = users[1]; // USER 1 Muss ein Testuser sein
-window.location.href ='summary.html';
+function guestLogin() {
+    let user = users[1]; // USER 1 Muss ein Testuser sein
+    window.location.href = 'summary.html';
 }
 
 function onload() {
@@ -34,4 +34,10 @@ function onload() {
 async function init() {
     await downloadFromServer();
     users = JSON.parse(backend.getItem('users')) || [];
+}
+
+
+function openSignUp() {
+    window.location.href = 'register.html';
+
 }
