@@ -17,10 +17,10 @@ function showTime() {
     var time = d.getHours();
     let greetingBox = document.getElementById('time');
 
-    if (time < 12) {
+    if (time <= 11) {
         greetingBox.innerHTML = `Good morning,`;
     }
-    if (time > 12 && time <= 14) {
+    if (time > 11 && time <= 14) {
         greetingBox.innerHTML = `Have a nice Lunch,`;
     }
     if (time > 14 && time <= 17) {

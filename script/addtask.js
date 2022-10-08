@@ -1,9 +1,9 @@
 let allTasks = [];
 let prio;
-loadAllTasks();
+/* loadAllTasks(); */
 var expanded = false;
 
-function addTask() {
+async function addTask() {
   let title = document.getElementById('title');
   let description = document.getElementById('description');
   let category = document.getElementById('category');
@@ -12,26 +12,20 @@ function addTask() {
 
   /* let subtask = document.getElementById('subtask').value; */
 
-  let task = {
+
+
+  allTasks.push({
     title: title.value,
     description: description.value,
     category: category.value,
-    assigned: assigned.value,
+/*     assigned: assigned.value, */
     date: date.value,
     prio: prio,
-  };
-
-  allTasks.push(task);
-  let allTasksAsString = JSON.stringify(allTasks);
-  localStorage.setItem('allTasks', allTasksAsString);
-  console.log(task);
+  });
+  await backend.setItem('allTasks', JSON.stringify(allTasks));
 }
 
-function loadAllTasks() {
-  let allTasksAsString = localStorage.getItem('allTasks');
-  allTasks = JSON.parse(allTasksAsString);
-  console.log(allTasks);
-}
+
 
 function checkPriority(priority) {
   prio = priority;
@@ -48,7 +42,7 @@ function showCheckboxes() {
     expanded = false;
   }
 }
-// Assigned to function
+
 
 
 // This functions changes the colors of the Prio-Buttons
