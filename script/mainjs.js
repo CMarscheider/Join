@@ -12,7 +12,6 @@ async function init() {
     users = JSON.parse(backend.getItem('users')) || [];
     user = localStorage.getItem('user');
     user = JSON.parse(user);
-
     allTasks = JSON.parse(backend.getItem('allTasks')) || [];
     
 }
