@@ -10,6 +10,9 @@ async function init() {
     await includeHTML();
     await downloadFromServer();
     users = JSON.parse(backend.getItem('users')) || [];
+    user = localStorage.getItem('user');
+    user = JSON.parse(user);
+
     /* tasks = JSON.parse(backend.getItem('tasks')) || []; */
     
 }
@@ -38,6 +41,7 @@ function login() {
     console.log(user);
     if (user) {
         window.location.href = 'summary.html';
+        localStorage.setItem('user', JSON.stringify(user));
     } else {
         document.getElementById('msgBox').innerHTML = `Login leider nicht erfolgreich.`;
     }
@@ -45,6 +49,7 @@ function login() {
 
 function guestLogin() {
     let user = users[1]; // USER 1 Muss ein Testuser sein
+    localStorage.setItem('user', JSON.stringify(user));
     window.location.href = 'summary.html';
 }
 

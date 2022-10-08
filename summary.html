@@ -10,6 +10,7 @@
 
     <script src="./script/mini_backend.js"></script>
     <script src="./script/mainjs.js"></script>
+    <script src="./script/summary.js"></script>
     <script>setURL('https://gruppe-318.developerakademie.net/smallest_backend_ever');</script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +20,7 @@
 
     <title>Summary</title>
 </head>
-<body onload="init()">
+<body onload="loadSummary()">
     <div class="maincontainer">
         <div w3-include-html="./assets/templates/aside.html" class="aside">
 
@@ -93,10 +94,10 @@
                 </div>
                 <div class="greetings">
                     <div class="text">
-                        <h2>
-                            Good morning,
+                        <h2 id="time">
+                            
                         </h2>
-                        <span>Sofia Müller</span>
+                        <span id="greetingName"></span>
                     </div>
                 </div>
 
