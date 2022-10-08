@@ -13,7 +13,7 @@ async function init() {
     user = localStorage.getItem('user');
     user = JSON.parse(user);
 
-    /* tasks = JSON.parse(backend.getItem('tasks')) || []; */
+    allTasks = JSON.parse(backend.getItem('allTasks')) || [];
     
 }
 /**
