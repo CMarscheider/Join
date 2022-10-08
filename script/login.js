@@ -14,5 +14,4 @@ function onload() {
 
 function openSignUp() {
     window.location.href = 'register.html';
-
 }
