@@ -52,10 +52,12 @@
   flex-wrap: wrap;
   padding-left: 8%;
   padding-right: 8%;
+  position: relative;
 }
 
 .todo-content {
   display: flex;
+  margin-top: 10px;
 }
 
 .todo {
@@ -102,10 +104,10 @@
   color: #03a9f4;
 }
 
-.todo-content span:first-child {
+.category {
   background-color: #ff7a00;
   color: #fff;
-  width: 65px;
+  width: 90px;
   padding: 5px 15px;
   border-radius: 8px;
   text-align: center;
@@ -165,11 +167,9 @@ label {
   margin-left: -12px;
 }
 
-/* Task Form Style */
-.addtask-content {
-  display: flex;
-  position: relative;
-  top: -35%;
-  left: -7%;
+#form {
+  width: 60%;
+  z-index: 999;
+  position: absolute;
+  top: 15%;
 }
-/* //Task Form Style// */

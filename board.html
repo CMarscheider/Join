@@ -5,14 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- JS Files -->
-    <script>setURL('https://gruppe-318.developerakademie.net/smallest_backend_ever');
-    </script>
     <script src="./script/board.js"></script>
     <script src="./script/mini_backend.js"></script>
+    <script src="./script/addtask.js"></script>
     <script src="./script/mainjs.js"></script>
     <script src="./script/login.js"></script>
     <script>setURL('https://gruppe-318.developerakademie.net/smallest_backend_ever');</script>
-
+    
     <!-- //JS Files// -->
     <!-- CSS Files -->
     <link rel="stylesheet" href="./css/style.css" />
@@ -23,7 +22,7 @@
     <!-- CSS Files -->
     <title>Join-Board</title>
   </head>
-  <body onload="init()">
+  <body onload="init(), renderTasks();">
     <div class="maincontainer">
       <div w3-include-html="./assets/templates/aside.html" class="aside"></div>
       <div class="right-container">
@@ -36,7 +35,7 @@
           <form>
             <input type="search" id="boardSearch-input" placeholder="Find Task" />
             <img class="search-icon" src="./assets/img/search-icon.png" alt="" />
-            <button id="addTask-btn" onclick="addTask()">Add Task +</button>
+            <input type="button" id="addTask-btn" onclick="showInputsForm()" value="Add Task +">
           </form>
         </div>
 
@@ -44,9 +43,10 @@
           <div class="todo">
             <div class="create-todo">
               <h2>Todo</h2>
-              <span onclick="addTask()">+</span>
+              <span onclick="showInputsForm()">+</span>
             </div>
 
+           <div id="todoContent">
             <div class="todo-content">
               <span>Design</span>
               <h3>Website redesign</h3>
@@ -70,12 +70,16 @@
                 </div>
               </div>
             </div>
+
+           </div>
+
+           
           </div>
 
           <div class="todo">
             <div class="create-todo">
               <h2>In Progress</h2>
-              <span onclick="addTask()">+</span>
+              <span onclick="showInputsForm()">+</span>
             </div>
 
             <div class="todo-content">
@@ -101,7 +105,7 @@
           <div class="todo">
             <div class="create-todo">
               <h2>Awaiting Feedback</h2>
-              <span onclick="addTask()">+</span>
+              <span onclick="showInputsForm()">+</span>
             </div>
 
             <div class="todo-content">
@@ -127,7 +131,7 @@
           <div class="todo">
             <div class="create-todo">
               <h2>Done</h2>
-              <span onclick="addTask()">+</span>
+              <span onclick="showInputsForm()">+</span>
             </div>
 
             <div class="todo-content">
@@ -157,92 +161,120 @@
         </div>
 
         <!-- Task Form -->
-          
-        <div class="addtask-content d-none" id="taskContent">
-          <div class="middleline"></div>
-
-          <div class="leftside-content">
-
+        <form onsubmit="addTask();return false" class="d-none" id="form">
+          <div class="addtask-content">
+            <div class="middleline"></div>
+        
+            <div class="leftside-content">
+        
               <div class="title-container">
-                  <p>Title</p>
-                  <input placeholder="Enter a title" type="text" id="title">
+        
+                <p>Title</p>
+                <input required id="title" placeholder="Enter a title" type="text" />
               </div>
-
+        
               <div class="description-container">
-                  <p>Description</p>
-                  <input placeholder="Enter a Description" type="text" id="description">
+                <p>Description</p>
+                <input required id="description" placeholder="Enter a Description" type="text" />
               </div>
-
+        
               <div class="category-container">
-                  <p>Category</p>
-                  <select id="category" >                  
-                      <option>New category</option>
-                      <option>Sales</option>
-                      <option>Backoffice</option>
-                  </select>
+                <p>Category</p>
+                <select id="category">
+                  <!--  Wie fügt man einen Placeholder bei dem selecttag ein? -->
+                  <option selected disabled>Select task category</option>
+                  <option>New category</option>
+                  <option>Sales</option>
+                  <option>Backoffice</option>
+                  <div>
+                    <span>aaa</span>
+                    <span>aaa</span>
+                    <span>aa</span>
+                    <span>aa</span>
+                    <span>aa</span>
+                    <span>aa</span>
+                  </div>
+                </select>
               </div>
-
-              <div class="category-container">
-                  <p>Assigned to</p>
-                  <select id="assigned">
-                      <option>New</option>
-                      <option>Maximilian Vogel</option>
-                      <option>Invite new contact</option>
+        
+              <div class="multiselect">
+                <div class="selectBox" onclick="showCheckboxes()">
+                  <select>
+                    <option>Select an option</option>
                   </select>
+                  <div class="overSelect"></div>
+                </div>
+                <div id="checkboxes">
+                  <div class="flex">
+                    <label for="one"> First checkbox</label>
+                    <input type="checkbox" id="one" />
+                  </div>
+        
+                  <div class="flex">
+                    <label for="two"> Second checkbox</label>
+                    <input type="checkbox" id="two" />
+                  </div>
+        
+                  <div class="flex">
+                    <label for="three"> Third checkbox</label>
+                    <input type="checkbox" id="three" />
+                  </div>
+                </div>
               </div>
-
-          </div>
-
-          <div class="rightside-content">
-
-
+        
+            </div>
+        
+            <div class="rightside-content">
               <div class="date-container">
-                  <p>Due date</p>
-                  <input type="date" id="date">
+                <p>Due date</p>
+                <input required id="date" type="date" />
               </div>
-
-
+        
               <div class="prio-container">
-                  <p>Prio</p>
-                  <div class="button-container">
-                      <button id="urgent"><b>Urgent</b>
-                          <img src="assets/img/highprio.svg" alt="">
-                      </button>
-                      <button id="medium"><b>Medium</b>
-                          <img src="assets/img/mediumprio.svg" alt="">
-                      </button>
-                      <button id="low"><b>Low</b>
-                          <img src="assets/img/lowprio.svg" alt="">
-                      </button>
-                  </div>
+                <p>Prio</p>
+                <div class="button-container">
+                  <button type="button" id="urgentButton" onclick="checkPriority('urgent'), changeColorofUrgentButton()">
+                    <b>Urgent</b>
+                    <img src="assets/img/highprio.svg" alt="" />
+                  </button>
+                  <button type="button" id="mediumButton" onclick="checkPriority('medium'),changeColorofMediumButton()">
+                    <b>Medium</b>
+                    <img src="assets/img/mediumprio.svg" alt="" />
+                  </button>
+                  <button type="button" id="lowButton" onclick="checkPriority('low'),changeColorofLowButton()">
+                    <b>Low</b>
+                    <img src="assets/img/lowprio.svg" alt="" />
+                  </button>
+                </div>
               </div>
-
-
+        
               <div class="subtasks-container">
-                  <p>Subtasks</p>
-                  <input placeholder="Add new subtask" type="text" id="subtask">
-                  <div class="checkbox-container">
-                      <input type="checkbox">
-                      <p>Subtask 1</p>
-                  </div>
+                <p>Subtasks</p>
+                <input required id="subtask" placeholder="Add new subtask" type="text" />
+                <div class="checkbox-container">
+                  <input type="checkbox" />
+                  <p>Subtask 1</p>
+                </div>
               </div>
-
-
+        
               <div class="button-container-end">
-                  <button class="clear-button"><b>Clear</b>
-                      <img src="assets/img/cancelimg.svg" alt="cancel">
-                  </button>
-                  <button class="create-button" onclick="createTask()"><b>Create task</b>
-                      <img src="assets/img/acceptimg.svg" alt="cancel">
-                  </button>
-
-
-
+                <button type="button" class="clear-button">
+                  <b>Clear</b>
+                  <img src="assets/img/cancelimg.svg" alt="cancel" />
+                </button>
+                <button type="submit" class="create-button">
+                  <b>Create task</b>
+                  <img src="assets/img/acceptimg.svg" alt="cancel" />
+                </button>
+        
+                <input type="button">
+        
               </div>
-
-
-          </div>
-      </div>
+            </div>
+        </form>
+        </div>
+        
+        
           <!-- //Task Form// -->
 
         </div> 
