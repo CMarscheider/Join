@@ -47,7 +47,7 @@ function login() {
 }
 
 function guestLogin() {
-    let user = users[1]; // USER 1 Muss ein Testuser sein
+    let user = users[0]; // USER 1 Muss ein Testuser sein
     localStorage.setItem('user', JSON.stringify(user));
     window.location.href = 'summary.html';
 }
