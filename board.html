@@ -32,11 +32,11 @@
 
         <div class="board">
           <h1>Board</h1>
-          <form>
-            <input type="search" id="boardSearch-input" placeholder="Find Task" />
-            <img class="search-icon" src="./assets/img/search-icon.png" alt="" />
+          <div>
+            <input type="text" id="boardSearch-input" placeholder="Find Task" onkeyup="searchContent(this.value)" />
+            <img class="search-icon" src="./assets/img/search-icon.png" />
             <input type="button" id="addTask-btn" onclick="showInputsForm()" value="Add Task +">
-          </form>
+          </div>
         </div>
 
         <div class="all-tasks-contnet">
