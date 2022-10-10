@@ -1,6 +1,7 @@
 let letters = [];
 let splittedName = [];
 let contacts;
+let color;
 
 /* users in contacts pushen */
 
@@ -25,9 +26,11 @@ function renderContactList() {
         let phone = contact['phone'];
         let name = contact['name'];
         let firstLetter = name.charAt(0);
+        let id = "contactIcon" + i;
         checkForLetters(firstLetter, contactlist);
         splitName(name);
-        renderContacts(name, mail, firstLetter);
+        generateRandomColor();
+        renderContacts(name, mail, firstLetter, i, id);
 
     }
 }
@@ -35,28 +38,35 @@ function renderContactList() {
 function splitName(name) {
     splittedName = [];
     if (name.includes(" ")) {
-    splittedName = name.split(" ");
-    } else{
+        splittedName = name.split(" ");
+    } else {
         splittedName = name;
     }
 }
 
-function renderContacts(name, mail, firstLetter) {
+function renderContacts(name, mail, firstLetter, i, id) {
+
     document.getElementById(`${firstLetter.toUpperCase()}`).innerHTML +=/*html*/`
-<div class="singleContact" onclick="openContact(${mail}, ${name})">
-    <div class="contactIcon">
-        <span>${splittedName[0].charAt(0).toUpperCase()}${splittedName[1].charAt(0).toUpperCase()}</span>
-    </div>
-<div class="contactText">
-    <span>${splittedName[0].charAt(0).toUpperCase()}${splittedName[0].slice(1)} ${splittedName[1].charAt(0).toUpperCase()}${splittedName[1].slice(1)}</span>
-    <span class="mail smallText">${mail}</span>
+    <div class="singleContact" onclick="openContact('${mail}', '${name}', '${color}')">
+        <div class="contactIcon" id="${id}">
+            <span>${splittedName[0].charAt(0).toUpperCase()}${splittedName[1].charAt(0).toUpperCase()}</span>
+        </div>
+        <div class="contactText">
+            <span>${splittedName[0].charAt(0).toUpperCase()}${splittedName[0].slice(1)} ${splittedName[1].charAt(0).toUpperCase()}${splittedName[1].slice(1)}</span>
+            <span class="mail smallText">${mail}</span>
+        </div>
 </div>
-</div>
-`
+`;
+
+let icon = document.getElementById(`${id}`);
+console.log(icon);
+icon.style.backgroundColor = color;
 }
 
-
-
+function generateRandomColor() {
+    var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+    color = randomColor;
+}
 
 function checkForLetters(firstLetter, contactlist) {
     firstLetter = firstLetter.toUpperCase();
@@ -75,11 +85,11 @@ function printLetters(firstLetter, contactlist) {
     }
 }
 
-function openContact(mail, name){
+function openContact(mail, name, backgroundColor) {
     splitName(name);
-    document.getElementById('displaycontactinfos').innerHTML=/*html*/`
+    document.getElementById('displaycontactinfos').innerHTML =/*html*/`
     <div class="infocontainer" id="infocontainer">
-    <div class="photo">
+    <div class="photo" id ="photo">
         <span>${splittedName[0].charAt(0).toUpperCase()}${splittedName[1].charAt(0).toUpperCase()}</span>
     </div>
     <div class="name-and-button">
@@ -102,4 +112,6 @@ function openContact(mail, name){
     <p>018475633948</p>
 </div>
     `;
+
+    document.getElementById('photo').style.backgroundColor = backgroundColor;
 }
