@@ -2,12 +2,12 @@ let letters = [];
 let splittedName = [];
 
 function sortContacts() {
-    contacts.sort(function (a, b) {
+    users.sort(function (a, b) {
         let x = a.name.toUpperCase();
         let y = b.name.toUpperCase();
         return x == y ? 0 : x > y ? 1 : -1;
     });
-    console.log(contacts);
+    console.log(users);
     renderContactList();
 }
 
@@ -15,8 +15,8 @@ function renderContactList() {
     let contactlist = document.getElementById('contactlist');
     contactlist.innerHTML = "";
 
-    for (let i = 0; i < contacts.length; i++) {
-        const contact = contacts[i];
+    for (let i = 0; i < users.length; i++) {
+        const contact = users[i];
         let mail = contact['mail'];
         let phone = contact['phone'];
         let name = contact['name'];
