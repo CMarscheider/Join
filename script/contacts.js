@@ -1,7 +1,11 @@
 let letters = [];
 let splittedName = [];
+let contacts;
 
-function sortContacts() {
+/* users in contacts pushen */
+
+async function sortContacts() {
+    await init();
     users.sort(function (a, b) {
         let x = a.name.toUpperCase();
         let y = b.name.toUpperCase();
@@ -17,7 +21,7 @@ function renderContactList() {
 
     for (let i = 0; i < users.length; i++) {
         const contact = users[i];
-        let mail = contact['mail'];
+        let mail = contact['email'];
         let phone = contact['phone'];
         let name = contact['name'];
         let firstLetter = name.charAt(0);
