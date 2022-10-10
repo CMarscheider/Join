@@ -53,6 +53,10 @@ function changeColorofUrgentButton() {
   document.getElementById('urgentImg').classList.add('prio-img-white');
   document.getElementById('mediumImg').classList.remove('prio-img-white');
   document.getElementById('lowImg').classList.remove('prio-img-white');
+  document.getElementById('urgentText').classList.add('white-text');
+  document.getElementById('mediumText').classList.remove('white-text');
+  document.getElementById('lowText').classList.remove('white-text');
+
 }
 
 function changeColorofMediumButton() {
@@ -62,6 +66,10 @@ function changeColorofMediumButton() {
   document.getElementById('urgentImg').classList.remove('prio-img-white');
   document.getElementById('mediumImg').classList.add('prio-img-white');
   document.getElementById('lowImg').classList.remove('prio-img-white');
+  document.getElementById('urgentText').classList.remove('white-text');
+  document.getElementById('mediumText').classList.add('white-text');
+  document.getElementById('lowText').classList.remove('white-text');
+
 }
 
 function changeColorofLowButton() {
@@ -71,5 +79,8 @@ function changeColorofLowButton() {
   document.getElementById('urgentImg').classList.remove('prio-img-white');
   document.getElementById('mediumImg').classList.remove('prio-img-white');
   document.getElementById('lowImg').classList.add('prio-img-white');
+  document.getElementById('urgentText').classList.remove('white-text');
+  document.getElementById('mediumText').classList.remove('white-text');
+  document.getElementById('lowText').classList.add('white-text');
 }
 
