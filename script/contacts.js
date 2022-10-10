@@ -25,8 +25,7 @@ function renderContactList() {
         let phone = contact['phone'];
         let name = contact['name'];
         let firstLetter = name.charAt(0);
-        checkForLetters(firstLetter);
-        printLetters(firstLetter, contactlist);
+        checkForLetters(firstLetter, contactlist);
         splitName(name);
         renderContacts(name, mail, firstLetter);
 
@@ -35,17 +34,21 @@ function renderContactList() {
 
 function splitName(name) {
     splittedName = [];
+    if (name.includes(" ")) {
     splittedName = name.split(" ");
+    } else{
+        splittedName = name;
+    }
 }
 
 function renderContacts(name, mail, firstLetter) {
-    document.getElementById(`${firstLetter}`).innerHTML +=/*html*/`
-<div class="singleContact">
+    document.getElementById(`${firstLetter.toUpperCase()}`).innerHTML +=/*html*/`
+<div class="singleContact" onclick="openContact(${mail}, ${name})">
     <div class="contactIcon">
-        <span>${splittedName[0].charAt(0)}${splittedName[1].charAt(0)}</span>
+        <span>${splittedName[0].charAt(0).toUpperCase()}${splittedName[1].charAt(0).toUpperCase()}</span>
     </div>
 <div class="contactText">
-    <span>${name}</span>
+    <span>${splittedName[0].charAt(0).toUpperCase()}${splittedName[0].slice(1)} ${splittedName[1].charAt(0).toUpperCase()}${splittedName[1].slice(1)}</span>
     <span class="mail smallText">${mail}</span>
 </div>
 </div>
@@ -53,17 +56,50 @@ function renderContacts(name, mail, firstLetter) {
 }
 
 
-function checkForLetters(firstLetter) {
+
+
+function checkForLetters(firstLetter, contactlist) {
+    firstLetter = firstLetter.toUpperCase();
     if (!letters.includes(firstLetter)) {
         letters.push(firstLetter);
+        printLetters(firstLetter, contactlist);
     }
 }
 
-function printLetters(firstletter, contactlist) {
-    if (!document.getElementById(`${firstletter}`)) {
+function printLetters(firstLetter, contactlist) {
+    if (!document.getElementById(`${firstLetter}`)) {
         contactlist.innerHTML +=/*html*/`
-        <div class="letters" id="${firstletter}">
-        <span class="headletter">${firstletter}</span>
+        <div class="letters" id="${firstLetter}">
+        <span class="headletter">${firstLetter}</span>
         </div>`
     }
+}
+
+function openContact(mail, name){
+    splitName(name);
+    document.getElementById('displaycontactinfos').innerHTML=/*html*/`
+    <div class="infocontainer" id="infocontainer">
+    <div class="photo">
+        <span>${splittedName[0].charAt(0).toUpperCase()}${splittedName[1].charAt(0).toUpperCase()}</span>
+    </div>
+    <div class="name-and-button">
+        <h2>${splittedName[0].charAt(0).toUpperCase()}${splittedName[0].slice(1)} ${splittedName[1].charAt(0).toUpperCase()}${splittedName[1].slice(1)}</h2>
+        <p>+ Add Task</p>
+    </div>
+
+</div>
+<div class="edit">
+    <p>Contact Information</p>
+    <div class="editbutton">
+        <img src="./assets/img/editbutton.png" alt="edit">
+        <p>Edit Contact</p>
+    </div>
+</div>
+<div class="mail-and-phone">
+    <h3>Email</h3>
+    <p class="mail">${mail}</p>
+    <h3>Phone</h3>
+    <p>018475633948</p>
+</div>
+    `;
 }
