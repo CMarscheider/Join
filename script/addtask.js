@@ -13,7 +13,6 @@ async function addTask() {
   /* let subtask = document.getElementById('subtask').value; */
 
 
-
   allTasks.push({
     title: title.value,
     description: description.value,
