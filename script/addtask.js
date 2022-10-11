@@ -3,6 +3,7 @@ let prio;
 /* loadAllTasks(); */
 var expanded = false;
 let temporaryAssigned = [];
+let allSubtasks;
 
 async function addTask() {
   let title = document.getElementById('title');
@@ -56,7 +57,22 @@ function showCheckboxes() {
   }
 }
 
+function openSubtask() {
+  document.getElementById('acceptButton').classList.remove('d-none');
+  /*  document.getElementsByClassName('cross').style.transform = 'rotate(20deg)';  PLUS ZU X DREHEN*/
+}
 
+function createSubtask() {
+  let subtask = document.getElementById('subtask').value;
+  allSubtasks.push(subtask);
+  
+  document.getElementById('subtaskList').innerHTML += /*html*/`
+    <div class="flex">
+      <label for="subTask${i}">${subtask}</label>
+      <input type="checkbox" id="subTask${i}" />
+    </div>
+  `;
+}
 
 
 // This functions changes the colors of the Prio-Buttons

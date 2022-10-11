@@ -38,7 +38,7 @@
         </select>
       </div>
 
-    
+
 
       <div id="assigned-container" class="category-container">
         <p>Assigned to</p>
@@ -65,11 +65,11 @@
               <input type="checkbox" id="three" />
             </div>
           </div> -->
+          </div>
         </div>
+
       </div>
-
     </div>
-
     <div class="rightside-content">
       <div class="date-container">
         <p>Due date</p>
@@ -96,7 +96,14 @@
 
       <div class="subtasks-container">
         <p>Subtasks</p>
-        <input id="subtask" placeholder="Add new subtask" type="text" />
+        <div class="subtaskInput">
+          <input id="subtask" placeholder="Add new subtask" type="text" />
+          <div class="subTaskImages">
+            <img class="cross" src="./assets/img/add.png" alt="addTask" onclick="openSubtask()">
+            <img id="acceptButton" class="accept d-none" src="./assets/img/acceptimg.svg" alt="accept">
+          </div>
+          <div id="subtaskList"></div>
+        </div>
         <div class="checkbox-container">
           <input type="checkbox" />
           <p>Subtask 1</p>
