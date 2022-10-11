@@ -87,7 +87,7 @@ function changeColorofLowButton() {
 }
 
 function createAssignetToSelection() {
-  document.getElementById('assigned-container').innerHTML = ``;
+  document.getElementById('checkboxes').innerHTML = ``;
 
   for (let i = 0; i < users.length; i++) {
     const contact = users[i];
@@ -96,8 +96,8 @@ function createAssignetToSelection() {
 
     document.getElementById('checkboxes').innerHTML += /*html*/`
     <div class="flex">
-              <label for="${i}">"${contactName}"</label>
-              <input type="checkbox" id="${i}" />
+              <label for="checkbox${i}">${contactName}</label>
+              <input type="checkbox" id="checkbox${i}" />
               </div>`
 
 

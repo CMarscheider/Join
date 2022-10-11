@@ -71,7 +71,7 @@
     margin-left: 80px;
 }
 
-.editbutton:hover{
+.editbutton:hover {
     cursor: pointer;
 }
 
@@ -89,7 +89,7 @@
     color: #007CEE;
 }
 
-.smallText{
+.smallText {
     font-size: 1rem;
 }
 
@@ -124,7 +124,7 @@
     height: 30px;
 }
 
-.letters{
+.letters {
     margin-left: 10%;
     display: flex;
     flex-direction: column;
@@ -132,34 +132,50 @@
     width: 80%;
 }
 
-.headletter{
+.headletter {
     padding-bottom: 10px;
     padding-left: 10px;
     border-bottom: 1px solid lightgrey;
     margin-bottom: 10px;
 }
 
-.singleContact{
+.singleContact {
     display: flex;
     align-items: center;
     margin: 10px 0px;
 }
 
-.contactIcon{
+.contactIcon {
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 100%;
     border: 1px solid white;
-    /* background-color: #29ABE2; */
     height: 42px;
     width: 42px;
     font-size: 1rem;
     margin-right: 20px;
 }
 
-.contactText{
+.contactText {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.displaycontactinfos {
+    width: 100px;
+    height: 100px;
+    animation: slide-bl 4s ease 0s 1 normal none;
+}
+
+@keyframes slide-bl {
+
+    0% {
+        transform: translateX(1500px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
 }
