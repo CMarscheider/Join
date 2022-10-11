@@ -2,13 +2,16 @@ let allTasks = [];
 let prio;
 /* loadAllTasks(); */
 var expanded = false;
+let temporaryAssigned = [];
 
 async function addTask() {
   let title = document.getElementById('title');
   let description = document.getElementById('description');
   let category = document.getElementById('category');
-  let assigned = document.getElementById('assigned');
   let date = document.getElementById('date');
+
+
+  checkBoxes();
 
   /* let subtask = document.getElementById('subtask').value; */
 
@@ -17,7 +20,7 @@ async function addTask() {
     title: title.value,
     description: description.value,
     category: category.value,
-    /*     assigned: assigned.value, */
+    assigned: temporaryAssigned,
     date: date.value,
     prio: prio,
   });
@@ -25,6 +28,16 @@ async function addTask() {
 }
 
 
+function checkBoxes() {
+  for (let i = 0; i < users.length; i++) {
+    const checkbox = document.getElementById('checkbox' + i);
+    if (checkbox.checked) {
+      temporaryAssigned.push(users[i]['name']);
+    }
+  }
+}
+
+/* ////////////////////////////////////////////////// */
 
 function checkPriority(priority) {
   prio = priority;
