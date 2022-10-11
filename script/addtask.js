@@ -17,7 +17,7 @@ async function addTask() {
     title: title.value,
     description: description.value,
     category: category.value,
-/*     assigned: assigned.value, */
+    /*     assigned: assigned.value, */
     date: date.value,
     prio: prio,
   });
@@ -36,11 +36,13 @@ function showCheckboxes() {
   if (!expanded) {
     checkboxes.style.display = 'block';
     expanded = true;
+    createAssignetToSelection();
   } else {
     checkboxes.style.display = 'none';
     expanded = false;
   }
 }
+
 
 
 
@@ -84,3 +86,20 @@ function changeColorofLowButton() {
   document.getElementById('lowText').classList.add('white-text');
 }
 
+function createAssignetToSelection() {
+  document.getElementById('assigned-container').innerHTML = ``;
+
+  for (let i = 0; i < users.length; i++) {
+    const contact = users[i];
+
+    let contactName = contact['name'];
+
+    document.getElementById('checkboxes').innerHTML += /*html*/`
+    <div class="flex">
+              <label for="${i}">"${contactName}"</label>
+              <input type="checkbox" id="${i}" />
+              </div>`
+
+
+  }
+}
