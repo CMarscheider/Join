@@ -3,15 +3,16 @@ async function init() {
   users = JSON.parse(backend.getItem('users')) || [];
 }
 let todoContent;
+
 function renderTasks() {
   setTimeout(() => {
     todoContent = document.getElementById('todoContent');
     todoContent.innerHTML = '';
     for (let i = 0; i < allTasks.length; i++) {
       const task = allTasks[i];
-      todoContent.innerHTML += taskCardHTML(task);
+      todoContent.innerHTML += taskCardHTML(task, i);
     }
-  }, 300);
+  }, 500);
 }
 
 function showInputsForm() {
@@ -29,17 +30,21 @@ function searchContent(value) {
   }
 }
 
-function showTaskPopup() {
+function showTaskPopup(i) {
   document.getElementById('taskPopup').classList.remove('d-none');
+  document.getElementById('categoryPopup').innerHTML = allTasks[i].category;
+  document.getElementById('titlePopup').innerHTML = allTasks[i].title;
+  document.getElementById('descriptionPopup').innerHTML = allTasks[i].description;
+  document.getElementById('datePopup').innerHTML = `<b>Due Date:</b> ${allTasks[i].date}`;
 }
 
 function cancelTaskPopup() {
   document.getElementById('taskPopup').classList.add('d-none');
 }
 
-function taskCardHTML(task) {
+function taskCardHTML(task, i) {
   return /*html*/ `
-  <div class="todo-content" onclick="showTaskPopup()">
+  <div class="todo-content" onclick="showTaskPopup(${i})">
           <span class="category">${task.category}</span>
           <h3>${task.title}</h3>
           <p>${task.description}</p>
