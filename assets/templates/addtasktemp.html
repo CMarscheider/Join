@@ -21,21 +21,16 @@
 
       <div class="category-container">
         <p>Category</p>
-        <select id="category">
-          <!--  Wie fügt man einen Placeholder bei dem selecttag ein? -->
-          <option selected disabled>Select task category</option>
-          <option>New category</option>
-          <option>Sales</option>
-          <option>Backoffice</option>
-          <div>
-            <span>aaa</span>
-            <span>aaa</span>
-            <span>aa</span>
-            <span>aa</span>
-            <span>aa</span>
-            <span>aa</span>
+        <div class="multiselect">
+          <div class="selectBox" onclick="showCategorys()">
+            <select>
+              <option>Select a category</option>
+            </select>
+            <div class="overSelect"></div>
           </div>
-        </select>
+          <div id="categorys">
+          </div>
+        </div>
       </div>
 
 
@@ -103,12 +98,13 @@
             <button disabled="disabled" id="acceptButton" class="d-none" onclick="createSubtask()">
               <img class="accept" src="./assets/img/acceptimg.svg" alt="accept">
             </button>
-            <img id="acceptButton" class="accept d-none" src="./assets/img/acceptimg.svg" onclick="createSubtask()" alt="accept">
+            <img id="acceptButton" class="accept d-none" src="./assets/img/acceptimg.svg" onclick="createSubtask()"
+              alt="accept">
           </div>
         </div>
         <div id="subtaskList"></div>
 
-<!--         <div class="checkbox-container" id="checkbox-container">
+        <!--         <div class="checkbox-container" id="checkbox-container">
           <input type="checkbox" />
           <p>Subtask 1</p>
         </div> -->

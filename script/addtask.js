@@ -6,12 +6,13 @@ let temporaryAssigned = [];
 let temporarySubTasks = [];
 let allSubtasks = [];
 let subTaskCounter = 0;
+let categorys = ["Sales", "Backoffice"];
 
 
 async function addTask() {
   let title = document.getElementById('title');
   let description = document.getElementById('description');
-  let category = document.getElementById('category');
+  /* let category = document.getElementById('category'); */
   let date = document.getElementById('date');
   checkBoxes();
 
@@ -59,8 +60,6 @@ function checkBoxes() {
 
   }
 }
-
-/* IN ZEILE 49 WERT VON LABEL IN CONTENT GESPEICHERT?!?!?! */
 
 /* ////////////////////////////////////////////////// */
 
@@ -121,8 +120,6 @@ function createSubtask() {
 }
 
 
-/* IN ZEILE 109 ID HINZUGEFÜGT?!?!?!?! */
-
 // This functions changes the colors of the Prio-Buttons
 
 function changeColorofUrgentButton() {
@@ -178,4 +175,54 @@ function createAssignetToSelection() {
               </div>
               `
   }
+}
+
+
+
+/* CATEGORYS /////////////////////////////////*/
+
+
+
+function openCategorys() {
+  document.getElementById('acceptButton').classList.remove('d-none');
+  /*  document.getElementsByClassName('cross').style.transform = 'rotate(20deg)';  PLUS ZU X DREHEN*/
+}
+
+
+
+function createCategory() {
+  let subtask = document.getElementById('subtask').value;
+
+  allSubtasks.push(subtask);
+
+  document.getElementById('subtaskList').innerHTML += /*html*/`
+    <div class="checkbox-container">
+    <input type="checkbox" id="subTask${subTaskCounter}" />
+      <label id = "subTaskValue${subTaskCounter}" for="subTask${subTaskCounter}">${subtask}</label>
+    </div>
+  `;
+  document.getElementById('subtask').value = ``;
+  checkInputValue();
+  subTaskCounter++;
+
+}
+
+function showCategorys() {
+  renderCategorys();
+  var categorys = document.getElementById('categorys');
+  if (!expanded) {
+    categorys.style.display = 'block';
+    expanded = true;
+    createAssignetToSelection();
+  } else {
+    categorys.style.display = 'none';
+    expanded = false;
+  }
+}
+
+function renderCategorys(){
+let categorySection = document.getElementById('categorys');
+
+categorySection.innerHTML = "";
+
 }
