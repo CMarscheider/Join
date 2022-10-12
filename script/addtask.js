@@ -45,8 +45,8 @@ function checkBoxes() {
   }
 
   for (let i = 0; i < allSubtasks.length; i++) {
-    const checkboxSubtask = document.getElementById('subTask' + subTaskCounter);
-    let content = getElementById('subTaskValue' + subTaskCounter).innerHTML;
+    const checkboxSubtask = document.getElementById('subTask' + i);
+    let content = document.getElementById('subTaskValue' + i).innerText;
     if (checkboxSubtask.checked) {
       temporarySubTasks.push(content);
     }
