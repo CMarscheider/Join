@@ -13,8 +13,6 @@ async function addTask() {
   let description = document.getElementById('description');
   let category = document.getElementById('category');
   let date = document.getElementById('date');
-
-
   checkBoxes();
 
   /* let subtask = document.getElementById('subtask').value; */
@@ -30,7 +28,14 @@ async function addTask() {
     subtasks : temporarySubTasks,
   });
   await backend.setItem('allTasks', JSON.stringify(allTasks));
+
+  /* RESET FELDER */
   subTaskCounter = 0;
+  document.getElementById('subtaskList').innerHTML = ``;
+
+  /* GEPFUSCHTE LÖSUNG; SEITE WIRD NEU GELADEN: NACH EINEM ADDTASK KANN MAN KEINEN 2. HINZUFÜGEN. */
+  window.location.href = 'addtask.html';
+
 }
 
 
@@ -112,6 +117,7 @@ function createSubtask() {
   document.getElementById('subtask').value = ``;
   checkInputValue();
   subTaskCounter++;
+
 }
 
 
