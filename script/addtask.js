@@ -30,6 +30,7 @@ async function addTask() {
 
 
 function checkBoxes() {
+  temporaryAssigned = [];
   for (let i = 0; i < users.length; i++) {
     const checkbox = document.getElementById('checkbox' + i);
     if (checkbox.checked) {
