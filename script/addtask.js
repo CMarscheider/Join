@@ -3,8 +3,10 @@ let prio;
 /* loadAllTasks(); */
 var expanded = false;
 let temporaryAssigned = [];
+let temporarySubTasks = [];
 let allSubtasks = [];
 let subTaskCounter = 0;
+
 
 async function addTask() {
   let title = document.getElementById('title');
@@ -25,21 +27,35 @@ async function addTask() {
     assigned: temporaryAssigned,
     date: date.value,
     prio: prio,
+    subtasks : temporarySubTasks,
   });
   await backend.setItem('allTasks', JSON.stringify(allTasks));
-  /* subTaskCounter = 0; */
+  subTaskCounter = 0;
 }
 
 
 function checkBoxes() {
   temporaryAssigned = [];
+  temporarySubTasks = [];
   for (let i = 0; i < users.length; i++) {
     const checkbox = document.getElementById('checkbox' + i);
     if (checkbox.checked) {
       temporaryAssigned.push(users[i]['name']);
     }
   }
+
+  for (let i = 0; i < allSubtasks.length; i++) {
+    const checkboxSubtask = document.getElementById('subTask' + subTaskCounter);
+    let content = getElementById('subTaskValue' + subTaskCounter).innerHTML;
+    if (checkboxSubtask.checked) {
+      temporarySubTasks.push(content);
+    }
+    console.log(temporarySubTasks);
+
+  }
 }
+
+/* IN ZEILE 49 WERT VON LABEL IN CONTENT GESPEICHERT?!?!?! */
 
 /* ////////////////////////////////////////////////// */
 
@@ -73,11 +89,11 @@ function checkInputValue() {
   let subtask = document.getElementById('subtask').value;
   let acceptButton = document.getElementById('acceptButton');
 
-if(subtask===""){
-  acceptButton.disabled = true;
-}else {
-  acceptButton.disabled = false;
-}
+  if (subtask === "") {
+    acceptButton.disabled = true;
+  } else {
+    acceptButton.disabled = false;
+  }
 }
 
 /* CREATE SUBTASK */
@@ -85,22 +101,21 @@ if(subtask===""){
 function createSubtask() {
   let subtask = document.getElementById('subtask').value;
 
-  /*   if (subtask == "") {
-      alert('Kein Subtask eingetragen')
-    } */
-
   allSubtasks.push(subtask);
 
   document.getElementById('subtaskList').innerHTML += /*html*/`
     <div class="checkbox-container">
     <input type="checkbox" id="subTask${subTaskCounter}" />
-      <label for="subTask${subTaskCounter}">${subtask}</label>
+      <label id = "subTaskValue${subTaskCounter}" for="subTask${subTaskCounter}">${subtask}</label>
     </div>
   `;
   document.getElementById('subtask').value = ``;
   checkInputValue();
+  subTaskCounter++;
 }
 
+
+/* IN ZEILE 109 ID HINZUGEFÜGT?!?!?!?! */
 
 // This functions changes the colors of the Prio-Buttons
 
