@@ -97,17 +97,21 @@
       <div class="subtasks-container">
         <p>Subtasks</p>
         <div class="subtaskInput">
-          <input id="subtask" placeholder="Add new subtask" type="text" />
+          <input onkeydown="checkInputValue()" id="subtask" placeholder="Add new subtask" type="text" />
           <div class="subTaskImages">
             <img class="cross" src="./assets/img/add.png" alt="addTask" onclick="openSubtask()">
-            <img id="acceptButton" class="accept d-none" src="./assets/img/acceptimg.svg" alt="accept">
+            <button disabled="disabled" id="acceptButton" class="d-none" onclick="createSubtask()">
+              <img class="accept" src="./assets/img/acceptimg.svg" alt="accept">
+            </button>
+            <img id="acceptButton" class="accept d-none" src="./assets/img/acceptimg.svg" onclick="createSubtask()" alt="accept">
           </div>
-          <div id="subtaskList"></div>
         </div>
-        <div class="checkbox-container">
+        <div id="subtaskList"></div>
+
+<!--         <div class="checkbox-container" id="checkbox-container">
           <input type="checkbox" />
           <p>Subtask 1</p>
-        </div>
+        </div> -->
       </div>
 
       <div class="button-container-end">

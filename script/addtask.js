@@ -3,7 +3,8 @@ let prio;
 /* loadAllTasks(); */
 var expanded = false;
 let temporaryAssigned = [];
-let allSubtasks;
+let allSubtasks = [];
+let subTaskCounter = 0;
 
 async function addTask() {
   let title = document.getElementById('title');
@@ -26,6 +27,7 @@ async function addTask() {
     prio: prio,
   });
   await backend.setItem('allTasks', JSON.stringify(allTasks));
+  /* subTaskCounter = 0; */
 }
 
 
@@ -58,21 +60,48 @@ function showCheckboxes() {
   }
 }
 
+/* OPEN SUBTASKFIELD */
+
 function openSubtask() {
   document.getElementById('acceptButton').classList.remove('d-none');
   /*  document.getElementsByClassName('cross').style.transform = 'rotate(20deg)';  PLUS ZU X DREHEN*/
 }
 
+/* DISABLE AND ENABLE SUBTASKBTN */
+
+function checkInputValue() {
+  let subtask = document.getElementById('subtask').value;
+  let acceptButton = document.getElementById('acceptButton');
+  if (subtask = "") {
+    if (!acceptButton.disabled) {
+      acceptButton.disabled = true;
+    }
+  } else {
+    if (acceptButton.disabled) {
+      acceptButton.disabled = false;
+    }
+  }
+}
+
+/* CREATE SUBTASK */
+
 function createSubtask() {
   let subtask = document.getElementById('subtask').value;
+
+/*   if (subtask == "") {
+    alert('Kein Subtask eingetragen')
+  } */
+
   allSubtasks.push(subtask);
-  
+
   document.getElementById('subtaskList').innerHTML += /*html*/`
-    <div class="flex">
-      <label for="subTask${i}">${subtask}</label>
-      <input type="checkbox" id="subTask${i}" />
+    <div class="checkbox-container">
+    <input type="checkbox" id="subTask${subTaskCounter}" />
+      <label for="subTask${subTaskCounter}">${subtask}</label>
     </div>
   `;
+  document.getElementById('subtask').value=``;
+  checkInputValue();
 }
 
 
@@ -128,8 +157,7 @@ function createAssignetToSelection() {
     <div class="flex">
               <label for="checkbox${i}">${contactName}</label>
               <input type="checkbox" id="checkbox${i}" />
-              </div>`
-
-
+              </div>
+              `
   }
 }
