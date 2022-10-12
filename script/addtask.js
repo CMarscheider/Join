@@ -73,13 +73,10 @@ function checkInputValue() {
   let subtask = document.getElementById('subtask').value;
   let acceptButton = document.getElementById('acceptButton');
   if (subtask = "") {
-    if (!acceptButton.disabled) {
-      acceptButton.disabled = true;
-    }
-  } else {
-    if (acceptButton.disabled) {
-      acceptButton.disabled = false;
-    }
+    acceptButton.disabled = true;
+  }
+  else {
+    acceptButton.disabled = false;
   }
 }
 
@@ -88,9 +85,9 @@ function checkInputValue() {
 function createSubtask() {
   let subtask = document.getElementById('subtask').value;
 
-/*   if (subtask == "") {
-    alert('Kein Subtask eingetragen')
-  } */
+  /*   if (subtask == "") {
+      alert('Kein Subtask eingetragen')
+    } */
 
   allSubtasks.push(subtask);
 
@@ -100,7 +97,7 @@ function createSubtask() {
       <label for="subTask${subTaskCounter}">${subtask}</label>
     </div>
   `;
-  document.getElementById('subtask').value=``;
+  document.getElementById('subtask').value = ``;
   checkInputValue();
 }
 
