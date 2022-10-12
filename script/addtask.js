@@ -72,12 +72,12 @@ function openSubtask() {
 function checkInputValue() {
   let subtask = document.getElementById('subtask').value;
   let acceptButton = document.getElementById('acceptButton');
-  if (subtask = "") {
-    acceptButton.disabled = true;
-  }
-  else {
-    acceptButton.disabled = false;
-  }
+
+if(subtask===""){
+  acceptButton.disabled = true;
+}else {
+  acceptButton.disabled = false;
+}
 }
 
 /* CREATE SUBTASK */
