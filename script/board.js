@@ -3,14 +3,27 @@ async function init() {
   users = JSON.parse(backend.getItem('users')) || [];
 }
 let todoContent;
+let todoFooter;
 
 function renderTasks() {
   setTimeout(() => {
     todoContent = document.getElementById('todoContent');
     todoContent.innerHTML = '';
     for (let i = 0; i < allTasks.length; i++) {
-      const task = allTasks[i];
+      let task = allTasks[i];
       todoContent.innerHTML += taskCardHTML(task, i);
+
+      todoFooter = document.getElementById('boxFooter');
+
+      for (let j = 0; j < task['assigned'].length; j++) {
+        let assigend = task['assigned'][j];
+        let firstLetter = assigend.charAt(0);
+        let secondLetter = assigend.split(' ').pop()[0];
+
+        console.log(firstLetter, secondLetter);
+
+        //Todo: render card footer
+      }
     }
   }, 500);
 }
@@ -56,7 +69,7 @@ function taskCardHTML(task, i) {
             <label class="label" for="file">Done1/2</label>
           </div>
 
-          <div class="box-footer">
+          <div class="box-footer" id ="boxFooter">
             <div class="footer-circels">
               <span>AS</span>
               <span>DE</span>
