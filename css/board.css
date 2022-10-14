@@ -106,6 +106,7 @@
 
 .category {
   background-color: #ff7a00;
+  color: black;
   color: #fff;
   width: 90px;
   padding: 5px 15px;
@@ -142,23 +143,39 @@ label {
   margin-top: -2px;
 }
 
-.footer-circels span:first-child {
-  background-color: #ffa800;
-  padding: 8px;
-  border-radius: 100%;
-  color: #fff;
+.footer-circels {
+  display: flex;
 }
 
+.footer-circels span:first-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffa800;
+  padding: 10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  color: #fff;
+  text-align: center;
+}
+/* 
 .footer-circels span:nth-child(2) {
   background-color: #9327ff;
   padding: 8px;
   border-radius: 100%;
   color: #fff;
-}
+} */
 
 .footer-circels span:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #2a3647;
-  padding: 8px;
+  padding: 10px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
   color: #fff;
   border-radius: 100%;
 }
