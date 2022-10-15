@@ -27,12 +27,11 @@ function renderTaskFooter(task, i) {
   todoFooter = document.getElementById(`boxFooter${i}`);
   for (let j = 0; j < task['assigned'].length; j++) {
     let assigend = task['assigned'][j];
-    let test = assigend;
-    debugger;
     let firstLetter = assigend.charAt(0);
     let secondLetter = assigend.split(' ').pop()[0];
     let restAssigendLength = task['assigned'].splice(1).length;
     todoFooter.innerHTML += TaskCardFooterHTML(firstLetter, secondLetter, restAssigendLength);
+    console.log(assigend);
   }
 }
 
@@ -72,6 +71,8 @@ function showTaskPopup(i) {
   if (allTasks[i].prio === 'low') {
     lowPriority(i);
   }
+
+  document.getElementById('assigendTo').innerHTML = allTasks[i].assigned;
 }
 
 function urgentPriority(i) {

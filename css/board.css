@@ -218,6 +218,7 @@ label {
 .prio-container-popup {
   display: flex;
   align-items: center;
+  text-transform: capitalize;
 }
 
 #prio-status {
