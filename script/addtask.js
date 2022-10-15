@@ -2,11 +2,22 @@ let allTasks = [];
 let prio;
 /* loadAllTasks(); */
 var expanded = false;
+let categoryExanded = false;
 let temporaryAssigned = [];
 let temporarySubTasks = [];
 let allSubtasks = [];
 let subTaskCounter = 0;
-let categorys = ["Sales", "Backoffice"];
+let category;
+let categorys = [
+  {
+    name: "Sales",
+    color: "red"
+  },
+  {
+    name: "Backoffice",
+    color: "lightblue"
+  },
+];
 
 
 async function addTask() {
@@ -22,11 +33,11 @@ async function addTask() {
   allTasks.push({
     title: title.value,
     description: description.value,
-    category: category.value,
+    category: category,
     assigned: temporaryAssigned,
     date: date.value,
     prio: prio,
-    subtasks : temporarySubTasks,
+    subtasks: temporarySubTasks,
   });
   await backend.setItem('allTasks', JSON.stringify(allTasks));
 
@@ -82,8 +93,9 @@ function showCheckboxes() {
 
 /* OPEN SUBTASKFIELD */
 
-function openSubtask() {
-  document.getElementById('acceptButton').classList.remove('d-none');
+function openInputfield(inputID) {
+  /* ANDERE FELDER IN DIESE FUNKTION EINFÜGEN */
+  document.getElementById(inputID).classList.remove('d-none');
   /*  document.getElementsByClassName('cross').style.transform = 'rotate(20deg)';  PLUS ZU X DREHEN*/
 }
 
@@ -210,19 +222,53 @@ function createCategory() {
 function showCategorys() {
   renderCategorys();
   var categorys = document.getElementById('categorys');
-  if (!expanded) {
+  if (!categoryExanded) {
     categorys.style.display = 'block';
-    expanded = true;
-    createAssignetToSelection();
+    categoryExanded = true;
+    renderCategorys();
   } else {
     categorys.style.display = 'none';
-    expanded = false;
+    categoryExanded = false;
   }
 }
 
-function renderCategorys(){
-let categorySection = document.getElementById('categorys');
 
-categorySection.innerHTML = "";
 
+function renderCategorys() {
+  document.getElementById('categorys').innerHTML = /*html*/`     
+  <div class="flex" onclick="createNewCategory()">
+    <div class="category-list">
+      <p>New Category</p> 
+    </div>
+  </div>`;
+
+  for (let i = 0; i < categorys.length; i++) {
+    const category = categorys[i];
+    let categoryName = category['name'];
+
+    document.getElementById('categorys').innerHTML += /*html*/`
+    <div class="flex" onclick="selectCategory(${i})">
+      <div class="category-list">
+        <p>${categoryName}</p> <div class="colors" style="background-color:${category['color']};">
+      </div>
+    </div>
+    `;
+  }
 }
+
+function selectCategory(i){
+  let category = categorys[i];
+  document.getElementById('displayCategory').innerHTML = /*html*/`
+      <div class="flex" onclick="selectCategory(${i})">
+      <div class="category-list">
+        <p>${category['name']}</p> <div class="colors" style="background-color:${category['color']};">
+      </div>
+    </div>
+  `;
+  showCategorys();
+}
+
+function createNewCategory(){
+document.getElementById('test').classList.remove('d-none');
+document.getElementById('categorie').classList.add('d-none');
+} /* FUNKTION NOCH NICHT FERTIG: NUR EIN TEST */

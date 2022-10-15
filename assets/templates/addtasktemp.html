@@ -21,31 +21,46 @@
 
       <div class="category-container">
         <p>Category</p>
-        <div class="multiselect">
-          <div class="selectBox" onclick="showCategorys()">
-            <select>
-              <option>Select a category</option>
-            </select>
-            <div class="overSelect"></div>
-          </div>
-          <div id="categorys">
+
+      <!-- KATEGORIE -->
+        <div class="subtaskInput d-none" id="test">
+          <input id="subtask" placeholder="Add new subtask" type="text" />
+          <div class="subTaskImages">
+            <img class="cross" src="./assets/img/add.png" alt="addTask" onclick="openInputfield('acceptButton')">
+            <button disabled="disabled" id="acceptButton" class="d-none" onclick="createSubtask()">
+              <img class="accept" src="./assets/img/acceptimg.svg" alt="accept">
+            </button>
+            <img id="acceptButton" class="accept d-none" src="./assets/img/acceptimg.svg" onclick="createSubtask()"
+              alt="accept">
           </div>
         </div>
-      </div>
+<!-- KATEGORIE ENDE -->
 
-
-
-      <div id="assigned-container" class="category-container">
-        <p>Assigned to</p>
-        <div class="multiselect">
-          <div class="selectBox" onclick="showCheckboxes()">
-            <select>
-              <option>Select an option</option>
-            </select>
-            <div class="overSelect"></div>
+          <div class="multiselect" id="categorie">
+            <div class="selectBox" onclick="showCategorys()">
+              <select>
+                <option id="displayCategory">Select a category</option>
+              </select>
+              <div class="overSelect"></div>
+            </div>
+            <div id="categorys">
+            </div>
           </div>
-          <div id="checkboxes">
-            <!-- <div class="flex">
+        </div>
+
+
+
+        <div id="assigned-container" class="category-container">
+          <p>Assigned to</p>
+          <div class="multiselect">
+            <div class="selectBox" onclick="showCheckboxes()">
+              <select>
+                <option>Select an option</option>
+              </select>
+              <div class="overSelect"></div>
+            </div>
+            <div id="checkboxes">
+              <!-- <div class="flex">
               <label for="one"> First checkbox</label>
               <input type="checkbox" id="one" />
             </div>
@@ -60,69 +75,69 @@
               <input type="checkbox" id="three" />
             </div>
           </div> -->
+            </div>
           </div>
-        </div>
 
-      </div>
-    </div>
-    <div class="rightside-content">
-      <div class="date-container">
-        <p>Due date</p>
-        <input required id="date" type="date" />
-      </div>
-
-      <div class="prio-container">
-        <p>Prio</p>
-        <div class="button-container">
-          <button type="button" id="urgentButton" onclick="checkPriority('urgent'), changeColorofUrgentButton()">
-            <b id="urgentText">Urgent</b>
-            <img id="urgentImg" src="assets/img/highprio.svg" alt="" />
-          </button>
-          <button type="button" id="mediumButton" onclick="checkPriority('medium'),changeColorofMediumButton()">
-            <b id="mediumText">Medium</b>
-            <img id="mediumImg" src="assets/img/mediumprio.svg" alt="" />
-          </button>
-          <button type="button" id="lowButton" onclick="checkPriority('low'),changeColorofLowButton()">
-            <b id="lowText">Low</b>
-            <img id="lowImg" src="assets/img/lowprio.svg" alt="" />
-          </button>
         </div>
       </div>
+      <div class="rightside-content">
+        <div class="date-container">
+          <p>Due date</p>
+          <input required id="date" type="date" />
+        </div>
 
-      <div class="subtasks-container">
-        <p>Subtasks</p>
-        <div class="subtaskInput">
-          <input onkeydown="checkInputValue()" id="subtask" placeholder="Add new subtask" type="text" />
-          <div class="subTaskImages">
-            <img class="cross" src="./assets/img/add.png" alt="addTask" onclick="openSubtask()">
-            <button disabled="disabled" id="acceptButton" class="d-none" onclick="createSubtask()">
-              <img class="accept" src="./assets/img/acceptimg.svg" alt="accept">
+        <div class="prio-container">
+          <p>Prio</p>
+          <div class="button-container">
+            <button type="button" id="urgentButton" onclick="checkPriority('urgent'), changeColorofUrgentButton()">
+              <b id="urgentText">Urgent</b>
+              <img id="urgentImg" src="assets/img/highprio.svg" alt="" />
             </button>
-            <img id="acceptButton" class="accept d-none" src="./assets/img/acceptimg.svg" onclick="createSubtask()"
-              alt="accept">
+            <button type="button" id="mediumButton" onclick="checkPriority('medium'),changeColorofMediumButton()">
+              <b id="mediumText">Medium</b>
+              <img id="mediumImg" src="assets/img/mediumprio.svg" alt="" />
+            </button>
+            <button type="button" id="lowButton" onclick="checkPriority('low'),changeColorofLowButton()">
+              <b id="lowText">Low</b>
+              <img id="lowImg" src="assets/img/lowprio.svg" alt="" />
+            </button>
           </div>
         </div>
-        <div id="subtaskList"></div>
 
-        <!--         <div class="checkbox-container" id="checkbox-container">
+        <div class="subtasks-container">
+          <p>Subtasks</p>
+          <div class="subtaskInput">
+            <input onkeydown="checkInputValue()" id="subtask" placeholder="Add new subtask" type="text" />
+            <div class="subTaskImages">
+              <img class="cross" src="./assets/img/add.png" alt="addTask" onclick="openInputfield('acceptButton')">
+              <button disabled="disabled" id="acceptButton" class="d-none" onclick="createSubtask()">
+                <img class="accept" src="./assets/img/acceptimg.svg" alt="accept">
+              </button>
+              <img id="acceptButton" class="accept d-none" src="./assets/img/acceptimg.svg" onclick="createSubtask()"
+                alt="accept">
+            </div>
+          </div>
+          <div id="subtaskList"></div>
+
+          <!--         <div class="checkbox-container" id="checkbox-container">
           <input type="checkbox" />
           <p>Subtask 1</p>
         </div> -->
+        </div>
+
+        <div class="button-container-end">
+          <button type="button" class="clear-button">
+            <b>Clear</b>
+            <img src="assets/img/cancelimg.svg" alt="cancel" />
+          </button>
+          <button type="submit" class="create-button">
+            <b>Create task</b>
+            <img src="assets/img/acceptimg.svg" alt="cancel" />
+          </button>
+
+          <input type="button">
+
+        </div>
       </div>
-
-      <div class="button-container-end">
-        <button type="button" class="clear-button">
-          <b>Clear</b>
-          <img src="assets/img/cancelimg.svg" alt="cancel" />
-        </button>
-        <button type="submit" class="create-button">
-          <b>Create task</b>
-          <img src="assets/img/acceptimg.svg" alt="cancel" />
-        </button>
-
-        <input type="button">
-
-      </div>
-    </div>
 </form>
 </div>

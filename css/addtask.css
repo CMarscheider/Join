@@ -257,3 +257,15 @@ option {
   height: 16px;
   width: 16px;
 }
+
+.category-list{
+  display: flex;
+  align-items: center;  
+}
+
+.colors{
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  margin-left: 20px;
+}
