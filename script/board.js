@@ -27,6 +27,8 @@ function renderTaskFooter(task, i) {
   todoFooter = document.getElementById(`boxFooter${i}`);
   for (let j = 0; j < task['assigned'].length; j++) {
     let assigend = task['assigned'][j];
+    let test = assigend;
+    debugger;
     let firstLetter = assigend.charAt(0);
     let secondLetter = assigend.split(' ').pop()[0];
     let restAssigendLength = task['assigned'].splice(1).length;
@@ -61,6 +63,36 @@ function showTaskPopup(i) {
   document.getElementById('titlePopup').innerHTML = allTasks[i].title;
   document.getElementById('descriptionPopup').innerHTML = allTasks[i].description;
   document.getElementById('datePopup').innerHTML = `<b>Due Date:</b> ${allTasks[i].date}`;
+  if (allTasks[i].prio === 'urgent') {
+    urgentPriority(i);
+  }
+  if (allTasks[i].prio === 'medium') {
+    mediumPriority(i);
+  }
+  if (allTasks[i].prio === 'low') {
+    lowPriority(i);
+  }
+}
+
+function urgentPriority(i) {
+  document.getElementById(
+    'prio'
+  ).innerHTML = `<div class="prio-container-popup"><b>Priority:</b> <span id="prio-status">${allTasks[i].prio} <img id="prio-icon" src="/assets/img/Prio_alta.png"></span></div>`;
+  document.getElementById('prio-status').style.background = 'red';
+}
+
+function mediumPriority(i) {
+  document.getElementById(
+    'prio'
+  ).innerHTML = `<div class="prio-container-popup"><b>Priority:</b> <span id="prio-status">${allTasks[i].prio} <img id="prio-icon" src="/assets/img/Prio media.png"></span></div>`;
+  document.getElementById('prio-status').style.background = 'orange';
+}
+
+function lowPriority(i) {
+  document.getElementById(
+    'prio'
+  ).innerHTML = `<div class="prio-container-popup"><b>Priority:</b> <span id="prio-status">${allTasks[i].prio} <img id="prio-icon" src="/assets/img/Prio baja.png"></span></div>`;
+  document.getElementById('prio-status').style.background = 'green';
 }
 
 function cancelTaskPopup() {
@@ -68,7 +100,6 @@ function cancelTaskPopup() {
 }
 
 function taskCardHTML(task, i) {
-  cat = document.getElementsByClassName(`category${i}`);
   return /*html*/ `
   <div class="todo-content" onclick="showTaskPopup(${i})">
           <span class="category${i}">${task.category}</span>
@@ -102,9 +133,4 @@ function TaskCardFooterHTML(firstLetter, secondLetter, restAssigendLength) {
         <img src="./assets/img/arrow-down.png" alt="arrow-up" />
       </div>
   `;
-}
-
-function generateRandomColor() {
-  let randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
-  return randomColor;
 }
