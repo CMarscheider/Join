@@ -8,7 +8,8 @@ let temporarySubTasks = [];
 let allSubtasks = [];
 let subTaskCounter = 0;
 let category;
-let categorys = [
+let currentColor;
+/* let categorys = [
   {
     name: "Sales",
     color: "red"
@@ -17,7 +18,7 @@ let categorys = [
     name: "Backoffice",
     color: "lightblue"
   },
-];
+]; */
 
 
 async function addTask() {
@@ -95,6 +96,7 @@ function showCheckboxes() {
 
 function openInputfield(inputID) {
   /* ANDERE FELDER IN DIESE FUNKTION EINFÜGEN */
+  console.log('Start');
   document.getElementById(inputID).classList.remove('d-none');
   /*  document.getElementsByClassName('cross').style.transform = 'rotate(20deg)';  PLUS ZU X DREHEN*/
 }
@@ -236,7 +238,7 @@ function showCategorys() {
 
 function renderCategorys() {
   document.getElementById('categorys').innerHTML = /*html*/`     
-  <div class="flex" onclick="createNewCategory()">
+  <div class="flex" onclick="openCategoryInput()">
     <div class="category-list">
       <p>New Category</p> 
     </div>
@@ -249,26 +251,53 @@ function renderCategorys() {
     document.getElementById('categorys').innerHTML += /*html*/`
     <div class="flex" onclick="selectCategory(${i})">
       <div class="category-list">
-        <p>${categoryName}</p> <div class="colors" style="background-color:${category['color']};">
+        <p>${categoryName}</p> <div class="color" style="background-color:${category['color']};">
       </div>
     </div>
     `;
   }
 }
 
-function selectCategory(i){
+function selectCategory(i) {
   let category = categorys[i];
   document.getElementById('displayCategory').innerHTML = /*html*/`
       <div class="flex" onclick="selectCategory(${i})">
       <div class="category-list">
-        <p>${category['name']}</p> <div class="colors" style="background-color:${category['color']};">
+        <p>${category['name']}</p> <div class="color" style="background-color:${category['color']};">
       </div>
     </div>
   `;
   showCategorys();
 }
 
-function createNewCategory(){
-document.getElementById('test').classList.remove('d-none');
-document.getElementById('categorie').classList.add('d-none');
-} /* FUNKTION NOCH NICHT FERTIG: NUR EIN TEST */
+function openCategoryInput() {
+  document.getElementById('openCategoryInput').classList.remove('d-none');
+  document.getElementById('categoryDropdown').classList.add('d-none');
+  document.getElementById('color').classList.remove('d-none');
+
+}
+
+function closeCategoryInput() {
+  document.getElementById('openCategoryInput').classList.add('d-none');
+  document.getElementById('categoryDropdown').classList.remove('d-none');
+  document.getElementById('color').classList.add('d-none');
+  pickColor('transparent');
+  color = "transparent";
+}
+
+function pickColor(color) {
+  currentColor = color;
+  document.getElementById('inputFieldColor').style.backgroundColor = currentColor;
+}
+
+async function createNewCategory() {
+  let name = document.getElementById('inputCategory').value;
+
+  categorys.push({
+    name: name,
+    color: currentColor
+  });
+  await backend.setItem('categorys', JSON.stringify(categorys));
+  closeCategoryInput();
+  /* TODO: letzte kategorie auswählen */
+}

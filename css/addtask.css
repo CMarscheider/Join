@@ -209,15 +209,15 @@ option {
 }
 
 .urgentButtonBackground {
-  background-color: #FF3D00!important;
+  background-color: #FF3D00 !important;
 }
 
 .mediumButtonBackground {
-  background-color: #FFA800!important;
+  background-color: #FFA800 !important;
 }
 
 .lowButtonBackground {
-  background-color: #7AE229!important;
+  background-color: #7AE229 !important;
 }
 
 
@@ -226,29 +226,30 @@ option {
 /******* Assigned to ***************/
 
 
-.subtaskInput{
+.subtaskInput {
   display: flex;
   background-color: white;
-  border-radius: 10px ;
+  border-radius: 10px;
   justify-content: space-between;
   padding: 0px 5px;
 
 }
 
-.cross{
+.cross {
   padding-left: 10px;
 }
 
-.accept{
+.accept {
   filter: invert(100%);
   padding-left: 10px;
   border-left: 1px solid black;
 }
 
-.d-none{
-  display: none;
+.d-none {
+  display: none !important;
 }
-.subTaskImages{
+
+.subTaskImages {
   display: flex;
   align-items: center;
 }
@@ -258,14 +259,36 @@ option {
   width: 16px;
 }
 
-.category-list{
+.category-list {
   display: flex;
-  align-items: center;  
+  align-items: center;
 }
 
-.colors{
-  width: 10px;
-  height: 10px;
+.color {
+  width: 20px;
+  height: 20px;
   border-radius: 100%;
   margin-left: 20px;
+  border: 2px solid white;
+}
+
+.subtaskInput input {
+  height: 4vh;
+}
+
+.rotate {
+  rotate: 45deg;
+  padding: 0 !important;
+}
+
+.colors {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.inputFieldColor {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }

@@ -1,5 +1,6 @@
 let users;
 let user;
+let categorys;
 
 /**
  * This functin is used to initialize the webpage
@@ -13,6 +14,7 @@ async function init() {
     user = localStorage.getItem('user');
     user = JSON.parse(user);
     allTasks = JSON.parse(backend.getItem('allTasks')) || [];
+    categorys = JSON.parse(backend.getItem('categorys')) || [];
     
 }
 /**
