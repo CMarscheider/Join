@@ -19,7 +19,7 @@ function renderTasks() {
       let cardCat = document.getElementsByClassName(`category${i}`);
       for (let k = 0; k < cardCat.length; k++) {
         const cat = cardCat[k];
-        cat.style.backgroundColor = categorys[i].color;
+        cat.style.backgroundColor = 'red';
         cat.style.color = '#fff';
         cat.style.width = '90px';
         cat.style.textAlign = 'center';
