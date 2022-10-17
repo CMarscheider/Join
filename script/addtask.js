@@ -210,23 +210,6 @@ function openCategorys() {
 
 
 
-function createCategory() {
-  let subtask = document.getElementById('subtask').value;
-
-  allSubtasks.push(subtask);
-
-  document.getElementById('subtaskList').innerHTML += /*html*/`
-    <div class="checkbox-container">
-    <input type="checkbox" id="subTask${subTaskCounter}" />
-      <label id = "subTaskValue${subTaskCounter}" for="subTask${subTaskCounter}">${subtask}</label>
-    </div>
-  `;
-  document.getElementById('subtask').value = ``;
-  checkInputValue();
-  subTaskCounter++;
-
-}
-
 function showCategorys() {
   renderCategorys();
   var categorys = document.getElementById('categorys');
@@ -265,7 +248,7 @@ function renderCategorys() {
 }
 
 function selectCategory(i) {
-  let category = allCategorys[i];
+  category = allCategorys[i];
   document.getElementById('displayCategory').innerHTML = /*html*/`
       <div class="flex" onclick="selectCategory(${i})">
       <div class="category-list">
@@ -303,7 +286,7 @@ async function createNewCategory() {
     name: name,
     color: currentColor
   });
-  await backend.setItem('categorys', JSON.stringify(allCategorys));
+  await backend.setItem('allCategorys', JSON.stringify(allCategorys));
   closeCategoryInput();
   renderCategorys();
   /* TODO: letzte kategorie auswählen, if abfrage damit es keine leeren werte gibt!!*/
