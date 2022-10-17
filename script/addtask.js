@@ -9,7 +9,7 @@ let allSubtasks = [];
 let subTaskCounter = 0;
 let category;
 let currentColor;
-/* let categorys = [
+let allCategorys = [
   {
     name: "Sales",
     color: "red"
@@ -18,7 +18,7 @@ let currentColor;
     name: "Backoffice",
     color: "lightblue"
   },
-]; */
+];
 
 
 async function addTask() {
@@ -184,14 +184,20 @@ function createAssignetToSelection() {
 
     document.getElementById('checkboxes').innerHTML += /*html*/`
     <div class="flex">
-              <label for="checkbox${i}">${contactName}</label>
+              <label for="checkbox${i}" onclick="createUserIcons(${contactName})">${contactName}</label>
               <input type="checkbox" id="checkbox${i}" />
               </div>
               `
   }
 }
 
+function createUserIcons(contactName){
+let usercontainer = document.getElementById('users');
+usercontainer.innerHTML +=/*html*/`
+${contactName}
+`;
 
+}
 
 /* CATEGORYS /////////////////////////////////*/
 
@@ -244,8 +250,8 @@ function renderCategorys() {
     </div>
   </div>`;
 
-  for (let i = 0; i < categorys.length; i++) {
-    const category = categorys[i];
+  for (let i = 0; i < allCategorys.length; i++) {
+    const category = allCategorys[i];
     let categoryName = category['name'];
 
     document.getElementById('categorys').innerHTML += /*html*/`
@@ -259,7 +265,7 @@ function renderCategorys() {
 }
 
 function selectCategory(i) {
-  let category = categorys[i];
+  let category = allCategorys[i];
   document.getElementById('displayCategory').innerHTML = /*html*/`
       <div class="flex" onclick="selectCategory(${i})">
       <div class="category-list">
@@ -293,11 +299,12 @@ function pickColor(color) {
 async function createNewCategory() {
   let name = document.getElementById('inputCategory').value;
 
-  categorys.push({
+  allCategorys.push({
     name: name,
     color: currentColor
   });
-  await backend.setItem('categorys', JSON.stringify(categorys));
+  await backend.setItem('categorys', JSON.stringify(allCategorys));
   closeCategoryInput();
-  /* TODO: letzte kategorie auswählen */
+  renderCategorys();
+  /* TODO: letzte kategorie auswählen, if abfrage damit es keine leeren werte gibt!!*/
 }
