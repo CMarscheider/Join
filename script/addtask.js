@@ -176,8 +176,8 @@ function createAssignetToSelection() {
 
     document.getElementById('checkboxes').innerHTML += /*html*/ `
     <div class="flex">
-              <label for="checkbox${i}" onclick="createUserIcons(${contactName})">${contactName}</label>
-              <input type="checkbox" id="checkbox${i}" />
+              <label for="checkbox${i}" onclick="createUserIcons('${contactName}')">${contactName}</label>
+              <input type="checkbox" id="checkbox${i}" onclick="createUserIcons('${contactName}')" />
               </div>
               `;
   }

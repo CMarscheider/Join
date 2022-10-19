@@ -68,7 +68,7 @@ function searchContent(value) {
 
 function showTaskPopup(i) {
   document.getElementById('taskPopup').classList.remove('d-none');
-  document.getElementById('categoryPopup').innerHTML = allTasks[i].category;
+  document.getElementById('categoryPopup').innerHTML = allTasks[i].category.name;
   document.getElementById('titlePopup').innerHTML = allTasks[i].title;
   document.getElementById('descriptionPopup').innerHTML = allTasks[i].description;
   document.getElementById('datePopup').innerHTML = `<b>Due Date:</b> ${allTasks[i].date}`;
