@@ -4,7 +4,8 @@ async function init() {
 }
 let todoContent;
 let todoFooter;
-
+let index;
+let task;
 /**
  * render all tasks card content
  */
@@ -13,9 +14,11 @@ function renderTasks() {
     todoContent = document.getElementById('todoContent');
     todoContent.innerHTML = '';
     for (let i = 0; i < allTasks.length; i++) {
-      let task = allTasks[i];
+      task = allTasks[i];
+      index = i;
       todoContent.innerHTML += taskCardHTML(task, i);
       renderTaskFooter(task, i);
+
       let cardCat = document.getElementsByClassName(`category${i}`);
       for (let k = 0; k < cardCat.length; k++) {
         const cat = cardCat[k];
@@ -80,4 +83,17 @@ function showTaskPopup(i) {
   }
 
   document.getElementById('assigendTo').innerHTML = allTasks[i].assigned;
+}
+
+function starDargging(id) {
+  currentDraggedElement = id;
+}
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function moveTo(categ, task, index) {
+  allTasks[currentDraggedElement].status = categ;
+  taskCardHTML(task, index);
 }

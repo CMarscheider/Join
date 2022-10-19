@@ -11,30 +11,29 @@ let category;
 let currentColor;
 let allCategorys = [
   {
-    name: "Sales",
-    color: "red"
+    name: 'Sales',
+    color: 'red',
   },
   {
-    name: "Backoffice",
-    color: "lightblue"
+    name: 'Backoffice',
+    color: 'lightblue',
   },
 ];
-
 
 async function addTask() {
   let title = document.getElementById('title');
   let description = document.getElementById('description');
-  /* let category = document.getElementById('category'); */
+  let category = document.getElementById('category');
   let date = document.getElementById('date');
   checkBoxes();
 
   /* let subtask = document.getElementById('subtask').value; */
 
-
   allTasks.push({
     title: title.value,
     description: description.value,
     category: category,
+    status: 'open',
     assigned: temporaryAssigned,
     date: date.value,
     prio: prio,
@@ -48,9 +47,7 @@ async function addTask() {
 
   /* GEPFUSCHTE LÖSUNG; SEITE WIRD NEU GELADEN: NACH EINEM ADDTASK KANN MAN KEINEN 2. HINZUFÜGEN. */
   window.location.href = 'addtask.html';
-
 }
-
 
 function checkBoxes() {
   temporaryAssigned = [];
@@ -69,7 +66,6 @@ function checkBoxes() {
       temporarySubTasks.push(content);
     }
     console.log(temporarySubTasks);
-
   }
 }
 
@@ -107,7 +103,7 @@ function checkInputValue() {
   let subtask = document.getElementById('subtask').value;
   let acceptButton = document.getElementById('acceptButton');
 
-  if (subtask === "") {
+  if (subtask === '') {
     acceptButton.disabled = true;
   } else {
     acceptButton.disabled = false;
@@ -121,7 +117,7 @@ function createSubtask() {
 
   allSubtasks.push(subtask);
 
-  document.getElementById('subtaskList').innerHTML += /*html*/`
+  document.getElementById('subtaskList').innerHTML += /*html*/ `
     <div class="checkbox-container">
     <input type="checkbox" id="subTask${subTaskCounter}" />
       <label id = "subTaskValue${subTaskCounter}" for="subTask${subTaskCounter}">${subtask}</label>
@@ -130,9 +126,7 @@ function createSubtask() {
   document.getElementById('subtask').value = ``;
   checkInputValue();
   subTaskCounter++;
-
 }
-
 
 // This functions changes the colors of the Prio-Buttons
 
@@ -146,7 +140,6 @@ function changeColorofUrgentButton() {
   document.getElementById('urgentText').classList.add('white-text');
   document.getElementById('mediumText').classList.remove('white-text');
   document.getElementById('lowText').classList.remove('white-text');
-
 }
 
 function changeColorofMediumButton() {
@@ -159,7 +152,6 @@ function changeColorofMediumButton() {
   document.getElementById('urgentText').classList.remove('white-text');
   document.getElementById('mediumText').classList.add('white-text');
   document.getElementById('lowText').classList.remove('white-text');
-
 }
 
 function changeColorofLowButton() {
@@ -182,33 +174,28 @@ function createAssignetToSelection() {
 
     let contactName = contact['name'];
 
-    document.getElementById('checkboxes').innerHTML += /*html*/`
+    document.getElementById('checkboxes').innerHTML += /*html*/ `
     <div class="flex">
               <label for="checkbox${i}" onclick="createUserIcons(${contactName})">${contactName}</label>
               <input type="checkbox" id="checkbox${i}" />
               </div>
-              `
+              `;
   }
 }
 
-function createUserIcons(contactName){
-let usercontainer = document.getElementById('users');
-usercontainer.innerHTML +=/*html*/`
+function createUserIcons(contactName) {
+  let usercontainer = document.getElementById('users');
+  usercontainer.innerHTML += /*html*/ `
 ${contactName}
 `;
-
 }
 
 /* CATEGORYS /////////////////////////////////*/
-
-
 
 function openCategorys() {
   document.getElementById('acceptButton').classList.remove('d-none');
   /*  document.getElementsByClassName('cross').style.transform = 'rotate(20deg)';  PLUS ZU X DREHEN*/
 }
-
-
 
 function showCategorys() {
   renderCategorys();
@@ -223,10 +210,8 @@ function showCategorys() {
   }
 }
 
-
-
 function renderCategorys() {
-  document.getElementById('categorys').innerHTML = /*html*/`     
+  document.getElementById('categorys').innerHTML = /*html*/ `     
   <div class="flex" onclick="openCategoryInput()">
     <div class="category-list">
       <p>New Category</p> 
@@ -237,7 +222,7 @@ function renderCategorys() {
     const category = allCategorys[i];
     let categoryName = category['name'];
 
-    document.getElementById('categorys').innerHTML += /*html*/`
+    document.getElementById('categorys').innerHTML += /*html*/ `
     <div class="flex" onclick="selectCategory(${i})">
       <div class="category-list">
         <p>${categoryName}</p> <div class="color" style="background-color:${category['color']};">
@@ -249,7 +234,7 @@ function renderCategorys() {
 
 function selectCategory(i) {
   category = allCategorys[i];
-  document.getElementById('displayCategory').innerHTML = /*html*/`
+  document.getElementById('displayCategory').innerHTML = /*html*/ `
       <div class="flex" onclick="selectCategory(${i})">
       <div class="category-list">
         <p>${category['name']}</p> <div class="color" style="background-color:${category['color']};">
@@ -263,7 +248,6 @@ function openCategoryInput() {
   document.getElementById('openCategoryInput').classList.remove('d-none');
   document.getElementById('categoryDropdown').classList.add('d-none');
   document.getElementById('color').classList.remove('d-none');
-
 }
 
 function closeCategoryInput() {
@@ -271,7 +255,7 @@ function closeCategoryInput() {
   document.getElementById('categoryDropdown').classList.remove('d-none');
   document.getElementById('color').classList.add('d-none');
   pickColor('transparent');
-  color = "transparent";
+  color = 'transparent';
 }
 
 function pickColor(color) {
@@ -284,7 +268,7 @@ async function createNewCategory() {
 
   allCategorys.push({
     name: name,
-    color: currentColor
+    color: currentColor,
   });
   await backend.setItem('allCategorys', JSON.stringify(allCategorys));
   closeCategoryInput();
