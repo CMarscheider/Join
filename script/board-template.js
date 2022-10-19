@@ -1,7 +1,7 @@
 function taskCardHTML(task, i) {
   return /*html*/ `
       <div class="todo-content" onclick="showTaskPopup(${i})">
-              <span class="category${i}" id="category${i}">${task.category}</span>
+              <span class="category${i}" id="category${i}">${task.category.name}</span>
               <h3>${task.title}</h3>
               <p>${task.description}</p>
     
