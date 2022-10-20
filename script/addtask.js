@@ -10,25 +10,39 @@ let subTaskCounter = 0;
 let category;
 let currentColor;
 let allCategorys = [
-  {
-    name: "Sales",
-    color: "red"
-  },
-  {
-    name: "Backoffice",
-    color: "lightblue"
-  },
+  /*   {
+      name: "Sales",
+      color: "red"
+    },
+    {
+      name: "Backoffice",
+      color: "lightblue"
+    }, */
 ];
 
+function checkAllInputs() {
+  checkBoxes();
+
+  if (temporaryAssigned.length == 0) {
+    alert('Kein Mitarbeiter ausgewählt');
+  } else {
+    if (!prio) {
+      alert('Keine Priorität ausgewählt');
+    } else {
+      if (!category) {
+        alert('Keine Kategorie ausgewählt');
+      } else{
+        addTask();
+      }
+    }
+  }
+}
 
 async function addTask() {
   let title = document.getElementById('title');
   let description = document.getElementById('description');
-  /* let category = document.getElementById('category'); */
   let date = document.getElementById('date');
-  checkBoxes();
 
-  /* let subtask = document.getElementById('subtask').value; */
 
 
   allTasks.push({
@@ -184,20 +198,36 @@ function createAssignetToSelection() {
 
     document.getElementById('checkboxes').innerHTML += /*html*/`
     <div class="flex">
-              <label for="checkbox${i}" onclick="createUserIcons('${contactName}')">${contactName}</label>
+              <label for="checkbox${i}" onclick="createUserIcons('${contactName}');return false">${contactName}</label>
               <input type="checkbox" id="checkbox${i}" onclick="createUserIcons('${contactName}')" />
               </div>
               `
   }
 }
 
-function createUserIcons(contactName){
-let usercontainer = document.getElementById('users');
-usercontainer.innerHTML +=/*html*/`
-${contactName}
+function createUserIcons(contactName) {
+  console.log('ausgeführt');
+  splitName(contactName);
+  let usercontainer = document.getElementById('users');
+  if (!document.getElementById(contactName)) {
+    usercontainer.innerHTML +=/*html*/`
+    <div class="contactIcon" id="${contactName}">
+        <span>${splittedName[0].charAt(0).toUpperCase()}${splittedName[1].charAt(0).toUpperCase()}</span>
+    </div>
 `;
-
+    let icon = document.getElementById(`${contactName}`);
+    icon.style.backgroundColor = color;
+  } else {
+    if (!document.getElementById(contactName).classList.contains('d-none')) {
+      document.getElementById(contactName).classList.add('d-none');
+    } else {
+      document.getElementById(contactName).classList.remove('d-none');
+    }
+  }
 }
+
+
+
 
 /* CATEGORYS /////////////////////////////////*/
 
@@ -272,6 +302,7 @@ function closeCategoryInput() {
   document.getElementById('color').classList.add('d-none');
   pickColor('transparent');
   color = "transparent";
+  document.getElementById('inputCategory').value = ``;
 }
 
 function pickColor(color) {
@@ -282,12 +313,20 @@ function pickColor(color) {
 async function createNewCategory() {
   let name = document.getElementById('inputCategory').value;
 
-  allCategorys.push({
-    name: name,
-    color: currentColor
-  });
-  await backend.setItem('allCategorys', JSON.stringify(allCategorys));
-  closeCategoryInput();
-  renderCategorys();
-  /* TODO: letzte kategorie auswählen, if abfrage damit es keine leeren werte gibt!!*/
+  if (!name) {
+    alert('Keinen Kategorienamen eingegeben.');
+  } else {
+    if (currentColor == 'transparent') {
+      alert('Keine Farbe für die Kategorie gewählt.')
+    } else {
+      allCategorys.push({
+        name: name,
+        color: currentColor
+      });
+      await backend.setItem('allCategorys', JSON.stringify(allCategorys));
+      closeCategoryInput();
+      renderCategorys();
+      selectCategory(allCategorys.length - 1);
+    }
+  }
 }

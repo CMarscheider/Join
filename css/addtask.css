@@ -292,3 +292,8 @@ option {
   align-items: center;
   justify-content: flex-end;
 }
+
+.usercontainer{
+  display: flex;
+  
+}

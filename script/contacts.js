@@ -59,7 +59,6 @@ function renderContacts(name, mail, firstLetter, i, id) {
 `;
 
 let icon = document.getElementById(`${id}`);
-console.log(icon);
 icon.style.backgroundColor = color;
 }
 
