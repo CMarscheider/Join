@@ -15,22 +15,24 @@ function renderTasks() {
     todoContent.innerHTML = '';
     for (let i = 0; i < allTasks.length; i++) {
       task = allTasks[i];
-      console.log(task);
       todoContent.innerHTML += taskCardHTML(task, i);
       renderTaskFooter(task, i);
-
-      let cardCat = document.getElementsByClassName(`category${i}`);
-      for (let k = 0; k < cardCat.length; k++) {
-        const cat = cardCat[k];
-        cat.style.backgroundColor = task.category.color;
-        cat.style.color = '#fff';
-        cat.style.width = '90px';
-        cat.style.textAlign = 'center';
-        cat.style.padding = '5px';
-        cat.style.borderRadius = '8px';
-      }
+      renderCategoryColor(i);
     }
   }, 500);
+}
+
+function renderCategoryColor(i) {
+  let cardCat = document.getElementsByClassName(`category${i}`);
+  for (let k = 0; k < cardCat.length; k++) {
+    const cat = cardCat[k];
+    cat.style.backgroundColor = task.category.color;
+    cat.style.color = '#fff';
+    cat.style.width = '90px';
+    cat.style.textAlign = 'center';
+    cat.style.padding = '5px';
+    cat.style.borderRadius = '8px';
+  }
 }
 
 /**
@@ -86,6 +88,7 @@ function showTaskPopup(i) {
   document.getElementById('assigendTo').innerHTML = allTasks[i].assigned;
 }
 
+//Drag and Drop
 function startDragging(id) {
   currentDraggedElement = id;
 }
@@ -97,3 +100,4 @@ function allowDrop(ev) {
 function moveTo(category) {
   allTasks[currentDraggedElement]['status'] = category;
 }
+//Drag and Drop
