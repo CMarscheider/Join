@@ -1,26 +1,28 @@
-<div class="headline">
+<div class="headline-addtask">
   <h1>Add tasks</h1>
 </div>
 
 <form onsubmit="checkAllInputs();return false">
   <div class="addtask-content">
-    <div class="middleline"></div>
+    
 
     <div class="leftside-content">
 
+      <div class="middleline"></div>
+
       <div class="title-container">
 
-        <p>Title</p>
+        <p><b>Title</b></p>
         <input required id="title" placeholder="Enter a title" type="text" />
       </div>
 
       <div class="description-container">
-        <p>Description</p>
+        <p><b>Description</b></p>
         <input required id="description" placeholder="Enter a Description" type="text" />
       </div>
 
       <div class="category-container">
-        <p>Category</p>
+        <p><b>Category</b></p>
 
         <!-- KATEGORIE -->
         <div class="subtaskInput d-none" id="openCategoryInput">
@@ -59,7 +61,7 @@
 
 
       <div id="assigned-container" class="category-container">
-        <p>Assigned to</p>
+        <p><b>Assigned to</b></p>
         <div class="multiselect">
           <div class="selectBox" onclick="showCheckboxes()">
             <select>
@@ -78,12 +80,12 @@
     </div>
     <div class="rightside-content">
       <div class="date-container">
-        <p>Due date</p>
+        <p><b>Due date</b></p>
         <input required id="date" type="date" />
       </div>
 
       <div class="prio-container">
-        <p>Prio</p>
+        <p><b>Prio</b></p>
         <div class="button-container">
           <button type="button" id="urgentButton" onclick="checkPriority('urgent'), changeColorofUrgentButton()">
             <b id="urgentText">Urgent</b>
@@ -101,7 +103,7 @@
       </div>
 
       <div class="subtasks-container">
-        <p>Subtasks</p>
+        <p><b>Subtasks</b></p>
         <div class="subtaskInput">
           <input onkeydown="checkInputValue()" id="subtask" placeholder="Add new subtask" type="text" />
           <div class="subTaskImages">
@@ -131,7 +133,7 @@
           <img src="assets/img/acceptimg.svg" alt="cancel" />
         </button>
 
-        <input type="button">
+        
 
       </div>
     </div>

@@ -5,11 +5,12 @@
 
 .addtask-content {
   display: flex;
-  position: relative;
+  
 }
 
 .leftside-content {
   display: flex;
+  position: relative;
   flex-direction: column;
   width: 50%;
   background-color: #f6f7f8;
@@ -25,6 +26,13 @@
   background-color: #f6f7f8;
   padding-right: 8%;
   padding-left: 5%;
+}
+
+.headline-addtask {
+  background-color: rgb(246,247,248);
+    font-size: 2rem;
+    display: flex;
+    padding-left: 8%;
 }
 
 .title-container {
@@ -59,6 +67,8 @@
   height: 4vh;
 }
 
+
+
 .prio-container {
   display: flex;
   flex-direction: column;
@@ -72,6 +82,14 @@
   width: 10vh;
   border-radius: 10px;
   background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.prio-container button:hover {
+  cursor: pointer;
+  transition: box-shadow .225s;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+  color: black;
 }
 
 .button-container {
@@ -118,13 +136,19 @@
   z-index: 999;
   height: 65%;
   width: 1px;
-  right: 50%;
+  right: 0%;
   top: 5%;
 }
 
 input {
   border-radius: 10px;
   color: rgba(0, 0, 0, 1);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+input::placeholder {
+  opacity: 0.5;
+  font-weight: bold;
 }
 
 select {
@@ -186,6 +210,8 @@ option {
   right: 0;
   top: 0;
   bottom: 0;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
 }
 
 #checkboxes {
@@ -232,7 +258,12 @@ option {
   border-radius: 10px;
   justify-content: space-between;
   padding: 0px 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
 
+}
+
+#subtask {
+  border: 0;
 }
 
 .cross {
