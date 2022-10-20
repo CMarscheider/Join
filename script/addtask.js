@@ -10,7 +10,6 @@ let subTaskCounter = 0;
 let category;
 let currentColor;
 let allCategorys = [
-<<<<<<< HEAD
   /*   {
       name: "Sales",
       color: "red"
@@ -42,22 +41,6 @@ function checkAllInputs() {
 async function addTask() {
   let title = document.getElementById('title');
   let description = document.getElementById('description');
-=======
-  {
-    name: 'Sales',
-    color: 'red',
-  },
-  {
-    name: 'Backoffice',
-    color: 'lightblue',
-  },
-];
-
-async function addTask() {
-  let title = document.getElementById('title');
-  let description = document.getElementById('description');
-  let category = document.getElementById('category');
->>>>>>> 13b776bea7a2c73632c2d1a2a14761893bd8fe7e
   let date = document.getElementById('date');
 
 
@@ -216,7 +199,6 @@ function createAssignetToSelection() {
 }
 
 function createUserIcons(contactName) {
-<<<<<<< HEAD
   console.log('ausgeführt');
   splitName(contactName);
   let usercontainer = document.getElementById('users');
@@ -235,12 +217,6 @@ function createUserIcons(contactName) {
       document.getElementById(contactName).classList.remove('d-none');
     }
   }
-=======
-  let usercontainer = document.getElementById('users');
-  usercontainer.innerHTML += /*html*/ `
-${contactName}
-`;
->>>>>>> 13b776bea7a2c73632c2d1a2a14761893bd8fe7e
 }
 
 
@@ -311,12 +287,8 @@ function closeCategoryInput() {
   document.getElementById('categoryDropdown').classList.remove('d-none');
   document.getElementById('color').classList.add('d-none');
   pickColor('transparent');
-<<<<<<< HEAD
   color = "transparent";
   document.getElementById('inputCategory').value = ``;
-=======
-  color = 'transparent';
->>>>>>> 13b776bea7a2c73632c2d1a2a14761893bd8fe7e
 }
 
 function pickColor(color) {
@@ -327,7 +299,6 @@ function pickColor(color) {
 async function createNewCategory() {
   let name = document.getElementById('inputCategory').value;
 
-<<<<<<< HEAD
   if (!name) {
     alert('Keinen Kategorienamen eingegeben.');
   } else {
@@ -345,14 +316,3 @@ async function createNewCategory() {
     }
   }
 }
-=======
-  allCategorys.push({
-    name: name,
-    color: currentColor,
-  });
-  await backend.setItem('allCategorys', JSON.stringify(allCategorys));
-  closeCategoryInput();
-  renderCategorys();
-  /* TODO: letzte kategorie auswählen, if abfrage damit es keine leeren werte gibt!!*/
-}
->>>>>>> 13b776bea7a2c73632c2d1a2a14761893bd8fe7e
