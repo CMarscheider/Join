@@ -1,7 +1,7 @@
 function taskCardHTML(task, i) {
   return /*html*/ `
-      <div class="todo-content" onclick="showTaskPopup(${i})">
-              <span class="category${i}" id="category${i}">${task.category.name}</span>
+      <div class="todo-content" onclick="showTaskPopup(${i})" draggable="true" ondragstart="startDragging(${i})">
+              <span class="category${i}" id="category${i}">${allTasks[i].category.name}</span>
               <h3>${task.title}</h3>
               <p>${task.description}</p>
     
@@ -13,7 +13,6 @@ function taskCardHTML(task, i) {
     
               <div class="box-footer" id ="boxFooter${i}">
               
-    
                
               </div>
             </div>

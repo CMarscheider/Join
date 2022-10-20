@@ -4,8 +4,8 @@ async function init() {
 }
 let todoContent;
 let todoFooter;
-let index;
-let task;
+let currentDraggedElement;
+
 /**
  * render all tasks card content
  */
@@ -15,14 +15,14 @@ function renderTasks() {
     todoContent.innerHTML = '';
     for (let i = 0; i < allTasks.length; i++) {
       task = allTasks[i];
-      index = i;
+      console.log(task);
       todoContent.innerHTML += taskCardHTML(task, i);
       renderTaskFooter(task, i);
 
       let cardCat = document.getElementsByClassName(`category${i}`);
       for (let k = 0; k < cardCat.length; k++) {
         const cat = cardCat[k];
-        cat.style.backgroundColor = 'red';
+        cat.style.backgroundColor = task.category.color;
         cat.style.color = '#fff';
         cat.style.width = '90px';
         cat.style.textAlign = 'center';
@@ -69,6 +69,7 @@ function searchContent(value) {
 function showTaskPopup(i) {
   document.getElementById('taskPopup').classList.remove('d-none');
   document.getElementById('categoryPopup').innerHTML = allTasks[i].category.name;
+  document.getElementById('categoryPopup').style.background = allTasks[i].category.color;
   document.getElementById('titlePopup').innerHTML = allTasks[i].title;
   document.getElementById('descriptionPopup').innerHTML = allTasks[i].description;
   document.getElementById('datePopup').innerHTML = `<b>Due Date:</b> ${allTasks[i].date}`;
@@ -85,7 +86,7 @@ function showTaskPopup(i) {
   document.getElementById('assigendTo').innerHTML = allTasks[i].assigned;
 }
 
-function starDargging(id) {
+function startDragging(id) {
   currentDraggedElement = id;
 }
 
@@ -93,7 +94,6 @@ function allowDrop(ev) {
   ev.preventDefault();
 }
 
-function moveTo(categ, task, index) {
-  allTasks[currentDraggedElement].status = categ;
-  taskCardHTML(task, index);
+function moveTo(category) {
+  allTasks[currentDraggedElement]['status'] = category;
 }
