@@ -23,8 +23,8 @@ function taskCardHTML(task, i) {
 function TaskCardFooterHTML(firstLetter, secondLetter, restAssigendLength) {
   return /*html*/ `
       <div class="footer-circels">
-            <span>${firstLetter}${secondLetter}</span>
-            <span>${restAssigendLength}</span>
+            <span id="firstLettersContainer">${firstLetter}${secondLetter}</span>
+            <span id=restLenght>${restAssigendLength}</span>
           </div>
     
           <div class="footer-images-container">
