@@ -16,6 +16,7 @@
   background-color: #f6f7f8;
   padding-left: 8%;
   padding-right: 5%;
+  
 }
 
 .rightside-content {
@@ -23,7 +24,7 @@
   flex-direction: column;
   width: 50%;
   height: 60vh;
-  background-color: #f6f7f8;
+  background-color: #F6F7F8;
   padding-right: 8%;
   padding-left: 5%;
 }
@@ -149,6 +150,7 @@ input {
 input::placeholder {
   opacity: 0.5;
   font-weight: bold;
+  padding-left: 20px;
 }
 
 select {
@@ -202,6 +204,7 @@ option {
 .selectBox select {
   width: 100%;
   font-weight: bold;
+  padding-left: 20px;
 }
 
 .overSelect {
@@ -212,6 +215,11 @@ option {
   bottom: 0;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 10px;
+  
+}
+
+#date {
+  padding-left: 20px;
 }
 
 #checkboxes {
