@@ -31,7 +31,7 @@ function checkAllInputs() {
     } else {
       if (!category) {
         alert('Keine Kategorie ausgewählt');
-      } else{
+      } else {
         addTask();
       }
     }
@@ -43,12 +43,11 @@ async function addTask() {
   let description = document.getElementById('description');
   let date = document.getElementById('date');
 
-
   allTasks.push({
     title: title.value,
     description: description.value,
     category: category,
-    status: 'open',
+    status: 'awaitingFeedback',
     assigned: temporaryAssigned,
     date: date.value,
     prio: prio,
@@ -203,7 +202,7 @@ function createUserIcons(contactName) {
   splitName(contactName);
   let usercontainer = document.getElementById('users');
   if (!document.getElementById(contactName)) {
-    usercontainer.innerHTML +=/*html*/`
+    usercontainer.innerHTML += /*html*/ `
     <div class="contactIcon" id="${contactName}">
         <span>${splittedName[0].charAt(0).toUpperCase()}${splittedName[1].charAt(0).toUpperCase()}</span>
     </div>
@@ -218,9 +217,6 @@ function createUserIcons(contactName) {
     }
   }
 }
-
-
-
 
 /* CATEGORYS /////////////////////////////////*/
 
@@ -287,7 +283,7 @@ function closeCategoryInput() {
   document.getElementById('categoryDropdown').classList.remove('d-none');
   document.getElementById('color').classList.add('d-none');
   pickColor('transparent');
-  color = "transparent";
+  color = 'transparent';
   document.getElementById('inputCategory').value = ``;
 }
 
@@ -303,11 +299,11 @@ async function createNewCategory() {
     alert('Keinen Kategorienamen eingegeben.');
   } else {
     if (currentColor == 'transparent') {
-      alert('Keine Farbe für die Kategorie gewählt.')
+      alert('Keine Farbe für die Kategorie gewählt.');
     } else {
       allCategorys.push({
         name: name,
-        color: currentColor
+        color: currentColor,
       });
       await backend.setItem('allCategorys', JSON.stringify(allCategorys));
       closeCategoryInput();
