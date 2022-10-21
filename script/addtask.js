@@ -61,7 +61,7 @@ async function addTask() {
   document.getElementById('subtaskList').innerHTML = ``;
 
   /* GEPFUSCHTE LÖSUNG; SEITE WIRD NEU GELADEN: NACH EINEM ADDTASK KANN MAN KEINEN 2. HINZUFÜGEN. */
-  window.location.href = 'addtask.html';
+  window.location.href = 'board.html';
 }
 
 function checkBoxes() {

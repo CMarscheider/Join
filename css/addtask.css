@@ -253,6 +253,10 @@ option {
   padding: 20px;
 }
 
+.flex label{
+    width: 100%;
+}
+
 .urgentButtonBackground {
   background-color: #FF3D00 !important;
 }
