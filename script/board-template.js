@@ -1,4 +1,4 @@
-function taskCardHTML(task, i) {
+function openTaskCard(task, i) {
   return /*html*/ `
       <div class="todo-content" onclick="showTaskPopup(${i})" draggable="true" ondragstart="startDragging(${i})">
               <span class="category${i}" id="category${i}">${allTasks[i].category.name}</span>
@@ -11,7 +11,7 @@ function taskCardHTML(task, i) {
                 <label class="label" for="file">Done1/2</label>
               </div>
     
-              <div class="box-footer" id ="boxFooter${i}">
+              <div class="box-footer" id ="openTaskFooter${i}">
               
                
               </div>
@@ -19,7 +19,7 @@ function taskCardHTML(task, i) {
       `;
 }
 
-function TaskCardFooterHTML(firstLetter, secondLetter, restAssigendLength) {
+function openTaskCardFooter(firstLetter, secondLetter, restAssigendLength) {
   return /*html*/ `
       <div class="footer-circels">
             <span id="firstLettersContainer">${firstLetter}${secondLetter}</span>
@@ -31,6 +31,70 @@ function TaskCardFooterHTML(firstLetter, secondLetter, restAssigendLength) {
             <img src="./assets/img/arrow-down.png" alt="arrow-up" />
           </div>
       `;
+}
+
+function inProgressTaskCard(inProgressTask, i) {
+  return /*html*/ `
+  <div class="todo-content" onclick="showTaskPopup(${i})" draggable="true" ondragstart="startDragging(${i})">
+           <span class="category${i}" id="category${i}">${inProgressTask.category.name}</span>
+           <h3>${inProgressTask.title}</h3>
+           <p>${inProgressTask.description}</p>
+ 
+           <!-- todo -->
+           <div class="progress-bar-container">
+             <progress id="file" value="32" max="100">32%</progress>
+             <label class="label" for="file">Done1/2</label>
+           </div>
+           <div class="box-footer" id ="inProgressFooter${i}">      
+           </div>
+         </div>
+ `;
+}
+
+function inProgressTaskCardFooter(firstLetter, secondLetter, restAssigendLength) {
+  return /*html*/ `
+  <div class="footer-circels">
+          <span id="firstLettersContainer">${firstLetter}${secondLetter}</span>
+          <span id=restLenght>${restAssigendLength}</span>
+        </div>
+  
+        <div class="footer-images-container">
+          <img src="./assets/img/arrow-down.png" alt="arrow-up" />
+          <img src="./assets/img/arrow-down.png" alt="arrow-up" />
+        </div>
+  `;
+}
+
+function awaitingFeedBackTaskCard(awaitingFeedbackTask, i) {
+  return /*html*/ `
+  <div class="todo-content" onclick="showTaskPopup(${i})" draggable="true" ondragstart="startDragging(${i})">
+           <span class="category${i}" id="category${i}">${awaitingFeedbackTask.category.name}</span>
+           <h3>${awaitingFeedbackTask.title}</h3>
+           <p>${awaitingFeedbackTask.description}</p>
+ 
+           <!-- todo -->
+           <div class="progress-bar-container">
+             <progress id="file" value="32" max="100">32%</progress>
+             <label class="label" for="file">Done1/2</label>
+           </div>
+           <div class="box-footer" id ="awaitingFeedbackFooter${i}">      
+           </div>
+         </div>
+ `;
+}
+
+function awaitingFeedbackFooter(firstLetter, secondLetter, restAssigendLength) {
+  return /*html*/ `
+  <div class="footer-circels">
+          <span id="firstLettersContainer">${firstLetter}${secondLetter}</span>
+          <span id=restLenght>${restAssigendLength}</span>
+        </div>
+  
+        <div class="footer-images-container">
+          <img src="./assets/img/arrow-down.png" alt="arrow-up" />
+          <img src="./assets/img/arrow-down.png" alt="arrow-up" />
+        </div>
+  `;
 }
 
 function urgentPriority(i) {

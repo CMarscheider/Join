@@ -2,8 +2,6 @@ async function init() {
   await downloadFromServer();
   users = JSON.parse(backend.getItem('users')) || [];
 }
-let todoContent;
-let todoFooter;
 let currentDraggedElement;
 
 /**
@@ -11,18 +9,83 @@ let currentDraggedElement;
  */
 function renderTasks() {
   setTimeout(() => {
-    todoContent = document.getElementById('todoContent');
-    todoContent.innerHTML = '';
-    for (let i = 0; i < allTasks.length; i++) {
-      task = allTasks[i];
-      todoContent.innerHTML += taskCardHTML(task, i);
-      renderTaskFooter(task, i);
-      renderCategoryColor(i);
-    }
-  }, 500);
+    renderOpenTasks();
+    renderInProgressTasks();
+    renderInProgressTasks();
+    renderAwaitingFeedbackTasks();
+  }, 300);
 }
 
-function renderCategoryColor(i) {
+function renderOpenTasks() {
+  let openTasks = allTasks.filter((t) => t.status === 'open');
+  let openTasksContent = document.getElementById('todoOpenContent');
+  openTasksContent.innerHTML = '';
+  for (let i = 0; i < openTasks.length; i++) {
+    task = openTasks[i];
+    openTasksContent.innerHTML += openTaskCard(task, i);
+    renderOpenTaskFooter(task, i);
+    styleCategory(i);
+  }
+}
+
+function renderOpenTaskFooter(task, i) {
+  let todoFooter = document.getElementById(`openTaskFooter${i}`);
+  for (let j = 0; j < task['assigned'].length; j++) {
+    let assigend = task['assigned'][j];
+    let firstLetter = assigend.charAt(0);
+    let secondLetter = assigend.split(' ').pop()[0];
+    let restAssigendLength = task['assigned'].splice(1).length;
+    todoFooter.innerHTML += openTaskCardFooter(firstLetter, secondLetter, restAssigendLength);
+  }
+}
+
+function renderInProgressTasks() {
+  let inProgressTasks = allTasks.filter((t) => t.status === 'inProgress');
+  let inProgressTasksContent = document.getElementById('todoInProgressContent');
+  inProgressTasksContent.innerHTML = '';
+  for (let i = 0; i < inProgressTasks.length; i++) {
+    let inProgressTask = inProgressTasks[i];
+    inProgressTasksContent.innerHTML += inProgressTaskCard(inProgressTask, i);
+    renderInProgressTaskFooter(i);
+    styleCategory(i);
+  }
+}
+
+function renderInProgressTaskFooter(i) {
+  let todoInProgressFooter = document.getElementById(`inProgressFooter${i}`);
+  for (let j = 0; j < task['assigned'].length; j++) {
+    let assigend = task['assigned'][j];
+    let firstLetter = assigend.charAt(0);
+    let secondLetter = assigend.split(' ').pop()[0];
+    let restAssigendLength = task['assigned'].splice(1).length;
+    todoInProgressFooter.innerHTML += inProgressTaskCardFooter(firstLetter, secondLetter, restAssigendLength);
+  }
+}
+
+function renderAwaitingFeedbackTasks() {
+  let awaitingFeedback = allTasks.filter((t) => t.status === 'awaitingFeedback');
+  let awaitingFeedbackContent = document.getElementById('todoAwaitingFeedbackContent');
+  for (let i = 0; i < awaitingFeedback.length; i++) {
+    let awaitingFeedbackTask = awaitingFeedback[i];
+
+    awaitingFeedbackContent.innerHTML += awaitingFeedBackTaskCard(awaitingFeedbackTask, i);
+    renderAwaitingFeedbackTaskFooter(i);
+    styleCategory(i);
+  }
+}
+
+function renderAwaitingFeedbackTaskFooter(i) {
+  let todoAwaitingFeedbackFooter = document.getElementById(`awaitingFeedbackFooter${i}`);
+  for (let j = 0; j < task['assigned'].length; j++) {
+    let assigend = task['assigned'][j];
+    let firstLetter = assigend.charAt(0);
+    let secondLetter = assigend.split(' ').pop()[0];
+    let restAssigendLength = task['assigned'].splice(1).length;
+    todoAwaitingFeedbackFooter.innerHTML += awaitingFeedbackFooter(firstLetter, secondLetter, restAssigendLength);
+  }
+}
+
+function styleCategory(i) {
   let cardCat = document.getElementsByClassName(`category${i}`);
   for (let k = 0; k < cardCat.length; k++) {
     const cat = cardCat[k];
@@ -35,27 +98,11 @@ function renderCategoryColor(i) {
   }
 }
 
-/**
- * reder tasks cards footer content
- */
-function renderTaskFooter(task, i) {
-  todoFooter = document.getElementById(`boxFooter${i}`);
-  for (let j = 0; j < task['assigned'].length; j++) {
-    let assigend = task['assigned'][j];
-    let firstLetter = assigend.charAt(0);
-    let secondLetter = assigend.split(' ').pop()[0];
-    let restAssigendLength = task['assigned'].splice(1).length;
-    todoFooter.innerHTML += TaskCardFooterHTML(firstLetter, secondLetter, restAssigendLength);
-    console.log(assigend);
-  }
-}
-
-/**
- * to show Addtask form
- */
 function showInputsForm() {
   document.getElementById('form').classList.remove('d-none');
 }
+
+// TODO: close input form
 
 function searchContent(value) {
   todoContent.innerHTML = '';
@@ -84,7 +131,6 @@ function showTaskPopup(i) {
   if (allTasks[i].prio === 'low') {
     lowPriority(i);
   }
-
   document.getElementById('assigendTo').innerHTML = allTasks[i].assigned;
 }
 

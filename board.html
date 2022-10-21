@@ -41,13 +41,14 @@
         </div>
 
         <div class="all-tasks-contnet">
+
           <div class="todo" ondrop="moveTo('open')" ondragover="allowDrop(event)">
             <div class="create-todo">
               <h2>Todo</h2>
               <span onclick="showInputsForm()">+</span>
             </div>
 
-           <div id="todoContent">
+           <div id="todoOpenContent">
             <div class="todo-content">
               <span>Design</span>
               <h3>Website redesign</h3>
@@ -58,7 +59,7 @@
                 <label class="label" for="file">Done1/2</label>
               </div>
 
-              <div class="box-footer">
+              <!-- <div class="box-footer">
                 <div class="footer-circels">
                   <span>AS</span>
                   <span>DE</span>
@@ -69,9 +70,8 @@
                   <img src="./assets/img/arrow-down.png" alt="arrow-up" />
                   <img src="./assets/img/arrow-down.png" alt="arrow-up" />
                 </div>
-              </div>
+              </div> -->
             </div>
-
            </div>
 
            
@@ -84,7 +84,8 @@
               <span onclick="showInputsForm()">+</span>
             </div>
 
-            <!-- <div class="todo-content">
+            <div id="todoInProgressContent">
+              <!-- <div class="todo-content">
               <span>Sales</span>
               <h3>Call potencial clients</h3>
               <p>Modify the contents of the main website...</p>
@@ -102,6 +103,8 @@
                 </div>
               </div>
             </div> -->
+
+            </div>
           </div>
 
           <div class="todo" ondrop="moveTo('awaitingFeedback')" ondragover="allowDrop(event)">
@@ -110,7 +113,8 @@
               <span onclick="showInputsForm()">+</span>
             </div>
 
-            <!-- <div class="todo-content">
+            <div id="todoAwaitingFeedbackContent">
+              <!-- <div class="todo-content">
               <span>Backoffice</span>
               <h3>Website redesign</h3>
               <p>Make the product presen-tation to prospective buyers</p>
@@ -128,6 +132,8 @@
                 </div>
               </div>
             </div> -->
+            </div>
+            
           </div>
 
           <div class="todo" ondrop="moveTo('done')" ondragover="allowDrop(event)">
