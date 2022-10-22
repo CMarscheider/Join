@@ -13,12 +13,13 @@ function renderTasks() {
     renderInProgressTasks();
     renderInProgressTasks();
     renderAwaitingFeedbackTasks();
+    renderDoneTasks();
   }, 300);
 }
 
 function renderOpenTasks() {
-  let openTasks = allTasks.filter((t) => t.status === 'open');
   let openTasksContent = document.getElementById('todoOpenContent');
+  let openTasks = allTasks.filter((t) => t.status === 'open');
   openTasksContent.innerHTML = '';
   for (let i = 0; i < openTasks.length; i++) {
     task = openTasks[i];
@@ -28,43 +29,43 @@ function renderOpenTasks() {
   }
 }
 
-function renderOpenTaskFooter(task, i) {
-  let todoFooter = document.getElementById(`openTaskFooter${i}`);
+function renderOpenTaskFooter(task, j) {
+  let todoFooter = document.getElementById(`openTaskFooter${j}`);
   for (let j = 0; j < task['assigned'].length; j++) {
     let assigend = task['assigned'][j];
     let firstLetter = assigend.charAt(0);
-    let secondLetter = assigend.split(' ').pop()[0];
+    let secondLetter = assigend.split(' ')[1].charAt(0);
     let restAssigendLength = task['assigned'].splice(1).length;
     todoFooter.innerHTML += openTaskCardFooter(firstLetter, secondLetter, restAssigendLength);
   }
 }
 
 function renderInProgressTasks() {
-  let inProgressTasks = allTasks.filter((t) => t.status === 'inProgress');
   let inProgressTasksContent = document.getElementById('todoInProgressContent');
+  let inProgressTasks = allTasks.filter((t) => t.status === 'inProgress');
   inProgressTasksContent.innerHTML = '';
   for (let i = 0; i < inProgressTasks.length; i++) {
     let inProgressTask = inProgressTasks[i];
     inProgressTasksContent.innerHTML += inProgressTaskCard(inProgressTask, i);
-    renderInProgressTaskFooter(i);
+    renderInProgressTaskFooter(inProgressTask, i);
     styleCategory(i);
   }
 }
 
-function renderInProgressTaskFooter(i) {
-  let todoInProgressFooter = document.getElementById(`inProgressFooter${i}`);
+function renderInProgressTaskFooter(task, j) {
+  let todoInProgressFooter = document.getElementById(`inProgressFooter${j}`);
   for (let j = 0; j < task['assigned'].length; j++) {
     let assigend = task['assigned'][j];
     let firstLetter = assigend.charAt(0);
-    let secondLetter = assigend.split(' ').pop()[0];
+    let secondLetter = assigend.split(' ')[1].charAt(0);
     let restAssigendLength = task['assigned'].splice(1).length;
     todoInProgressFooter.innerHTML += inProgressTaskCardFooter(firstLetter, secondLetter, restAssigendLength);
   }
 }
 
 function renderAwaitingFeedbackTasks() {
-  let awaitingFeedback = allTasks.filter((t) => t.status === 'awaitingFeedback');
   let awaitingFeedbackContent = document.getElementById('todoAwaitingFeedbackContent');
+  let awaitingFeedback = allTasks.filter((t) => t.status === 'awaitingFeedback');
   for (let i = 0; i < awaitingFeedback.length; i++) {
     let awaitingFeedbackTask = awaitingFeedback[i];
 
@@ -74,27 +75,43 @@ function renderAwaitingFeedbackTasks() {
   }
 }
 
-function renderAwaitingFeedbackTaskFooter(i) {
-  let todoAwaitingFeedbackFooter = document.getElementById(`awaitingFeedbackFooter${i}`);
+function renderAwaitingFeedbackTaskFooter(j) {
+  let todoAwaitingFeedbackFooter = document.getElementById(`awaitingFeedbackFooter${j}`);
   for (let j = 0; j < task['assigned'].length; j++) {
     let assigend = task['assigned'][j];
     let firstLetter = assigend.charAt(0);
-    let secondLetter = assigend.split(' ').pop()[0];
+    let secondLetter = assigend.split(' ')[1].charAt(0);
     let restAssigendLength = task['assigned'].splice(1).length;
     todoAwaitingFeedbackFooter.innerHTML += awaitingFeedbackFooter(firstLetter, secondLetter, restAssigendLength);
   }
 }
 
-function styleCategory(i) {
-  let cardCat = document.getElementsByClassName(`category${i}`);
+function renderDoneTasks() {
+  let doneTasksContent = document.getElementById('todoDoneContent');
+  let doneTasks = allTasks.filter((t) => t.status === 'done');
+  for (let i = 0; i < doneTasks.length; i++) {
+    let doneTask = doneTasks[i];
+
+    doneTasksContent.innerHTML += doneTaskCard(doneTask, i);
+    styleCategory(i);
+  }
+}
+
+function renderDoneTasksFooter() {
+  let todoDoneFooter = document.getElementById(`doneFooter${i}`);
+}
+
+function styleCategory(k) {
+  let cardCat = document.getElementsByClassName(`category${k}`);
   for (let k = 0; k < cardCat.length; k++) {
     const cat = cardCat[k];
-    cat.style.backgroundColor = task.category.color;
+    cat.style.backgroundColor = allTasks[k].category.color;
     cat.style.color = '#fff';
     cat.style.width = '90px';
     cat.style.textAlign = 'center';
     cat.style.padding = '5px';
     cat.style.borderRadius = '8px';
+    cat.style.whiteSpace = 'nowrap';
   }
 }
 
@@ -116,6 +133,7 @@ function searchContent(value) {
 }
 
 function showTaskPopup(i) {
+  console.log(i);
   document.getElementById('taskPopup').classList.remove('d-none');
   document.getElementById('categoryPopup').innerHTML = allTasks[i].category.name;
   document.getElementById('categoryPopup').style.background = allTasks[i].category.color;
