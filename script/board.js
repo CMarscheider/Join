@@ -102,17 +102,15 @@ function renderDoneTasksFooter() {
 }
 
 function styleCategory(k) {
-  let cardCat = document.getElementsByClassName(`category${k}`);
-  for (let k = 0; k < cardCat.length; k++) {
-    const cat = cardCat[k];
-    cat.style.backgroundColor = allTasks[k].category.color;
-    cat.style.color = '#fff';
-    cat.style.width = '90px';
-    cat.style.textAlign = 'center';
-    cat.style.padding = '5px';
-    cat.style.borderRadius = '8px';
-    cat.style.whiteSpace = 'nowrap';
-  }
+  let cardCat = document.getElementById(`category${k}`)
+  const cat = cardCat;
+  cardCat.style.backgroundColor = allTasks[k].category.color;
+  cat.style.color = '#fff';
+  cat.style.width = '90px';
+  cat.style.textAlign = 'center';
+  cat.style.padding = '5px';
+  cat.style.borderRadius = '8px';
+  cat.style.whiteSpace = 'nowrap';
 }
 
 function showInputsForm() {
