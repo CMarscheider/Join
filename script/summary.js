@@ -56,19 +56,19 @@ function checkIfUserIsIncluded() {
 }
 
 
-function checkmyTasks(){
+function checkmyTasks() {
     for (let i = 0; i < myTasks.length; i++) {
         const task = myTasks[i];
         checkForUrgent(task);
         if (task['status'] == "inProgress") {
             tasksInProgess++;
-        } else{
+        } else {
             if (task['status'] == "awaitingFeedback") {
                 tasksAwaitingFeedback++;
-            } else{
+            } else {
                 if (task['status'] == "done") {
                     tasksDone++;
-                } else{
+                } else {
                     tasksToDo++;
                 }
             }
@@ -80,17 +80,21 @@ function checkmyTasks(){
 
 function checkForUrgent(task) {
     if (task.prio == "urgent") {
-        urgentTasks.push(task);
+        if (task['status'] == "done") {
+
+        } else {
+            urgentTasks.push(task);
+        }
     }
 }
 
 
-function fillContent(){
-    
-    document.getElementById('tasksInBoard').innerHTML =`${myTasks.length}`;
-    document.getElementById('tasksInProgress').innerHTML =`${tasksInProgess}`;
-    document.getElementById('tasksAwaitingFeedback').innerHTML =`${tasksAwaitingFeedback}`;
-    document.getElementById('urgentTasks').innerHTML =`${urgentTasks.length}`;
+function fillContent() {
+
+    document.getElementById('tasksInBoard').innerHTML = `${myTasks.length}`;
+    document.getElementById('tasksInProgress').innerHTML = `${tasksInProgess}`;
+    document.getElementById('tasksAwaitingFeedback').innerHTML = `${tasksAwaitingFeedback}`;
+    document.getElementById('urgentTasks').innerHTML = `${urgentTasks.length}`;
     document.getElementById('tasksToDo').innerHTML = `${tasksToDo}`;
     document.getElementById('tasksDone').innerHTML = ` ${tasksDone}`;
 
