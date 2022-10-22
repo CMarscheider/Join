@@ -48,7 +48,7 @@ function renderInProgressTasks() {
     let inProgressTask = inProgressTasks[i];
     inProgressTasksContent.innerHTML += inProgressTaskCard(inProgressTask, i);
     renderInProgressTaskFooter(inProgressTask, i);
-    styleCategoryProg(inProgressTask, i);
+    styleCategoryProgress(inProgressTask, i);
   }
 }
 
@@ -71,7 +71,7 @@ function renderAwaitingFeedbackTasks() {
 
     awaitingFeedbackContent.innerHTML += awaitingFeedBackTaskCard(awaitingFeedbackTask, i);
     renderAwaitingFeedbackTaskFooter(i);
-    styleCategory(i);
+    styleCategoryAwaiting(awaitingFeedbackTask, i);
   }
 }
 
@@ -93,6 +93,7 @@ function renderDoneTasks() {
     let doneTask = doneTasks[i];
     doneTasksContent.innerHTML += doneTaskCard(doneTask, i);
     styleCategory(i);
+    styleCategoryDone(doneTask, i);
   }
 }
 
@@ -112,10 +113,34 @@ function styleCategory(k) {
   cat.style.whiteSpace = 'nowrap';
 }
 
-function styleCategoryProg(inProgressTask, z) {
+function styleCategoryProgress(inProgressTask, z) {
   let cardCat = document.getElementById(`categoryProgress${z}`);
   const cat = cardCat;
   cardCat.style.backgroundColor = inProgressTask.category.color;
+  cat.style.color = '#fff';
+  cat.style.width = '90px';
+  cat.style.textAlign = 'center';
+  cat.style.padding = '5px';
+  cat.style.borderRadius = '8px';
+  cat.style.whiteSpace = 'nowrap';
+}
+
+function styleCategoryAwaiting(awaitingFeedbackTask, a) {
+  let cardCat = document.getElementById(`categoryAwaiting${a}`);
+  const cat = cardCat;
+  cardCat.style.backgroundColor = awaitingFeedbackTask.category.color;
+  cat.style.color = '#fff';
+  cat.style.width = '90px';
+  cat.style.textAlign = 'center';
+  cat.style.padding = '5px';
+  cat.style.borderRadius = '8px';
+  cat.style.whiteSpace = 'nowrap';
+}
+
+function styleCategoryDone(doneTask, b) {
+  let cardCat = document.getElementById(`categoryDone${b}`);
+  const cat = cardCat;
+  cardCat.style.backgroundColor = doneTask.category.color;
   cat.style.color = '#fff';
   cat.style.width = '90px';
   cat.style.textAlign = 'center';

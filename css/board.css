@@ -101,15 +101,12 @@
   color: #03a9f4;
 }
 
-.category {
-  background-color: #ff7a00;
-  color: black;
-  color: #fff;
-  width: 90px;
-  padding: 5px 15px;
-  border-radius: 8px;
-  text-align: center;
-}
+/* #category,
+#categoryProgress,
+#categoryAwaiting,
+#categoryDone {
+  
+} */
 
 .todo-content p {
   color: #a8a8a8;

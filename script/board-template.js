@@ -68,7 +68,7 @@ function inProgressTaskCardFooter(firstLetter, secondLetter, restAssigendLength)
 function awaitingFeedBackTaskCard(awaitingFeedbackTask, i) {
   return /*html*/ `
   <div class="todo-content" onclick="showTaskPopup(${i})" draggable="true" ondragstart="startDragging(${i})">
-           <span class="category${i}" id="category${i}">${awaitingFeedbackTask.category.name}</span>
+           <span class="category${i}" id="categoryAwaiting${i}">${awaitingFeedbackTask.category.name}</span>
            <h3>${awaitingFeedbackTask.title}</h3>
            <p>${awaitingFeedbackTask.description}</p>
  
@@ -100,7 +100,7 @@ function awaitingFeedbackFooter(firstLetter, secondLetter, restAssigendLength) {
 function doneTaskCard(doneTask, i) {
   return /*html*/ `
   <div class="todo-content" onclick="showTaskPopup(${i})" draggable="true" ondragstart="startDragging(${i})">
-           <span class="category${i}" id="category${i}">${doneTask.category.name}</span>
+           <span class="category${i}" id="categoryDone${i}">${doneTask.category.name}</span>
            <h3>${doneTask.title}</h3>
            <p>${doneTask.description}</p>
  
