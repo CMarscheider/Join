@@ -1,14 +1,18 @@
+let tasksInBoard = 0;
+let myTasks = [];
 
-
-function loadContentSummary() {
-    let name = user['name'];
-    document.getElementById('greetingName').innerHTML = `${name}`;
-}
 
 async function loadSummary() {
     await init();
     loadContentSummary();
     showTime();
+    checkIfUserIsIncluded();
+}
+
+
+function loadContentSummary() {
+    let name = user['name'];
+    document.getElementById('greetingName').innerHTML = `${name}`;
 }
 
 
@@ -30,4 +34,25 @@ function showTime() {
         greetingBox.innerHTML = `Good evening,`;
 
     }
+}
+
+
+function checkIfUserIsIncluded() {
+
+    for (let i = 0; i < allTasks.length; i++) {
+        const task = allTasks[i];
+
+        if (task.assigned.includes(user.name)) {
+            myTasks.push(task);
+        }
+    }
+    fillContent();
+}
+
+
+function fillContent(){
+    document.getElementById('tasksInBoard').innerHTML =`${myTasks.length}`;
+    document.getElementById('tasksInProgress').innerHTML =``;
+    document.getElementById('tasksAwaitingFeedback').innerHTML =``;
+
 }

@@ -102,7 +102,7 @@ function renderDoneTasksFooter() {
 }
 
 function styleCategory(k) {
-  let cardCat = document.getElementById(`category${k}`)
+  let cardCat = document.getElementById(`category${k}`);
   const cat = cardCat;
   cardCat.style.backgroundColor = allTasks[k].category.color;
   cat.style.color = '#fff';
