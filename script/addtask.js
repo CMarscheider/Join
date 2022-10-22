@@ -47,7 +47,7 @@ async function addTask() {
     title: title.value,
     description: description.value,
     category: category,
-    status: 'awaitingFeedback',
+    status: 'open',
     assigned: temporaryAssigned,
     date: date.value,
     prio: prio,

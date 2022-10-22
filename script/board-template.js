@@ -97,6 +97,24 @@ function awaitingFeedbackFooter(firstLetter, secondLetter, restAssigendLength) {
   `;
 }
 
+function doneTaskCard(doneTask, i) {
+  return /*html*/ `
+  <div class="todo-content" onclick="showTaskPopup(${i})" draggable="true" ondragstart="startDragging(${i})">
+           <span class="category${i}" id="category${i}">${doneTask.category.name}</span>
+           <h3>${doneTask.title}</h3>
+           <p>${doneTask.description}</p>
+ 
+           <!-- todo -->
+           <div class="progress-bar-container">
+             <progress id="file" value="32" max="100">32%</progress>
+             <label class="label" for="file">Done1/2</label>
+           </div>
+           <div class="box-footer" id ="doneFooter${i}">      
+           </div>
+         </div>
+ `;
+}
+
 function urgentPriority(i) {
   document.getElementById(
     'prio'
