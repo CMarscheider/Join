@@ -36,7 +36,7 @@ function openTaskCardFooter(firstLetter, secondLetter, restAssigendLength) {
 function inProgressTaskCard(inProgressTask, i) {
   return /*html*/ `
   <div class="todo-content" onclick="showTaskPopup(${i})" draggable="true" ondragstart="startDragging(${i})">
-           <span class="category${i}" id="category${i}">${inProgressTask.category.name}</span>
+           <span class="category${i}" id="categoryProgress${i}">${inProgressTask.category.name}</span>
            <h3>${inProgressTask.title}</h3>
            <p>${inProgressTask.description}</p>
  

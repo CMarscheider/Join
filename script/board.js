@@ -91,20 +91,31 @@ function renderDoneTasks() {
   let doneTasks = allTasks.filter((t) => t.status === 'done');
   for (let i = 0; i < doneTasks.length; i++) {
     let doneTask = doneTasks[i];
-
     doneTasksContent.innerHTML += doneTaskCard(doneTask, i);
     styleCategory(i);
   }
 }
 
-function renderDoneTasksFooter() {
-  let todoDoneFooter = document.getElementById(`doneFooter${i}`);
-}
+// function renderDoneTasksFooter() {
+//   let todoDoneFooter = document.getElementById(`doneFooter${i}`);
+// }
 
 function styleCategory(k) {
-  let cardCat = document.getElementById(`category${k}`)
+  let cardCat = document.getElementById(`category${k}`);
   const cat = cardCat;
   cardCat.style.backgroundColor = allTasks[k].category.color;
+  cat.style.color = '#fff';
+  cat.style.width = '90px';
+  cat.style.textAlign = 'center';
+  cat.style.padding = '5px';
+  cat.style.borderRadius = '8px';
+  cat.style.whiteSpace = 'nowrap';
+}
+
+function styleCategoryProg(z) {
+  let cardCat = document.getElementById(`category${z}`);
+  const cat = cardCat;
+  cardCat.style.backgroundColor = allTasks[z].category.color;
   cat.style.color = '#fff';
   cat.style.width = '90px';
   cat.style.textAlign = 'center';
