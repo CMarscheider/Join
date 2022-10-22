@@ -118,14 +118,14 @@ function doneTaskCard(doneTask, i) {
 function urgentPriority(i) {
   document.getElementById(
     'prio'
-  ).innerHTML = `<div class="prio-container-popup"><b>Priority:</b> <span id="prio-status">${allTasks[i].prio} <img id="prio-icon" src="/assets/img/Prio_alta.png"></span></div>`;
+  ).innerHTML = /*html*/ `<div class="prio-container-popup"><b>Priority:</b> <span id="prio-status">${allTasks[i].prio} <img id="prio-icon" src="/assets/img/Prio_alta.png"></span></div>`;
   document.getElementById('prio-status').style.background = 'red';
 }
 
 function mediumPriority(i) {
   document.getElementById(
     'prio'
-  ).innerHTML = `<div class="prio-container-popup"><b>Priority:</b> <span id="prio-status">${allTasks[i].prio} <img id="prio-icon" src="/assets/img/Prio media.png"></span></div>`;
+  ).innerHTML = /*html*/ 65`<div class="prio-container-popup"><b>Priority:</b> <span id="prio-status">${allTasks[i].prio} <img id="prio-icon" src="/assets/img/Prio media.png"></span></div>`;
   document.getElementById('prio-status').style.background = 'orange';
 }
 

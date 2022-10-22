@@ -25,7 +25,7 @@ function renderOpenTasks() {
     task = openTasks[i];
     openTasksContent.innerHTML += openTaskCard(task, i);
     renderOpenTaskFooter(task, i);
-    styleCategory(i);
+    styleCategory(task, i);
   }
 }
 
@@ -101,10 +101,10 @@ function renderDoneTasks() {
 //   let todoDoneFooter = document.getElementById(`doneFooter${i}`);
 // }
 
-function styleCategory(k) {
+function styleCategory(openTask, k) {
   let cardCat = document.getElementById(`category${k}`);
   const cat = cardCat;
-  cardCat.style.backgroundColor = allTasks[k].category.color;
+  cardCat.style.backgroundColor = openTask.category.color;
   cat.style.color = '#fff';
   cat.style.width = '90px';
   cat.style.textAlign = 'center';
@@ -167,7 +167,6 @@ function searchContent(value) {
 }
 
 function showTaskPopup(i) {
-  console.log(i);
   document.getElementById('taskPopup').classList.remove('d-none');
   document.getElementById('categoryPopup').innerHTML = allTasks[i].category.name;
   document.getElementById('categoryPopup').style.background = allTasks[i].category.color;
