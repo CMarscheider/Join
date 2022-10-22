@@ -190,15 +190,18 @@ function createAssignetToSelection() {
 
     document.getElementById('checkboxes').innerHTML += /*html*/ `
     <div class="flex">
-              <label for="checkbox${i}" onclick="createUserIcons('${contactName}');return false">${contactName}</label>
-              <input type="checkbox" id="checkbox${i}" onclick="createUserIcons('${contactName}')" />
-              </div>
-              `;
+        <label for="checkbox${i}">
+            ${contactName}
+            <input type="checkbox" id="checkbox${i}" onchange="createUserIcons('${contactName}')" />
+        </label>
+              
+    </div>
+  `;
   }
 }
 
 function createUserIcons(contactName) {
-  console.log('ausgeführt');
+  generateRandomColor();
   splitName(contactName);
   let usercontainer = document.getElementById('users');
   if (!document.getElementById(contactName)) {
