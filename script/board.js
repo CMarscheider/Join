@@ -48,7 +48,7 @@ function renderInProgressTasks() {
     let inProgressTask = inProgressTasks[i];
     inProgressTasksContent.innerHTML += inProgressTaskCard(inProgressTask, i);
     renderInProgressTaskFooter(inProgressTask, i);
-    styleCategory(i);
+    styleCategoryProg(inProgressTask, i);
   }
 }
 
@@ -112,10 +112,10 @@ function styleCategory(k) {
   cat.style.whiteSpace = 'nowrap';
 }
 
-function styleCategoryProg(z) {
-  let cardCat = document.getElementById(`category${z}`);
+function styleCategoryProg(inProgressTask, z) {
+  let cardCat = document.getElementById(`categoryProgress${z}`);
   const cat = cardCat;
-  cardCat.style.backgroundColor = allTasks[z].category.color;
+  cardCat.style.backgroundColor = inProgressTask.category.color;
   cat.style.color = '#fff';
   cat.style.width = '90px';
   cat.style.textAlign = 'center';
