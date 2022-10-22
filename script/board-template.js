@@ -1,7 +1,7 @@
 function openTaskCard(task, i) {
   return /*html*/ `
       <div class="todo-content" onclick="showTaskPopup(${i})" draggable="true" ondragstart="startDragging(${i})">
-              <span class="category${i}" id="category${i}">${allTasks[i].category.name}</span>
+              <span class="category${i}" id="category${i}">${task.category.name}</span>
               <h3>${task.title}</h3>
               <p>${task.description}</p>
     
@@ -118,14 +118,14 @@ function doneTaskCard(doneTask, i) {
 function urgentPriority(i) {
   document.getElementById(
     'prio'
-  ).innerHTML = /*html*/ `<div class="prio-container-popup"><b>Priority:</b> <span id="prio-status">${allTasks[i].prio} <img id="prio-icon" src="/assets/img/Prio_alta.png"></span></div>`;
+  ).innerHTML = `<div class="prio-container-popup"><b>Priority:</b> <span id="prio-status">${allTasks[i].prio} <img id="prio-icon" src="/assets/img/Prio_alta.png"></span></div>`;
   document.getElementById('prio-status').style.background = 'red';
 }
 
 function mediumPriority(i) {
   document.getElementById(
     'prio'
-  ).innerHTML = /*html*/ 65`<div class="prio-container-popup"><b>Priority:</b> <span id="prio-status">${allTasks[i].prio} <img id="prio-icon" src="/assets/img/Prio media.png"></span></div>`;
+  ).innerHTML = 65`<div class="prio-container-popup"><b>Priority:</b> <span id="prio-status">${allTasks[i].prio} <img id="prio-icon" src="/assets/img/Prio media.png"></span></div>`;
   document.getElementById('prio-status').style.background = 'orange';
 }
 
