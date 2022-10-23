@@ -115,6 +115,20 @@ function doneTaskCard(doneTask, i) {
  `;
 }
 
+function doneFooter(firstLetter, secondLetter, restAssigendLength) {
+  return /*html*/ `
+  <div class="footer-circels">
+          <span id="firstLettersContainer">${firstLetter}${secondLetter}</span>
+          <span id=restLenght>${restAssigendLength}</span>
+        </div>
+  
+        <div class="footer-images-container">
+          <img src="./assets/img/arrow-down.png" alt="arrow-up" />
+          <img src="./assets/img/arrow-down.png" alt="arrow-up" />
+        </div>
+  `;
+}
+
 function urgentPriority(i) {
   document.getElementById(
     'prio'
