@@ -23,6 +23,7 @@
     <!-- CSS Files -->
     <title>Join-Board</title>
   </head>
+
   <body onload="init(), renderTasks();">
     <div class="maincontainer">
       <div w3-include-html="./assets/templates/aside.html" class="aside"></div>
@@ -49,7 +50,6 @@
             </div>
 
            <div id="todoOpenContent">
-            <div class="todo-content">
               <span>Design</span>
               <h3>Website redesign</h3>
               <p>Modify the contents of the main website...</p>
@@ -59,22 +59,7 @@
                 <label class="label" for="file">Done1/2</label>
               </div>
 
-              <!-- <div class="box-footer">
-                <div class="footer-circels">
-                  <span>AS</span>
-                  <span>DE</span>
-                  <span>+2</span>
-                </div>
-
-                <div class="footer-images-container">
-                  <img src="./assets/img/arrow-down.png" alt="arrow-up" />
-                  <img src="./assets/img/arrow-down.png" alt="arrow-up" />
-                </div>
-              </div> -->
-            </div>
-           </div>
-
-           
+            </div> 
           </div>
 
          
@@ -85,24 +70,7 @@
             </div>
 
             <div id="todoInProgressContent">
-              <!-- <div class="todo-content">
-              <span>Sales</span>
-              <h3>Call potencial clients</h3>
-              <p>Modify the contents of the main website...</p>
 
-              <div class="box-footer">
-                <div class="footer-circels">
-                  <span>AS</span>
-                  <span>DE</span>
-                  <span>+2</span>
-                </div>
-
-                <div class="footer-images-container">
-                  <img src="./assets/img/arrow-up.png" alt="arrow-up" />
-                  <img src="./assets/img/arrow-up.png" alt="arrow-up" />
-                </div>
-              </div>
-            </div> -->
 
             </div>
           </div>
@@ -114,24 +82,7 @@
             </div>
 
             <div id="todoAwaitingFeedbackContent">
-              <!-- <div class="todo-content">
-              <span>Backoffice</span>
-              <h3>Website redesign</h3>
-              <p>Make the product presen-tation to prospective buyers</p>
-
-              <div class="box-footer">
-                <div class="footer-circels">
-                  <span>AS</span>
-                  <span>DE</span>
-                  <span>+2</span>
-                </div>
-
-                <div class="footer-images-container">
-                  <img src="./assets/img/arrow-down.png" alt="arrow-down" />
-                  <img src="./assets/img/arrow-down.png" alt="arrow-down" />
-                </div>
-              </div>
-            </div> -->
+              
             </div>
             
           </div>
@@ -143,134 +94,141 @@
             </div>
 
           <div id="todoDoneContent">
-             <!-- <div class="todo-content">
-              <span>Design</span>
-              <h3>Website redesign</h3>
-              <p>Modify the contents of the main website...</p>
-
-              <div class="progress-bar-container">
-                <progress id="file" value="32" max="100">32%</progress>
-                <label class="label" for="file">Done</label>
-              </div>
-              
-              <div class="box-footer">
-                <div class="footer-circels">
-                  <span>AS</span>
-                  <span>DE</span>
-                  <span>+2</span>
-                </div>
-
-                <div class="footer-images-container">
-                  <img src="./assets/img/arrow-down.png" alt="arrow-down" />
-                  <img src="./assets/img/arrow-down.png" alt="arrow-down" />
-                </div>
-              </div>
-            </div> -->
+             
               </div>
            
           </div> 
         </div>
 
         <!-- Task Form -->
-        <form onsubmit="addTask();return false" class="d-none" id="form">
+
+         
+
+
+        <form onsubmit="checkAllInputs();return false" class="d-none" id="form">
           <div class="addtask-content">
-            <div class="middleline"></div>
+            
         
             <div class="leftside-content">
         
+              <div class="middleline"></div>
+        
               <div class="title-container">
         
-                <p>Title</p>
+                <p><b>Title</b></p>
                 <input required id="title" placeholder="Enter a title" type="text" />
               </div>
         
               <div class="description-container">
-                <p>Description</p>
+                <p><b>Description</b></p>
                 <input required id="description" placeholder="Enter a Description" type="text" />
               </div>
         
               <div class="category-container">
-                <p>Category</p>
-                <select id="category">
-                  <!--  Wie fügt man einen Placeholder bei dem selecttag ein? -->
-                  <option selected disabled>Select task category</option>
-                  <option>New category</option>
-                  <option>Sales</option>
-                  <option>Backoffice</option>
-                  <div>
-                    <span>aaa</span>
-                    <span>aaa</span>
-                    <span>aa</span>
-                    <span>aa</span>
-                    <span>aa</span>
-                    <span>aa</span>
-                  </div>
-                </select>
-              </div>
+                <p><b>Category</b></p>
         
-              <div class="multiselect">
-                <div class="selectBox" onclick="showCheckboxes()">
-                  <select>
-                    <option>Select an option</option>
-                  </select>
-                  <div class="overSelect"></div>
+                <!-- KATEGORIE -->
+                <div class="subtaskInput d-none" id="openCategoryInput">
+                  <input id="inputCategory" placeholder="New category name" type="text" />
+                  <div class="inputFieldColor">
+                    <div class="color" id="inputFieldColor"></div>
+                  </div>
+                  <div class="subTaskImages">
+                    <img class="cross rotate" src="./assets/img/add.png" alt="delete" onclick="closeCategoryInput()">
+                    <img id="" class="accept" src="./assets/img/acceptimg.svg" onclick="createNewCategory()" alt="accept">
+                  </div>
                 </div>
-                <div id="checkboxes">
-                  <div class="flex">
-                    <label for="one"> First checkbox</label>
-                    <input type="checkbox" id="one" />
-                  </div>
         
-                  <div class="flex">
-                    <label for="two"> Second checkbox</label>
-                    <input type="checkbox" id="two" />
-                  </div>
+                <div class="colors d-none" id="color">
+                  <div class="color" style="background-color: lightblue;" onclick="pickColor('lightblue')"></div>
+                  <div class="color" style="background-color: red;" onclick="pickColor('red')"></div>
+                  <div class="color" style="background-color: green;" onclick="pickColor('green')"></div>
+                  <div class="color" style="background-color: orange;" onclick="pickColor('orange')"></div>
+                  <div class="color" style="background-color: violet;" onclick="pickColor('violet')"></div>
+                  <div class="color" style="background-color: blue;" onclick="pickColor('blue')"></div>
+                </div>
+                <!-- KATEGORIE ENDE -->
         
-                  <div class="flex">
-                    <label for="three"> Third checkbox</label>
-                    <input type="checkbox" id="three" />
+                <div class="multiselect" id="categoryDropdown">
+                  <div class="selectBox" onclick="showCategorys()">
+                    <select>
+                      <option id="displayCategory">Select a category</option>
+                    </select>
+                    <div class="overSelect"></div>
+                  </div>
+                  <div id="categorys">
                   </div>
                 </div>
               </div>
         
+        
+        
+              <div id="assigned-container" class="category-container">
+                <p><b>Assigned to</b></p>
+                <div class="multiselect">
+                  <div class="selectBox" onclick="showCheckboxes()">
+                    <select>
+                      <option>Select contacts to assign</option>
+                    </select>
+                    <div class="overSelect"></div>
+                  </div>
+                  <div id="checkboxes">
+                  </div>
+                  <div class ="usercontainer" id="users">
+                    
+                  </div>
+                </div>
+        
+              </div>
             </div>
-        
             <div class="rightside-content">
               <div class="date-container">
-                <p>Due date</p>
+                <p><b>Due date</b></p>
                 <input required id="date" type="date" />
               </div>
         
               <div class="prio-container">
-                <p>Prio</p>
+                <p><b>Prio</b></p>
                 <div class="button-container">
                   <button type="button" id="urgentButton" onclick="checkPriority('urgent'), changeColorofUrgentButton()">
-                    <b>Urgent</b>
-                    <img src="assets/img/highprio.svg" alt="" />
+                    <b id="urgentText">Urgent</b>
+                    <img id="urgentImg" src="assets/img/highprio.svg" alt="" />
                   </button>
                   <button type="button" id="mediumButton" onclick="checkPriority('medium'),changeColorofMediumButton()">
-                    <b>Medium</b>
-                    <img src="assets/img/mediumprio.svg" alt="" />
+                    <b id="mediumText">Medium</b>
+                    <img id="mediumImg" src="assets/img/mediumprio.svg" alt="" />
                   </button>
                   <button type="button" id="lowButton" onclick="checkPriority('low'),changeColorofLowButton()">
-                    <b>Low</b>
-                    <img src="assets/img/lowprio.svg" alt="" />
+                    <b id="lowText">Low</b>
+                    <img id="lowImg" src="assets/img/lowprio.svg" alt="" />
                   </button>
                 </div>
               </div>
         
               <div class="subtasks-container">
-                <p>Subtasks</p>
-                <input required id="subtask" placeholder="Add new subtask" type="text" />
-                <div class="checkbox-container">
+                <p><b>Subtasks</b></p>
+                <div class="subtaskInput">
+                  <input onkeydown="checkInputValue()" id="subtask" placeholder="Add new subtask" type="text" />
+                  <div class="subTaskImages">
+                    <img class="cross" src="./assets/img/add.png" alt="addTask" onclick="openInputfield('acceptButton')">
+                    <button disabled="disabled" id="acceptButton" class="d-none" onclick="createSubtask()">
+                      <img class="accept" src="./assets/img/acceptimg.svg" alt="accept">
+                    </button>
+                    <img id="acceptButton" class="accept d-none" src="./assets/img/acceptimg.svg" onclick="createSubtask()"
+                      alt="accept">
+                  </div>
+                </div>
+                <div id="subtaskList"></div>
+        
+                <!--         <div class="checkbox-container" id="checkbox-container">
                   <input type="checkbox" />
                   <p>Subtask 1</p>
-                </div>
+                </div> -->
               </div>
         
               <div class="button-container-end">
-                <button type="button" class="clear-button">
-                  <b>Clear</b>
+                <button onclick="closeInputsForm()" type="button" class="clear-button">
+                  <b>Cancel</b>
                   <img src="assets/img/cancelimg.svg" alt="cancel" />
                 </button>
                 <button type="submit" class="create-button">
@@ -278,37 +236,38 @@
                   <img src="assets/img/acceptimg.svg" alt="cancel" />
                 </button>
         
-                <input type="button">
+                
         
               </div>
             </div>
         </form>
-        </div>
+
+
           <!-- //Task Form// -->
-
-          <!-- Task Deatais Popup -->
-
-          <div class="task-popup d-none" id="taskPopup">
-            <div class="cancel-container">
-              <span class="category" id="categoryPopup"></span>
-              <img src="./assets/img/cancelimg.svg" onclick="cancelTaskPopup()">
-           </div>
-           <h1 id="titlePopup"></h1>
-           <p id="descriptionPopup"></p>
-           <p id="datePopup"></p>
-           <p id="prio"></p>
-
-           <div class="assigend-container">
-             <span id="assigendCircels"></span>
-             <p id="assigendTo"></p>
-
-           </div>
-          </div>
-
-           <!-- Task Deatais Popup -->
 
         </div> 
       </div>
     </div>
+
+    <!-- Task Deatais Popup -->
+
+    <div class="task-popup d-none" id="taskPopup">
+      <div class="cancel-container">
+        <span class="category" id="categoryPopup"></span>
+        <img src="./assets/img/cancelimg.svg" onclick="cancelTaskPopup()">
+     </div>
+     <h1 id="titlePopup"></h1>
+     <p id="descriptionPopup"></p>
+     <p id="datePopup"></p>
+     <p id="prio"></p>
+
+     <div class="assigend-container">
+       <span id="assigendCircels"></span>
+       <p id="assigendTo"></p>
+
+     </div>
+    </div>
+     <!-- Task Deatais Popup -->
+
   </body>
 </html>

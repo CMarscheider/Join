@@ -173,13 +173,15 @@ label {
 
 #form {
   width: 60%;
+  height: 60%;
   z-index: 999;
   position: absolute;
-  top: 15%;
+  top: 20%;
+  left: 20%;
 }
 
 /* Task Deatais Popup */
-.task-popup {
+#taskPopup {
   width: 500px;
   height: 600px;
   background-color: #fff;

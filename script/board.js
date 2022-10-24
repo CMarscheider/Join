@@ -6,7 +6,7 @@ let currentDraggedElement;
 let task;
 let inProgressTask;
 let awaitingFeedbackTask;
-doneTask;
+let doneTask;
 
 /**
  * call all render functions for tasks uin board
@@ -167,6 +167,10 @@ function showInputsForm() {
   document.getElementById('form').classList.remove('d-none');
 }
 
+function closeInputsForm() {
+  document.getElementById('form').classList.add('d-none');
+}
+
 // TODO: close input form
 
 function searchContent(value) {
@@ -181,23 +185,24 @@ function searchContent(value) {
   }
 }
 
-function showTaskPopup(task, i) {
+function showOpenTaskPopup(openT) {
   document.getElementById('taskPopup').classList.remove('d-none');
-  document.getElementById('categoryPopup').innerHTML = task.category.name;
-  document.getElementById('categoryPopup').style.background = task.category.color;
-  document.getElementById('titlePopup').innerHTML = task.title;
-  document.getElementById('descriptionPopup').innerHTML = task.description;
-  document.getElementById('datePopup').innerHTML = `<b>Due Date:</b> ${task.date}`;
-  if (task.prio === 'urgent') {
-    urgentPriority(i);
-  }
-  if (task.prio === 'medium') {
-    mediumPriority(i);
-  }
-  if (task.prio === 'low') {
-    lowPriority(i);
-  }
-  document.getElementById('assigendTo').innerHTML = task.assigned;
+  console.log(task);
+  // document.getElementById('categoryPopup').innerHTML = allTasks[i].category.name;
+  // document.getElementById('categoryPopup').style.background = allTasks[i].category.color;
+  // document.getElementById('titlePopup').innerHTML = allTasks[i].title;
+  // document.getElementById('descriptionPopup').innerHTML = allTasks[i].description;
+  // document.getElementById('datePopup').innerHTML = `<b>Due Date:</b> ${allTasks[i].date}`;
+  // if (task.prio === 'urgent') {
+  //   urgentPriority(i);
+  // }
+  // if (task.prio === 'medium') {
+  //   mediumPriority(i);
+  // }
+  // if (task.prio === 'low') {
+  //   lowPriority(i);
+  // }
+  // document.getElementById('assigendTo').innerHTML = allTasks[i].assigned;
 }
 
 //Drag and Drop
@@ -210,12 +215,12 @@ function allowDrop(ev) {
 }
 
 function moveTo(category) {
-  task['status'] = category;
+  task[currentDraggedElement]['status'] = category;
   renderOpenTasks();
-  inProgressTask['status'] = category;
+  inProgressTask[currentDraggedElement]['status'] = category;
   renderInProgressTasks();
-  awaitingFeedbackTask['status'] = category;
+  awaitingFeedbackTask[currentDraggedElement]['status'] = category;
   renderAwaitingFeedbackTasks();
-  doneTask['status'] = category;
+  doneTask[currentDraggedElement]['status'] = category;
   renderDoneTasks();
 }
