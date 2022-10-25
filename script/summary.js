@@ -5,7 +5,7 @@ let tasksInProgess = 0;
 let tasksAwaitingFeedback = 0;
 let tasksDone = 0;
 let tasksToDo = 0;
-
+let formatted_date;
 
 async function loadSummary() {
     await init();
@@ -74,6 +74,7 @@ function checkmyTasks() {
             }
         }
     }
+    checkForLowerDate();
     fillContent();
 }
 
@@ -88,6 +89,35 @@ function checkForUrgent(task) {
     }
 }
 
+function checkForLowerDate() {
+
+    let lowestDate = urgentTasks[0]['date'];
+    for (let i = 0; i < urgentTasks.length; i++) {
+        const date = urgentTasks[i]['date'];
+        console.log(date);
+        if (lowestDate > date) {
+            lowestDate = date;
+        }
+    }
+    console.log('Das nächste Datum ist ' + lowestDate);
+    renderDate(lowestDate);
+}
+
+function renderDate(date) {
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const splitDate = date.split("-");
+    const month= parseInt(splitDate[1]);
+    const year = splitDate[0];
+    const day = splitDate[2];
+
+    const formatDate = ()=>{
+        formatted_date = months[month] + " " + day  + ", " + year;
+        return formatted_date;
+    }
+    formatDate();
+
+}
+
 
 function fillContent() {
 
@@ -97,5 +127,6 @@ function fillContent() {
     document.getElementById('urgentTasks').innerHTML = `${urgentTasks.length}`;
     document.getElementById('tasksToDo').innerHTML = `${tasksToDo}`;
     document.getElementById('tasksDone').innerHTML = ` ${tasksDone}`;
+    document.getElementById('date').innerHTML = `${formatted_date}`;
 
 }
