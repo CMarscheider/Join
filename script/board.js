@@ -38,10 +38,15 @@ function renderOpenTaskFooter(task, j) {
   let todoFooter = document.getElementById(`openTaskFooter${j}`);
   for (let j = 0; j < task['assigned'].length; j++) {
     let assigend = task['assigned'][j];
+
     let firstLetter = assigend.charAt(0);
     let secondLetter = assigend.split(' ')[1].charAt(0);
     let restAssigendLength = task['assigned'].splice(1).length;
-    todoFooter.innerHTML += openTaskCardFooter(firstLetter, secondLetter, restAssigendLength);
+    todoFooter.innerHTML += openTaskCardFooter(firstLetter, secondLetter, restAssigendLength, j);
+
+    if (task.assigned.length == 0) {
+      document.getElementById(`restLength${j}A`).classList.add('d-none');
+    }
   }
 }
 
@@ -65,7 +70,7 @@ function renderInProgressTaskFooter(task, j) {
     let firstLetter = assigend.charAt(0);
     let secondLetter = assigend.split(' ')[1].charAt(0);
     let restAssigendLength = task['assigned'].splice(1).length;
-    todoInProgressFooter.innerHTML += inProgressTaskCardFooter(firstLetter, secondLetter, restAssigendLength);
+    todoInProgressFooter.innerHTML += inProgressTaskCardFooter(firstLetter, secondLetter, restAssigendLength, j);
   }
 }
 
@@ -88,7 +93,7 @@ function renderAwaitingFeedbackTaskFooter(j) {
     let firstLetter = assigend.charAt(0);
     let secondLetter = assigend.split(' ')[1].charAt(0);
     let restAssigendLength = task['assigned'].splice(1).length;
-    todoAwaitingFeedbackFooter.innerHTML += awaitingFeedbackFooter(firstLetter, secondLetter, restAssigendLength);
+    todoAwaitingFeedbackFooter.innerHTML += awaitingFeedbackFooter(firstLetter, secondLetter, restAssigendLength, j);
   }
 }
 
@@ -111,7 +116,7 @@ function renderDoneTasksFooter(j) {
     let firstLetter = assigend.charAt(0);
     let secondLetter = assigend.split(' ')[1].charAt(0);
     let restAssigendLength = task['assigned'].splice(1).length;
-    todoDoneFooter.innerHTML += doneFooter(firstLetter, secondLetter, restAssigendLength);
+    todoDoneFooter.innerHTML += doneFooter(firstLetter, secondLetter, restAssigendLength, j);
   }
 }
 
@@ -185,11 +190,11 @@ function searchContent(value) {
   }
 }
 
-function showOpenTaskPopup(openT) {
+function showOpenTaskPopup(task) {
   document.getElementById('taskPopup').classList.remove('d-none');
   console.log(task);
-  // document.getElementById('categoryPopup').innerHTML = allTasks[i].category.name;
-  // document.getElementById('categoryPopup').style.background = allTasks[i].category.color;
+  document.getElementById('categoryPopup').innerHTML = task.title;
+  document.getElementById('categoryPopup').style.background = task.category.color;
   // document.getElementById('titlePopup').innerHTML = allTasks[i].title;
   // document.getElementById('descriptionPopup').innerHTML = allTasks[i].description;
   // document.getElementById('datePopup').innerHTML = `<b>Due Date:</b> ${allTasks[i].date}`;
@@ -215,12 +220,12 @@ function allowDrop(ev) {
 }
 
 function moveTo(category) {
-  task[currentDraggedElement]['status'] = category;
+  task['status'] = category;
   renderOpenTasks();
-  inProgressTask[currentDraggedElement]['status'] = category;
+  inProgressTask['status'] = category;
   renderInProgressTasks();
-  awaitingFeedbackTask[currentDraggedElement]['status'] = category;
+  awaitingFeedbackTask['status'] = category;
   renderAwaitingFeedbackTasks();
-  doneTask[currentDraggedElement]['status'] = category;
+  doneTask['status'] = category;
   renderDoneTasks();
 }

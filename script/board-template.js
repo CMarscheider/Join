@@ -1,6 +1,6 @@
 function openTaskCard(task, i) {
   return /*html*/ `
-      <div class="todo-content" onclick="showOpenTaskPopup(${i})" draggable="true" ondragstart="startDragging(${i})">
+      <div class="todo-content" onclick="showOpenTaskPopup(${task})" draggable="true" ondragstart="startDragging(${i})">
               <span class="category${i}" id="category${i}">${task.category.name}</span>
               <h3>${task.title}</h3>
               <p>${task.description}</p>
@@ -19,13 +19,13 @@ function openTaskCard(task, i) {
       `;
 }
 
-function openTaskCardFooter(firstLetter, secondLetter, restAssigendLength) {
+function openTaskCardFooter(firstLetter, secondLetter, restAssigendLength, j) {
   return /*html*/ `
       <div class="footer-circels">
             <span id="firstLettersContainer">${firstLetter}${secondLetter}</span>
-            <span id=restLenght>${restAssigendLength}</span>
+            <span id="restLength${j}A">${restAssigendLength}</span>
           </div>
-    
+
           <div class="footer-images-container">
             <img src="./assets/img/arrow-down.png" alt="arrow-up" />
             <img src="./assets/img/arrow-down.png" alt="arrow-up" />
@@ -35,7 +35,7 @@ function openTaskCardFooter(firstLetter, secondLetter, restAssigendLength) {
 
 function inProgressTaskCard(inProgressTask, i) {
   return /*html*/ `
-  <div class="todo-content" onclick="showTaskPopup(${i})" draggable="true" ondragstart="startDragging(${i})">
+  <div class="todo-content"  draggable="true" ondragstart="startDragging(${i})">
            <span class="category${i}" id="categoryProgress${i}">${inProgressTask.category.name}</span>
            <h3>${inProgressTask.title}</h3>
            <p>${inProgressTask.description}</p>
@@ -51,11 +51,11 @@ function inProgressTaskCard(inProgressTask, i) {
  `;
 }
 
-function inProgressTaskCardFooter(firstLetter, secondLetter, restAssigendLength) {
+function inProgressTaskCardFooter(firstLetter, secondLetter, restAssigendLength, j) {
   return /*html*/ `
   <div class="footer-circels">
           <span id="firstLettersContainer">${firstLetter}${secondLetter}</span>
-          <span id=restLenght>${restAssigendLength}</span>
+          <span id="restLengt">${restAssigendLength}</span>
         </div>
   
         <div class="footer-images-container">
@@ -67,7 +67,7 @@ function inProgressTaskCardFooter(firstLetter, secondLetter, restAssigendLength)
 
 function awaitingFeedBackTaskCard(awaitingFeedbackTask, i) {
   return /*html*/ `
-  <div class="todo-content" onclick="showTaskPopup(${i})" draggable="true" ondragstart="startDragging(${i})">
+  <div class="todo-content" draggable="true" ondragstart="startDragging(${i})">
            <span class="category${i}" id="categoryAwaiting${i}">${awaitingFeedbackTask.category.name}</span>
            <h3>${awaitingFeedbackTask.title}</h3>
            <p>${awaitingFeedbackTask.description}</p>
@@ -83,11 +83,11 @@ function awaitingFeedBackTaskCard(awaitingFeedbackTask, i) {
  `;
 }
 
-function awaitingFeedbackFooter(firstLetter, secondLetter, restAssigendLength) {
+function awaitingFeedbackFooter(firstLetter, secondLetter, restAssigendLength, j) {
   return /*html*/ `
   <div class="footer-circels">
           <span id="firstLettersContainer">${firstLetter}${secondLetter}</span>
-          <span id=restLenght>${restAssigendLength}</span>
+          <span id="restLenght">${restAssigendLength}</span>
         </div>
   
         <div class="footer-images-container">
@@ -99,7 +99,7 @@ function awaitingFeedbackFooter(firstLetter, secondLetter, restAssigendLength) {
 
 function doneTaskCard(doneTask, i) {
   return /*html*/ `
-  <div class="todo-content" onclick="showTaskPopup(${i})" draggable="true" ondragstart="startDragging(${i})">
+  <div class="todo-content" draggable="true" ondragstart="startDragging(${i})">
            <span class="category${i}" id="categoryDone${i}">${doneTask.category.name}</span>
            <h3>${doneTask.title}</h3>
            <p>${doneTask.description}</p>
@@ -115,11 +115,11 @@ function doneTaskCard(doneTask, i) {
  `;
 }
 
-function doneFooter(firstLetter, secondLetter, restAssigendLength) {
+function doneFooter(firstLetter, secondLetter, restAssigendLength, j) {
   return /*html*/ `
   <div class="footer-circels">
           <span id="firstLettersContainer">${firstLetter}${secondLetter}</span>
-          <span id=restLenght>${restAssigendLength}</span>
+          <span id="restLength">${restAssigendLength}</span>
         </div>
   
         <div class="footer-images-container">
