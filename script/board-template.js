@@ -1,6 +1,6 @@
 function openTaskCard(task, i) {
   return /*html*/ `
-      <div class="todo-content" onclick="showOpenTaskPopup(${task})" draggable="true" ondragstart="startDragging(${i})">
+      <div class="todo-content" onclick="showOpenTaskPopup(${task})" draggable="true" ondragstart="startDragging('open ${i}')">
               <span class="category${i}" id="category${i}">${task.category.name}</span>
               <h3>${task.title}</h3>
               <p>${task.description}</p>
@@ -35,8 +35,8 @@ function openTaskCardFooter(firstLetter, secondLetter, restAssigendLength, j) {
 
 function inProgressTaskCard(inProgressTask, i) {
   return /*html*/ `
-  <div class="todo-content"  draggable="true" ondragstart="startDragging(${i})">
-           <span class="category${i}" id="categoryProgress${i}">${inProgressTask.category.name}</span>
+  <div class="todo-content"  draggable="true" ondragstart="startDragging('categoryProgress ${i}')">
+           <span class="category${i}" id="categoryProgress${i}">inProgress${inProgressTask.category.name}</span>
            <h3>${inProgressTask.title}</h3>
            <p>${inProgressTask.description}</p>
  
@@ -67,7 +67,7 @@ function inProgressTaskCardFooter(firstLetter, secondLetter, restAssigendLength,
 
 function awaitingFeedBackTaskCard(awaitingFeedbackTask, i) {
   return /*html*/ `
-  <div class="todo-content" draggable="true" ondragstart="startDragging(${i})">
+  <div class="todo-content" draggable="true" ondragstart="startDragging('categoryAwaiting ${i}')">
            <span class="category${i}" id="categoryAwaiting${i}">${awaitingFeedbackTask.category.name}</span>
            <h3>${awaitingFeedbackTask.title}</h3>
            <p>${awaitingFeedbackTask.description}</p>
@@ -99,7 +99,7 @@ function awaitingFeedbackFooter(firstLetter, secondLetter, restAssigendLength, j
 
 function doneTaskCard(doneTask, i) {
   return /*html*/ `
-  <div class="todo-content" draggable="true" ondragstart="startDragging(${i})">
+  <div class="todo-content" draggable="true" ondragstart="startDragging('categoryDone ${i}')">
            <span class="category${i}" id="categoryDone${i}">${doneTask.category.name}</span>
            <h3>${doneTask.title}</h3>
            <p>${doneTask.description}</p>
