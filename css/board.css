@@ -50,9 +50,10 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding-left: 4%;
-  padding-right: 4%;
+  padding-left: 5%;
+  padding-right: 5%;
   position: relative;
+  text-transform: capitalize;
 }
 
 .todo {
@@ -146,13 +147,6 @@ label {
   color: #fff;
   text-align: center;
 }
-/* 
-.footer-circels span:nth-child(2) {
-  background-color: #9327ff;
-  padding: 8px;
-  border-radius: 100%;
-  color: #fff;
-} */
 
 .footer-circels span:last-child {
   display: flex;
@@ -169,6 +163,7 @@ label {
 
 .box-footer span {
   margin-left: -12px;
+  text-transform: uppercase;
 }
 
 #form {
@@ -192,6 +187,15 @@ label {
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
+}
+
+#categoryPopup {
+  color: #fff;
+  width: 90px;
+  text-align: center;
+  padding: 5px;
+  border-radius: 8px;
+  white-space: nowrap;
 }
 
 .cancel-container {

@@ -1,232 +1,158 @@
-// async function init() {
-//   await downloadFromServer();
-//   users = JSON.parse(backend.getItem('users')) || [];
-// }
-// let currentDraggedElement;
-// let task;
-// let inProgressTask;
-// let awaitingFeedbackTask;
-// let doneTask;
+async function init() {
+  await downloadFromServer();
+  users = JSON.parse(backend.getItem('users')) || [];
+}
+let currentDraggedElement;
+let currentCategory;
+let taskCategory;
+let printTask;
 
-// /**
-//  * call all render functions for tasks uin board
-//  */
-// function renderTasks() {
-//   setTimeout(() => {
-//     renderOpenTasks();
-//     renderInProgressTasks();
-//     renderInProgressTasks();
-//     renderAwaitingFeedbackTasks();
-//     renderDoneTasks();
-//   }, 300);
-// }
+function showInputsForm() {
+  document.getElementById('form').classList.remove('d-none');
+}
 
-// function renderOpenTasks() {
-//   let openTasksContent = document.getElementById('todoOpenContent');
-//   openTasksContent.innerHTML = '';
-//   let openTasks = allTasks.filter((t) => t.status === 'open');
-//   openTasksContent.innerHTML = '';
-//   for (let i = 0; i < openTasks.length; i++) {
-//     task = openTasks[i];
-//     openTasksContent.innerHTML += openTaskCard(task, i);
-//     renderOpenTaskFooter(task, i);
-//     styleCategory(task, i);
-//   }
-// }
+function closeInputsForm() {
+  document.getElementById('form').classList.add('d-none');
+}
 
-// function renderOpenTaskFooter(task, j) {
-//   let todoFooter = document.getElementById(`openTaskFooter${j}`);
-//   for (let j = 0; j < task['assigned'].length; j++) {
-//     let assigend = task['assigned'][j];
+function renderTasks() {
+  setTimeout(() => {
+    startRendering();
+  }, 300);
+}
 
-//     let firstLetter = assigend.charAt(0);
-//     let secondLetter = assigend.split(' ')[1].charAt(0);
-//     let restAssigendLength = task['assigned'].splice(1).length;
-//     todoFooter.innerHTML += openTaskCardFooter(firstLetter, secondLetter, restAssigendLength, j);
+function resetAllTasks(openTasksContent, inProgressTasksContent, awaitingFeedbackContent, doneTasksContent) {
+  openTasksContent.innerHTML = '';
+  inProgressTasksContent.innerHTML = '';
+  awaitingFeedbackContent.innerHTML = '';
+  doneTasksContent.innerHTML = '';
+}
 
-//     if (task.assigned.length == 0) {
-//       document.getElementById(`restLength${j}A`).classList.add('d-none');
-//     }
-//   }
-// }
+function startRendering() {
+  let openTasksContent = document.getElementById('todoOpenContent');
+  let inProgressTasksContent = document.getElementById('todoInProgressContent');
+  let awaitingFeedbackContent = document.getElementById('todoAwaitingFeedbackContent');
+  let doneTasksContent = document.getElementById('todoDoneContent');
+  resetAllTasks(openTasksContent, inProgressTasksContent, awaitingFeedbackContent, doneTasksContent);
+  for (let i = 0; i < allTasks.length; i++) {
+    printTask = allTasks[i];
+    checkStatus(taskCategory, printTask, i, doneTasksContent, awaitingFeedbackContent, inProgressTasksContent, openTasksContent);
+    renderFooter(taskCategory, i, printTask);
+    styleCategory(printTask, i);
+  }
+}
 
-// function renderInProgressTasks() {
-//   let inProgressTasksContent = document.getElementById('todoInProgressContent');
-//   inProgressTasksContent.innerHTML = '';
-//   let inProgressTasks = allTasks.filter((t) => t.status === 'inProgress');
-//   inProgressTasksContent.innerHTML = '';
-//   for (let i = 0; i < inProgressTasks.length; i++) {
-//     inProgressTask = inProgressTasks[i];
-//     inProgressTasksContent.innerHTML += inProgressTaskCard(inProgressTask, i);
-//     renderInProgressTaskFooter(inProgressTask, i);
-//     styleCategoryProgress(inProgressTask, i);
-//   }
-// }
+function checkStatus(taskCategory, printTask, i, doneTasksContent, awaitingFeedbackContent, inProgressTasksContent, openTasksContent) {
+  if (printTask['status'] == 'open') {
+    taskCategory = 'open';
+    openTasksContent.innerHTML += TaskCard(taskCategory, printTask, i);
+  } else if (printTask['status'] == 'inProgress') {
+    taskCategory = 'inProgress';
+    inProgressTasksContent.innerHTML += TaskCard(taskCategory, printTask, i);
+  } else if (printTask['status'] == 'awaitingFeedback') {
+    taskCategory = 'awaitingFeedback';
+    awaitingFeedbackContent.innerHTML += TaskCard(taskCategory, printTask, i);
+  } else {
+    taskCategory = 'done';
+    doneTasksContent.innerHTML += TaskCard(taskCategory, printTask, i);
+  }
+}
 
-// function renderInProgressTaskFooter(task, j) {
-//   let todoInProgressFooter = document.getElementById(`inProgressFooter${j}`);
-//   for (let j = 0; j < task['assigned'].length; j++) {
-//     let assigend = task['assigned'][j];
-//     let firstLetter = assigend.charAt(0);
-//     let secondLetter = assigend.split(' ')[1].charAt(0);
-//     let restAssigendLength = task['assigned'].splice(1).length;
-//     todoInProgressFooter.innerHTML += inProgressTaskCardFooter(firstLetter, secondLetter, restAssigendLength, j);
-//   }
-// }
+function renderFooter(taskCategory, i, printTask) {
+  let footer = document.getElementById(`footer${i}`);
+  for (let j = 0; j < printTask['assigned'].length; j++) {
+    let assigend = printTask['assigned'][j];
+    let firstLetter = assigend.charAt(0);
+    let secondLetter = assigend.split(' ')[1].charAt(0);
+    let restAssigendLength = printTask['assigned'].splice(1).length;
+    footer.innerHTML += footerTemplate(firstLetter, secondLetter, restAssigendLength, j, printTask, i);
+    checkTaskPrio(printTask, i);
 
-// function renderAwaitingFeedbackTasks() {
-//   let awaitingFeedbackContent = document.getElementById('todoAwaitingFeedbackContent');
-//   awaitingFeedbackContent.innerHTML = '';
-//   let awaitingFeedback = allTasks.filter((t) => t.status === 'awaitingFeedback');
-//   for (let i = 0; i < awaitingFeedback.length; i++) {
-//     awaitingFeedbackTask = awaitingFeedback[i];
-//     awaitingFeedbackContent.innerHTML += awaitingFeedBackTaskCard(awaitingFeedbackTask, i);
-//     renderAwaitingFeedbackTaskFooter(i);
-//     styleCategoryAwaiting(awaitingFeedbackTask, i);
-//   }
-// }
+    if (restAssigendLength == 0) {
+      document.getElementById(`restLength${i}`).classList.add('d-none');
+    }
+  }
+}
 
-// function renderAwaitingFeedbackTaskFooter(j) {
-//   let todoAwaitingFeedbackFooter = document.getElementById(`awaitingFeedbackFooter${j}`);
-//   for (let j = 0; j < task['assigned'].length; j++) {
-//     let assigend = task['assigned'][j];
-//     let firstLetter = assigend.charAt(0);
-//     let secondLetter = assigend.split(' ')[1].charAt(0);
-//     let restAssigendLength = task['assigned'].splice(1).length;
-//     todoAwaitingFeedbackFooter.innerHTML += awaitingFeedbackFooter(firstLetter, secondLetter, restAssigendLength, j);
-//   }
-// }
+function checkTaskPrio(printTask, i) {
+  let img = document.getElementById(`prioIcon${i}`);
+  if (printTask.prio == 'urgent') {
+    img.src = '../assets/img/Prio_alta.png';
+  } else if (printTask.prio == 'medium') {
+    img.src = '../assets/img/Prio media.png';
+  } else {
+    img.src = '../assets/img/Prio baja.png';
+  }
+}
 
-// function renderDoneTasks() {
-//   let doneTasksContent = document.getElementById('todoDoneContent');
-//   doneTasksContent.innerHTML = '';
-//   let doneTasks = allTasks.filter((t) => t.status === 'done');
-//   for (let i = 0; i < doneTasks.length; i++) {
-//     doneTask = doneTasks[i];
-//     doneTasksContent.innerHTML += doneTaskCard(doneTask, i);
-//     styleCategoryDone(doneTask, i);
-//     renderDoneTasksFooter(i);
-//   }
-// }
+function styleCategory(printTask, b) {
+  let cat = document.getElementById(`category${b}`);
+  cat.style.backgroundColor = printTask.category.color;
+  cat.style.color = '#fff';
+  cat.style.width = '90px';
+  cat.style.textAlign = 'center';
+  cat.style.padding = '5px';
+  cat.style.borderRadius = '8px';
+  cat.style.whiteSpace = 'nowrap';
+  cat.style.textTransform = 'uppercase';
+}
 
-// function renderDoneTasksFooter(j) {
-//   let todoDoneFooter = document.getElementById(`doneFooter${j}`);
-//   for (let j = 0; j < task['assigned'].length; j++) {
-//     let assigend = task['assigned'][j];
-//     let firstLetter = assigend.charAt(0);
-//     let secondLetter = assigend.split(' ')[1].charAt(0);
-//     let restAssigendLength = task['assigned'].splice(1).length;
-//     todoDoneFooter.innerHTML += doneFooter(firstLetter, secondLetter, restAssigendLength, j);
-//   }
-// }
+function showOpenTaskPopup(i) {
+  document.getElementById('taskPopup').classList.remove('d-none');
+  document.getElementById('categoryPopup').innerHTML = allTasks[i].title;
+  document.getElementById('categoryPopup').style.background = allTasks[i].category.color;
+  document.getElementById('titlePopup').innerHTML = allTasks[i].title;
+  document.getElementById('descriptionPopup').innerHTML = allTasks[i].description;
+  document.getElementById('datePopup').innerHTML = `<b>Due Date:</b> ${allTasks[i].date}`;
+  document.getElementById(
+    'prio'
+  ).innerHTML = `<div class="prio-container-popup"><b>Priority:</b> <span id="prio-status">${allTasks[i].prio} <img id="prio-icon" src="/assets/img/Prio_alta.png"></span></div>`;
+  checkPriorityPopup(allTasks, i);
+  document.getElementById('assigendTo').innerHTML = allTasks[i].assigned;
+}
 
-// function styleCategory(task, k) {
-//   let cardCat = document.getElementById(`category${k}`);
-//   const cat = cardCat;
-//   cat.style.backgroundColor = task.category.color;
-//   cat.style.color = '#fff';
-//   cat.style.width = '90px';
-//   cat.style.textAlign = 'center';
-//   cat.style.padding = '5px';
-//   cat.style.borderRadius = '8px';
-//   cat.style.whiteSpace = 'nowrap';
-// }
+function cancelTaskPopup() {
+  document.getElementById('taskPopup').classList.add('d-none');
+}
 
-// function styleCategoryProgress(inProgressTask, z) {
-//   let cardCat = document.getElementById(`categoryProgress${z}`);
-//   const cat = cardCat;
-//   cardCat.style.backgroundColor = inProgressTask.category.color;
-//   cat.style.color = '#fff';
-//   cat.style.width = '90px';
-//   cat.style.textAlign = 'center';
-//   cat.style.padding = '5px';
-//   cat.style.borderRadius = '8px';
-//   cat.style.whiteSpace = 'nowrap';
-// }
+function checkPriorityPopup(allTasks, i) {
+  if (allTasks[i].prio === 'urgent') {
+    document.getElementById('prio-status').style.background = 'red';
+  }
+  if (allTasks[i].prio === 'medium') {
+    document.getElementById('prio-status').style.background = 'orange';
+  }
+  if (allTasks[i].prio === 'low') {
+    document.getElementById('prio-status').style.background = 'green';
+  }
+}
 
-// function styleCategoryAwaiting(awaitingFeedbackTask, a) {
-//   let cardCat = document.getElementById(`categoryAwaiting${a}`);
-//   const cat = cardCat;
-//   cardCat.style.backgroundColor = awaitingFeedbackTask.category.color;
-//   cat.style.color = '#fff';
-//   cat.style.width = '90px';
-//   cat.style.textAlign = 'center';
-//   cat.style.padding = '5px';
-//   cat.style.borderRadius = '8px';
-//   cat.style.whiteSpace = 'nowrap';
-// }
+//Drag and Drop
+function startDragging(id) {
+  currentDraggedElement = id;
+  currentCategory = allTasks[currentDraggedElement]['status'];
+}
 
-// function styleCategoryDone(doneTask, b) {
-//   let cardCat = document.getElementById(`categoryDone${b}`);
-//   const cat = cardCat;
-//   cardCat.style.backgroundColor = doneTask.category.color;
-//   cat.style.color = '#fff';
-//   cat.style.width = '90px';
-//   cat.style.textAlign = 'center';
-//   cat.style.padding = '5px';
-//   cat.style.borderRadius = '8px';
-//   cat.style.whiteSpace = 'nowrap';
-// }
+function allowDrop(ev) {
+  ev.preventDefault();
+}
 
-// function showInputsForm() {
-//   document.getElementById('form').classList.remove('d-none');
-// }
+async function moveTo(category) {
+  allTasks[currentDraggedElement]['status'] = category;
+  await backend.setItem('allTasks', JSON.stringify(allTasks));
+  renderTasks();
+}
 
-// function closeInputsForm() {
-//   document.getElementById('form').classList.add('d-none');
-// }
+function searchContent(value) {
+  // let openTasksContent = document.getElementById('todoOpenContent');
+  // let inProgressTasksContent = document.getElementById('todoInProgressContent');
+  // let awaitingFeedbackContent = document.getElementById('todoAwaitingFeedbackContent');
+  // let doneTasksContent = document.getElementById('todoDoneContent');
+  // resetAllTasks(openTasksContent, inProgressTasksContent, awaitingFeedbackContent, doneTasksContent);
 
-// // TODO: close input form
-
-// function searchContent(value) {
-//   let todoContent = document.getElementById('todoOpenContent');
-//   todoContent.innerHTML = '';
-//   for (let i = 0; i < allTasks.length; i++) {
-//     let task = allTasks[i];
-//     if (task.title.includes(value)) {
-//       todoContent.innerHTML += openTaskCard(task, i);
-//       styleCategory(task, i);
-//     }
-//   }
-// }
-
-// function showOpenTaskPopup(task) {
-//   document.getElementById('taskPopup').classList.remove('d-none');
-//   console.log(task);
-//   document.getElementById('categoryPopup').innerHTML = task.title;
-//   document.getElementById('categoryPopup').style.background = task.category.color;
-//   // document.getElementById('titlePopup').innerHTML = allTasks[i].title;
-//   // document.getElementById('descriptionPopup').innerHTML = allTasks[i].description;
-//   // document.getElementById('datePopup').innerHTML = `<b>Due Date:</b> ${allTasks[i].date}`;
-//   // if (task.prio === 'urgent') {
-//   //   urgentPriority(i);
-//   // }
-//   // if (task.prio === 'medium') {
-//   //   mediumPriority(i);
-//   // }
-//   // if (task.prio === 'low') {
-//   //   lowPriority(i);
-//   // }
-//   // document.getElementById('assigendTo').innerHTML = allTasks[i].assigned;
-// }
-
-// //Drag and Drop
-// function startDragging(id) {
-//   currentDraggedElement = id;
-//   console.log(currentDraggedElement);
-// }
-
-// function allowDrop(ev) {
-//   ev.preventDefault();
-// }
-
-// function moveTo(category) {
-//   task['status'] = category;
-//   renderOpenTasks();
-//   inProgressTask['status'] = category;
-//   renderInProgressTasks();
-//   awaitingFeedbackTask['status'] = category;
-//   renderAwaitingFeedbackTasks();
-//   doneTask['status'] = category;
-//   renderDoneTasks();
-// }
+  for (let i = 0; i < allTasks.length; i++) {
+    if (allTasks[i].description.includes(value)) {
+      console.log(i);
+    }
+  }
+}
