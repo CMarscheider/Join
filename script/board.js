@@ -79,9 +79,9 @@ function checkTaskPrio(printTask, i) {
   if (printTask.prio == 'urgent') {
     img.src = '../assets/img/Prio_alta.png';
   } else if (printTask.prio == 'medium') {
-    img.src = '../assets/img/Prio media.png';
+    img.src = '../assets/img/Prio_media.png';
   } else {
-    img.src = '../assets/img/Prio baja.png';
+    img.src = '../assets/img/Prio_baja.png';
   }
 }
 
@@ -108,11 +108,10 @@ function showOpenTaskPopup(i) {
     'prio'
   ).innerHTML = `<div class="prio-container-popup"><b>Priority:</b> <span id="prio-status">${allTasks[i].prio} <img id="prio-icon" src="/assets/img/Prio_alta.png"></span></div>`;
   checkPriorityPopup(allTasks, i);
-  document.getElementById('assigendTo').innerHTML =``;
+  document.getElementById('assigendTo').innerHTML = ``;
   for (let j = 0; j < allTasks[i].assigned.length; j++) {
     const assignedUser = allTasks[i].assigned[j];
-  document.getElementById('assigendTo').innerHTML += assignedUser;
-    
+    document.getElementById('assigendTo').innerHTML += assignedUser;
   }
 }
 
@@ -165,14 +164,11 @@ function searchTasks(value) {
   }
 }
 
-
-function testallTasks(){
+function testallTasks() {
   for (let i = 0; i < allTasks.length; i++) {
     const task1 = allTasks[i];
     for (let j = 0; j < task1.assigned.length; j++) {
-      console.log(`Task`+i + "" + task1.assigned[j]);
-      
+      console.log(`Task` + i + '' + task1.assigned[j]);
     }
-    
   }
 }
