@@ -18,7 +18,7 @@ function closeInputsForm() {
 function renderTasks() {
   setTimeout(() => {
     startRendering();
-  }, 300);
+  }, 200);
 }
 
 function resetAllTasks(openTasksContent, inProgressTasksContent, awaitingFeedbackContent, doneTasksContent) {
@@ -143,16 +143,18 @@ async function moveTo(category) {
   renderTasks();
 }
 
-function searchContent(value) {
-  // let openTasksContent = document.getElementById('todoOpenContent');
-  // let inProgressTasksContent = document.getElementById('todoInProgressContent');
-  // let awaitingFeedbackContent = document.getElementById('todoAwaitingFeedbackContent');
-  // let doneTasksContent = document.getElementById('todoDoneContent');
-  // resetAllTasks(openTasksContent, inProgressTasksContent, awaitingFeedbackContent, doneTasksContent);
-
+function searchTasks(value) {
+  let openTasksContent = document.getElementById('todoOpenContent');
+  let inProgressTasksContent = document.getElementById('todoInProgressContent');
+  let awaitingFeedbackContent = document.getElementById('todoAwaitingFeedbackContent');
+  let doneTasksContent = document.getElementById('todoDoneContent');
+  resetAllTasks(openTasksContent, inProgressTasksContent, awaitingFeedbackContent, doneTasksContent);
   for (let i = 0; i < allTasks.length; i++) {
-    if (allTasks[i].description.includes(value)) {
-      console.log(i);
+    const printTask = allTasks[i];
+    if (printTask.title.includes(value)) {
+      checkStatus(taskCategory, printTask, i, doneTasksContent, awaitingFeedbackContent, inProgressTasksContent, openTasksContent);
+      renderFooter(taskCategory, i, printTask);
+      styleCategory(printTask, i);
     }
   }
 }
