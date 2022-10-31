@@ -108,7 +108,12 @@ function showOpenTaskPopup(i) {
     'prio'
   ).innerHTML = `<div class="prio-container-popup"><b>Priority:</b> <span id="prio-status">${allTasks[i].prio} <img id="prio-icon" src="/assets/img/Prio_alta.png"></span></div>`;
   checkPriorityPopup(allTasks, i);
-  document.getElementById('assigendTo').innerHTML = allTasks[i].assigned;
+  document.getElementById('assigendTo').innerHTML =``;
+  for (let j = 0; j < allTasks[i].assigned.length; j++) {
+    const assignedUser = allTasks[i].assigned[j];
+  document.getElementById('assigendTo').innerHTML += assignedUser;
+    
+  }
 }
 
 function cancelTaskPopup() {
