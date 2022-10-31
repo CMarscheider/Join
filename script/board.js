@@ -77,11 +77,11 @@ function renderFooter(taskCategory, i, printTask) {
 function checkTaskPrio(printTask, i) {
   let img = document.getElementById(`prioIcon${i}`);
   if (printTask.prio == 'urgent') {
-    img.src = '../assets/img/Prio_alta.png';
+    img.src = '/assets/img/Prio_alta.png';
   } else if (printTask.prio == 'medium') {
-    img.src = '../assets/img/Prio_media.png';
+    img.src = './assets/img/Prio_media.png';
   } else {
-    img.src = '../assets/img/Prio_baja.png';
+    img.src = './assets/img/Prio_baja.png';
   }
 }
 
@@ -106,7 +106,7 @@ function showOpenTaskPopup(i) {
   document.getElementById('datePopup').innerHTML = `<b>Due Date:</b> ${allTasks[i].date}`;
   document.getElementById(
     'prio'
-  ).innerHTML = `<div class="prio-container-popup"><b>Priority:</b> <span id="prio-status">${allTasks[i].prio} <img id="prio-icon" src="/assets/img/Prio_alta.png"></span></div>`;
+  ).innerHTML = `<div class="prio-container-popup"><b>Priority:</b> <span id="prio-status">${allTasks[i].prio} <img id="prio-icon" src="./assets/img/Prio_alta.png"></span></div>`;
   checkPriorityPopup(allTasks, i);
   document.getElementById('assigendTo').innerHTML = ``;
   for (let j = 0; j < allTasks[i].assigned.length; j++) {
