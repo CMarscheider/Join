@@ -99,7 +99,7 @@ function styleCategory(printTask, b) {
 
 function showOpenTaskPopup(i) {
   document.getElementById('taskPopup').classList.remove('d-none');
-  document.getElementById('categoryPopup').innerHTML = allTasks[i].title;
+  document.getElementById('categoryPopup').innerHTML = allTasks[i].category.name;
   document.getElementById('categoryPopup').style.background = allTasks[i].category.color;
   document.getElementById('titlePopup').innerHTML = allTasks[i].title;
   document.getElementById('descriptionPopup').innerHTML = allTasks[i].description;
@@ -157,6 +157,7 @@ function searchTasks(value) {
   for (let i = 0; i < allTasks.length; i++) {
     const printTask = allTasks[i];
     if (printTask.title.includes(value)) {
+      console.log(value.split('').charAt(0).toUpperCase());
       checkStatus(taskCategory, printTask, i, doneTasksContent, awaitingFeedbackContent, inProgressTasksContent, openTasksContent);
       renderFooter(taskCategory, i, printTask);
       styleCategory(printTask, i);
