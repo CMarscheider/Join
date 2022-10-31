@@ -164,3 +164,15 @@ function searchTasks(value) {
     }
   }
 }
+
+
+function testallTasks(){
+  for (let i = 0; i < allTasks.length; i++) {
+    const task1 = allTasks[i];
+    for (let j = 0; j < task1.assigned.length; j++) {
+      console.log(`Task`+i + "" + task1.assigned[j]);
+      
+    }
+    
+  }
+}
