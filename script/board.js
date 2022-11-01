@@ -77,7 +77,7 @@ function renderFooter(taskCategory, i, printTask) {
 function checkTaskPrio(printTask, i) {
   let img = document.getElementById(`prioIcon${i}`);
   if (printTask.prio == 'urgent') {
-    img.src = '/assets/img/Prio_alta.png';
+    img.src = './assets/img/Prio_alta.png';
   } else if (printTask.prio == 'medium') {
     img.src = './assets/img/Prio_media.png';
   } else {
@@ -142,7 +142,9 @@ function allowDrop(ev) {
 }
 
 async function moveTo(category) {
+  console.log(`vorher `+ allTasks[currentDraggedElement]);
   allTasks[currentDraggedElement]['status'] = category;
+  console.log(`nachher `+ allTasks[currentDraggedElement]);
   await backend.setItem('allTasks', JSON.stringify(allTasks));
   renderTasks();
 }
@@ -172,3 +174,6 @@ function testallTasks() {
     }
   }
 }
+
+
+/* zeile 60 renderfunktion for schleife */

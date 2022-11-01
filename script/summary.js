@@ -111,7 +111,7 @@ function renderDate(date) {
     const day = splitDate[2];
 
     const formatDate = ()=>{
-        formatted_date = months[month] + " " + day  + ", " + year;
+        formatted_date = months[month-1] + " " + day  + ", " + year;
         return formatted_date;
     }
     formatDate();
