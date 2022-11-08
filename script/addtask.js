@@ -92,7 +92,6 @@ function checkBoxes() {
     if (checkboxSubtask.checked) {
       temporarySubTasks.push(content);
     }
-    console.log(temporarySubTasks);
   }
 }
 
