@@ -156,7 +156,6 @@ function searchTasks(value) {
   for (let i = 0; i < allTasks.length; i++) {
     const printTask = allTasks[i];
     if (printTask.title.includes(value)) {
-      console.log(value.split('').charAt(0).toUpperCase());
       checkStatus(taskCategory, printTask, i, doneTasksContent, awaitingFeedbackContent, inProgressTasksContent, openTasksContent);
       renderFooter(taskCategory, i, printTask);
       styleCategory(printTask, i);
