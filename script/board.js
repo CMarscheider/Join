@@ -34,7 +34,7 @@ function startRendering() {
   for (let i = 0; i < allTasks.length; i++) {
     printTask = allTasks[i];
 
-    checkStatus(taskCategory, printTask, i, doneTasksContent, awaitingFeedbackContent, inProgressTasksContent, openTasksContent, ProgressbarValue, label);
+    checkProgressStatus(taskCategory, printTask, i, doneTasksContent, awaitingFeedbackContent, inProgressTasksContent, openTasksContent, ProgressbarValue, label);
     renderFooter(taskCategory, i, printTask);
     styleCategory(printTask, i);
     ProgressbarValue = document.getElementById(`progressbar${i}`).value;
@@ -42,7 +42,7 @@ function startRendering() {
   }
 }
 
-function checkStatus(taskCategory, printTask, i, doneTasksContent, awaitingFeedbackContent, inProgressTasksContent, openTasksContent, ProgressbarValue, label) {
+function checkProgressStatus(taskCategory, printTask, i, doneTasksContent, awaitingFeedbackContent, inProgressTasksContent, openTasksContent, ProgressbarValue) {
   if (printTask['status'] == 'open') {
     taskCategory = 'open';
     ProgressbarValue = 0;
@@ -143,34 +143,26 @@ function allowDrop(ev) {
 }
 
 async function moveTo(category) {
-  console.log(`vorher ` + allTasks[currentDraggedElement]['assigned']);
   allTasks[currentDraggedElement]['status'] = category;
-  console.log(`nachher ` + allTasks[currentDraggedElement]);
   await backend.setItem('allTasks', JSON.stringify(allTasks));
   startRendering();
 }
 
 function searchTasks(value) {
+  value = value.toLowerCase();
   let openTasksContent = document.getElementById('todoOpenContent');
   let inProgressTasksContent = document.getElementById('todoInProgressContent');
   let awaitingFeedbackContent = document.getElementById('todoAwaitingFeedbackContent');
   let doneTasksContent = document.getElementById('todoDoneContent');
   resetAllTasks(openTasksContent, inProgressTasksContent, awaitingFeedbackContent, doneTasksContent);
   for (let i = 0; i < allTasks.length; i++) {
-    const printTask = allTasks[i];
-    if (printTask.title.includes(value)) {
-      checkStatus(taskCategory, printTask, i, doneTasksContent, awaitingFeedbackContent, inProgressTasksContent, openTasksContent);
-      renderFooter(taskCategory, i, printTask);
-      styleCategory(printTask, i);
+    const searchTask = allTasks[i];
+    if (searchTask.title.toLowerCase().includes(value)) {
+      checkProgressStatus(taskCategory, searchTask, i, doneTasksContent, awaitingFeedbackContent, inProgressTasksContent, openTasksContent);
+      renderFooter(taskCategory, i, searchTask);
+      styleCategory(searchTask, i);
     }
   }
 }
 
-function testallTasks() {
-  for (let i = 0; i < allTasks.length; i++) {
-    const task1 = allTasks[i];
-    for (let j = 0; j < task1.assigned.length; j++) {
-      console.log(`Task` + i + '' + task1.assigned[j]);
-    }
-  }
-}
+

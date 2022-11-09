@@ -99,7 +99,6 @@ function checkForLowerDate() {
             lowestDate = date;
         }
     }
-    console.log('Das nächste Datum ist ' + lowestDate);
     renderDate(lowestDate);
 }
 
