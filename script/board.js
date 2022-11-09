@@ -7,6 +7,8 @@ let currentDraggedElement;
 let currentCategory;
 let taskCategory;
 let printTask;
+let ProgressbarValue;
+let label;
 
 function showInputsForm() {
   document.getElementById('form').classList.remove('d-none');
@@ -15,8 +17,6 @@ function showInputsForm() {
 function closeInputsForm() {
   document.getElementById('form').classList.add('d-none');
 }
-
-
 
 function resetAllTasks(openTasksContent, inProgressTasksContent, awaitingFeedbackContent, doneTasksContent) {
   openTasksContent.innerHTML = '';
@@ -33,25 +33,32 @@ function startRendering() {
   resetAllTasks(openTasksContent, inProgressTasksContent, awaitingFeedbackContent, doneTasksContent);
   for (let i = 0; i < allTasks.length; i++) {
     printTask = allTasks[i];
-    checkStatus(taskCategory, printTask, i, doneTasksContent, awaitingFeedbackContent, inProgressTasksContent, openTasksContent);
+
+    checkStatus(taskCategory, printTask, i, doneTasksContent, awaitingFeedbackContent, inProgressTasksContent, openTasksContent, ProgressbarValue, label);
     renderFooter(taskCategory, i, printTask);
     styleCategory(printTask, i);
+    ProgressbarValue = document.getElementById(`progressbar${i}`).value;
+    label = document.getElementById(`label${i}`);
   }
 }
 
-function checkStatus(taskCategory, printTask, i, doneTasksContent, awaitingFeedbackContent, inProgressTasksContent, openTasksContent) {
+function checkStatus(taskCategory, printTask, i, doneTasksContent, awaitingFeedbackContent, inProgressTasksContent, openTasksContent, ProgressbarValue, label) {
   if (printTask['status'] == 'open') {
     taskCategory = 'open';
-    openTasksContent.innerHTML += TaskCard(taskCategory, printTask, i);
+    ProgressbarValue = 0;
+    openTasksContent.innerHTML += TaskCard(taskCategory, printTask, i, ProgressbarValue);
   } else if (printTask['status'] == 'inProgress') {
     taskCategory = 'inProgress';
-    inProgressTasksContent.innerHTML += TaskCard(taskCategory, printTask, i);
+    ProgressbarValue = 33.33;
+    inProgressTasksContent.innerHTML += TaskCard(taskCategory, printTask, i, ProgressbarValue);
   } else if (printTask['status'] == 'awaitingFeedback') {
     taskCategory = 'awaitingFeedback';
-    awaitingFeedbackContent.innerHTML += TaskCard(taskCategory, printTask, i);
+    ProgressbarValue = 66.66;
+    awaitingFeedbackContent.innerHTML += TaskCard(taskCategory, printTask, i, ProgressbarValue);
   } else {
     taskCategory = 'done';
-    doneTasksContent.innerHTML += TaskCard(taskCategory, printTask, i);
+    ProgressbarValue = 100;
+    doneTasksContent.innerHTML += TaskCard(taskCategory, printTask, i, ProgressbarValue);
   }
 }
 
@@ -60,16 +67,13 @@ function renderFooter(taskCategory, i, printTask) {
   let assigend = printTask['assigned'][0];
   let firstLetter = assigend.charAt(0);
   let secondLetter = assigend.split(' ')[1].charAt(0);
-  let restAssigendLength = printTask['assigned'].length -1;
+  let restAssigendLength = printTask['assigned'].length - 1;
   footer.innerHTML += footerTemplate(firstLetter, secondLetter, restAssigendLength, printTask, i);
   checkTaskPrio(printTask, i);
   if (restAssigendLength == 0) {
     document.getElementById(`restLength${i}`).classList.add('d-none');
   }
-  
-  
 }
-
 
 function checkTaskPrio(printTask, i) {
   let img = document.getElementById(`prioIcon${i}`);
@@ -105,10 +109,10 @@ function showOpenTaskPopup(i) {
     'prio'
   ).innerHTML = `<div class="prio-container-popup"><b>Priority:</b> <span id="prio-status">${allTasks[i].prio} <img id="prio-icon" src="./assets/img/Prio_alta.png"></span></div>`;
   checkPriorityPopup(allTasks, i);
-  document.getElementById('assigendTo').innerHTML = ``;
+  document.getElementById(`assigendTo`).innerHTML = ``;
   for (let j = 0; j < allTasks[i].assigned.length; j++) {
     const assignedUser = allTasks[i].assigned[j];
-    document.getElementById('assigendTo').innerHTML += assignedUser;
+    document.getElementById(`assigendTo`).innerHTML += `*${assignedUser}`;
   }
 }
 
@@ -170,4 +174,3 @@ function testallTasks() {
     }
   }
 }
-
