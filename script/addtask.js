@@ -20,6 +20,7 @@ let allCategorys = [
     }, */
 ];
 
+
 function checkAllInputs() {
   checkBoxes();
 
@@ -59,9 +60,21 @@ async function addTask() {
   subTaskCounter = 0;
   document.getElementById('subtaskList').innerHTML = ``;
 
-  /* GEPFUSCHTE LÖSUNG; SEITE WIRD NEU GELADEN: NACH EINEM ADDTASK KANN MAN KEINEN 2. HINZUFÜGEN. */
+
+
+  /* SEITE WIRD NEU GELADEN */
   window.location.href = 'board.html';
 }
+
+/* verhindert  neu laden der seite TEST*/
+setTimeout(() => {
+  if (window.location.href.indexOf("addtask") > -1) {
+    var form = document.getElementById("myForm");
+    function handleForm(event) { event.preventDefault(); };
+    form.addEventListener('submit', handleForm);
+  }
+}, 5000);
+
 
 function checkBoxes() {
   temporaryAssigned = [];
@@ -79,7 +92,6 @@ function checkBoxes() {
     if (checkboxSubtask.checked) {
       temporarySubTasks.push(content);
     }
-    console.log(temporarySubTasks);
   }
 }
 

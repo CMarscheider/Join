@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- JS Files -->
+    <script src="./script/mainjs.js"></script><!-- nach oben geschoben -->
     <script src="./script/board.js"></script>
     <script src="./script/board-template.js"></script>
     <script src="./script/mini_backend.js"></script>
     <script src="./script/addtask.js"></script>
-    <script src="./script/mainjs.js"></script>
     <script src="./script/login.js"></script>
     <script>setURL('https://gruppe-318.developerakademie.net/smallest_backend_ever');</script>
     
@@ -24,7 +24,7 @@
     <title>Join-Board</title>
   </head>
 
-  <body onload="init(), renderTasks();">
+  <body onload="init();">
     <div class="maincontainer">
       <div w3-include-html="./assets/templates/aside.html" class="aside"></div>
       <div class="right-container">

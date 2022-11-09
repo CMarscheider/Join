@@ -19,10 +19,10 @@ function TaskCard(taskCategory, task, i) {
       `;
 }
 
-function footerTemplate(firstLetter, secondLetter, restAssigendLength, j, printTask, i) {
+function footerTemplate(firstLetter, secondLetter, restAssigendLength, printTask, i) {
   return /*html*/ `
       <div class="footer-circels">
-            <span id="firstLettersContainer">${firstLetter}${secondLetter}</span>
+            <span id="firstLettersContainer${i}">${firstLetter}${secondLetter}</span>
             <span id="restLength${i}">${restAssigendLength}</span>
           </div>
 

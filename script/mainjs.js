@@ -14,7 +14,11 @@ async function init() {
     user = JSON.parse(user);
     allTasks = JSON.parse(backend.getItem('allTasks')) || [];
     allCategorys = JSON.parse(backend.getItem('allCategorys')) || [];
-    
+
+    if (window.location.href.indexOf("board") > -1) {
+        startRendering();
+    }
+
 }
 /**
  * This function is used to include the header
@@ -52,4 +56,5 @@ function guestLogin() {
     localStorage.setItem('user', JSON.stringify(user));
     window.location.href = 'summary.html';
 }
+
 

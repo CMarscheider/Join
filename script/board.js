@@ -1,7 +1,8 @@
-async function init() {
+/* async function init() {
   await downloadFromServer();
   users = JSON.parse(backend.getItem('users')) || [];
-}
+} */
+
 let currentDraggedElement;
 let currentCategory;
 let taskCategory;
@@ -15,11 +16,7 @@ function closeInputsForm() {
   document.getElementById('form').classList.add('d-none');
 }
 
-function renderTasks() {
-  setTimeout(() => {
-    startRendering();
-  }, 200);
-}
+
 
 function resetAllTasks(openTasksContent, inProgressTasksContent, awaitingFeedbackContent, doneTasksContent) {
   openTasksContent.innerHTML = '';
@@ -60,24 +57,24 @@ function checkStatus(taskCategory, printTask, i, doneTasksContent, awaitingFeedb
 
 function renderFooter(taskCategory, i, printTask) {
   let footer = document.getElementById(`footer${i}`);
-  for (let j = 0; j < printTask['assigned'].length; j++) {
-    let assigend = printTask['assigned'][j];
-    let firstLetter = assigend.charAt(0);
-    let secondLetter = assigend.split(' ')[1].charAt(0);
-    let restAssigendLength = printTask['assigned'].splice(1).length;
-    footer.innerHTML += footerTemplate(firstLetter, secondLetter, restAssigendLength, j, printTask, i);
-    checkTaskPrio(printTask, i);
-
-    if (restAssigendLength == 0) {
-      document.getElementById(`restLength${i}`).classList.add('d-none');
-    }
+  let assigend = printTask['assigned'][0];
+  let firstLetter = assigend.charAt(0);
+  let secondLetter = assigend.split(' ')[1].charAt(0);
+  let restAssigendLength = printTask['assigned'].length -1;
+  footer.innerHTML += footerTemplate(firstLetter, secondLetter, restAssigendLength, printTask, i);
+  checkTaskPrio(printTask, i);
+  if (restAssigendLength == 0) {
+    document.getElementById(`restLength${i}`).classList.add('d-none');
   }
+  
+  
 }
+
 
 function checkTaskPrio(printTask, i) {
   let img = document.getElementById(`prioIcon${i}`);
   if (printTask.prio == 'urgent') {
-    img.src = '/assets/img/Prio_alta.png';
+    img.src = './assets/img/Prio_alta.png';
   } else if (printTask.prio == 'medium') {
     img.src = './assets/img/Prio_media.png';
   } else {
@@ -142,9 +139,11 @@ function allowDrop(ev) {
 }
 
 async function moveTo(category) {
+  console.log(`vorher ` + allTasks[currentDraggedElement]['assigned']);
   allTasks[currentDraggedElement]['status'] = category;
+  console.log(`nachher ` + allTasks[currentDraggedElement]);
   await backend.setItem('allTasks', JSON.stringify(allTasks));
-  renderTasks();
+  startRendering();
 }
 
 function searchTasks(value) {
@@ -171,3 +170,4 @@ function testallTasks() {
     }
   }
 }
+
