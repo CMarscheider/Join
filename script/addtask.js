@@ -107,7 +107,7 @@ function showCheckboxes() {
   if (!expanded) {
     checkboxes.style.display = 'block';
     expanded = true;
-    createAssignetToSelection();
+    createAssignedToSelection();
   } else {
     checkboxes.style.display = 'none';
     expanded = false;
@@ -192,21 +192,23 @@ function changeColorofLowButton() {
   document.getElementById('lowText').classList.add('white-text');
 }
 
-function createAssignetToSelection() {
+function createAssignedToSelection() {
   document.getElementById('checkboxes').innerHTML = ``;
 
   for (let i = 0; i < users.length; i++) {
-    const contact = users[i];
+    const contactName = users[i]['name'];
 
-    let contactName = contact['name'];
+    splitName(contactName);
+    let restFirstName = splittedName[0].slice(1);
+    let restLastName = splittedName[1].slice(1);
 
     document.getElementById('checkboxes').innerHTML += /*html*/ `
     <div class="flex">
         <label for="checkbox${i}">
-            ${contactName}
+            ${splittedName[0].charAt(0).toUpperCase()}${restFirstName}
+            ${splittedName[1].charAt(0).toUpperCase()}${restLastName}
             <input type="checkbox" id="checkbox${i}" onchange="createUserIcons('${contactName}')" />
-        </label>
-              
+        </label>  
     </div>
   `;
   }

@@ -90,27 +90,27 @@ function checkForUrgent(task) {
 }
 
 function checkForLowerDate() {
-
-    let lowestDate = urgentTasks[0]['date'];
-    for (let i = 0; i < urgentTasks.length; i++) {
-        const date = urgentTasks[i]['date'];
-        console.log(date);
-        if (lowestDate > date) {
-            lowestDate = date;
+    if (urgentTasks.length > 0) {
+        let lowestDate = urgentTasks[0]['date'];
+        for (let i = 0; i < urgentTasks.length; i++) {
+            const date = urgentTasks[i]['date'];
+            if (lowestDate > date) {
+                lowestDate = date;
+            }
         }
+        renderDate(lowestDate);
     }
-    renderDate(lowestDate);
 }
 
 function renderDate(date) {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const splitDate = date.split("-");
-    const month= parseInt(splitDate[1]);
+    const month = parseInt(splitDate[1]);
     const year = splitDate[0];
     const day = splitDate[2];
 
-    const formatDate = ()=>{
-        formatted_date = months[month-1] + " " + day  + ", " + year;
+    const formatDate = () => {
+        formatted_date = months[month - 1] + " " + day + ", " + year;
         return formatted_date;
     }
     formatDate();
@@ -126,6 +126,12 @@ function fillContent() {
     document.getElementById('urgentTasks').innerHTML = `${urgentTasks.length}`;
     document.getElementById('tasksToDo').innerHTML = `${tasksToDo}`;
     document.getElementById('tasksDone').innerHTML = ` ${tasksDone}`;
+
+    if (urgentTasks.length > 0) {
     document.getElementById('date').innerHTML = `${formatted_date}`;
+        
+    } else{
+        document.getElementById('date').innerHTML = `-`;
+    }
 
 }
