@@ -95,7 +95,7 @@ function styleCategory(printTask, b) {
   let cat = document.getElementById(`category${b}`);
   cat.style.backgroundColor = printTask.category.color;
   cat.style.color = '#fff';
-  cat.style.width = '90px';
+  cat.style.minWidth = '50px';
   cat.style.textAlign = 'center';
   cat.style.padding = '5px';
   cat.style.borderRadius = '8px';
