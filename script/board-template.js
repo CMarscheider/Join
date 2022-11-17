@@ -1,4 +1,4 @@
-function TaskCard(taskCategory, task, i, ProgressbarValue) {
+function TaskCard(taskCategory, task, i, ProgressbarValue, fulfillment) {
   return /*html*/ `
       <div class="todo-content" onclick="showOpenTaskPopup(${i})" draggable="true" ondragstart="startDragging(${i})">
               <span class="category${i}" id="category${i}">${task.category.name}</span>
@@ -8,7 +8,7 @@ function TaskCard(taskCategory, task, i, ProgressbarValue) {
               <!-- todo -->
               <div class="progress-bar-container" id ="progress-bar-container${i}">
               <progress class="progressbar" id="progressbar${i}" value="${ProgressbarValue}" max="100"></progress>
-                <label id="label${i}">Done1/2</label>
+                <label id="label${i}">Done&nbsp;${fulfillment}/3</label>
               </div>
     
               <div class="box-footer" id ="footer${i}">

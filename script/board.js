@@ -9,6 +9,7 @@ let taskCategory;
 let printTask;
 let ProgressbarValue;
 let label;
+let fulfillment;
 
 function showInputsForm() {
   document.getElementById('form').classList.remove('d-none');
@@ -34,7 +35,7 @@ function startRendering() {
   for (let i = 0; i < allTasks.length; i++) {
     printTask = allTasks[i];
 
-    checkProgressStatus(taskCategory, printTask, i, doneTasksContent, awaitingFeedbackContent, inProgressTasksContent, openTasksContent, ProgressbarValue, label);
+    checkProgressStatus(taskCategory, printTask, i, doneTasksContent, awaitingFeedbackContent, inProgressTasksContent, openTasksContent, ProgressbarValue, label, fulfillment);
     renderFooter(taskCategory, i, printTask);
     styleCategory(printTask, i);
     ProgressbarValue = document.getElementById(`progressbar${i}`).value;
@@ -42,23 +43,27 @@ function startRendering() {
   }
 }
 
-function checkProgressStatus(taskCategory, printTask, i, doneTasksContent, awaitingFeedbackContent, inProgressTasksContent, openTasksContent, ProgressbarValue) {
+function checkProgressStatus(taskCategory, printTask, i, doneTasksContent, awaitingFeedbackContent, inProgressTasksContent, openTasksContent, ProgressbarValue, fulfillment) {
   if (printTask['status'] == 'open') {
     taskCategory = 'open';
     ProgressbarValue = 0;
-    openTasksContent.innerHTML += TaskCard(taskCategory, printTask, i, ProgressbarValue);
+    fulfillment = 0;
+    openTasksContent.innerHTML += TaskCard(taskCategory, printTask, i, ProgressbarValue, fulfillment);
   } else if (printTask['status'] == 'inProgress') {
     taskCategory = 'inProgress';
     ProgressbarValue = 33.33;
-    inProgressTasksContent.innerHTML += TaskCard(taskCategory, printTask, i, ProgressbarValue);
+    fulfillment = 1;
+    inProgressTasksContent.innerHTML += TaskCard(taskCategory, printTask, i, ProgressbarValue, fulfillment);
   } else if (printTask['status'] == 'awaitingFeedback') {
     taskCategory = 'awaitingFeedback';
     ProgressbarValue = 66.66;
-    awaitingFeedbackContent.innerHTML += TaskCard(taskCategory, printTask, i, ProgressbarValue);
+    fulfillment = 2;
+    awaitingFeedbackContent.innerHTML += TaskCard(taskCategory, printTask, i, ProgressbarValue, fulfillment);
   } else {
     taskCategory = 'done';
     ProgressbarValue = 100;
-    doneTasksContent.innerHTML += TaskCard(taskCategory, printTask, i, ProgressbarValue);
+    fulfillment = 3;
+    doneTasksContent.innerHTML += TaskCard(taskCategory, printTask, i, ProgressbarValue, fulfillment);
   }
 }
 
@@ -109,11 +114,29 @@ function showOpenTaskPopup(i) {
     'prio'
   ).innerHTML = `<div class="prio-container-popup"><b>Priority:</b> <span id="prio-status">${allTasks[i].prio} <img id="prio-icon" src="./assets/img/Prio_alta.png"></span></div>`;
   checkPriorityPopup(allTasks, i);
-  document.getElementById(`assigendTo`).innerHTML = ``;
+
+  let assigendToContent = document.getElementById('assigendToContainer');
+  assigendToContent.innerHTML = '';
   for (let j = 0; j < allTasks[i].assigned.length; j++) {
     const assignedUser = allTasks[i].assigned[j];
-    document.getElementById(`assigendTo`).innerHTML += `*${assignedUser}`;
+    assigendToContent.innerHTML += /*html*/ `
+   <div class="assigned-box"> 
+    <span id="firstLetterAssigned${j}">${assignedUser[0].toUpperCase()}</span>
+    <span>${assignedUser}</span>
+  </div>
+    `;
+    styleAssignedCircles(j);
   }
+}
+
+function styleAssignedCircles(j) {
+  let assigendCircels = document.getElementById(`firstLetterAssigned${j}`);
+  assigendCircels.style.backgroundColor = 'hsla(' + Math.random() * 360 + ', 100%, 50%, 1)';
+  assigendCircels.style.padding = '10px';
+  assigendCircels.style.borderRadius = '50%';
+  assigendCircels.style.minWidth = '20px';
+  assigendCircels.style.minHeight = '20px';
+  assigendCircels.style.textAlign = 'center';
 }
 
 function cancelTaskPopup() {
@@ -164,5 +187,3 @@ function searchTasks(value) {
     }
   }
 }
-
-
