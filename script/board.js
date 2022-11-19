@@ -95,7 +95,7 @@ function styleCategory(printTask, b) {
   let cat = document.getElementById(`category${b}`);
   cat.style.backgroundColor = printTask.category.color;
   cat.style.color = '#fff';
-  cat.style.minWidth = '50px';
+  cat.style.maxWidth = '170px';
   cat.style.textAlign = 'center';
   cat.style.padding = '5px';
   cat.style.borderRadius = '8px';
@@ -137,6 +137,7 @@ function styleAssignedCircles(j) {
   assigendCircels.style.minWidth = '20px';
   assigendCircels.style.minHeight = '20px';
   assigendCircels.style.textAlign = 'center';
+  assigendCircels.style.color = '#E1D9D1';
 }
 
 function cancelTaskPopup() {
