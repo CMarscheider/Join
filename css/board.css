@@ -177,6 +177,9 @@ label {
 
 /* Task Popup */
 #taskPopup {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   width: 500px;
   height: 600px;
   background-color: #fff;
@@ -252,3 +255,23 @@ label {
   color: #fff;
 }
 /* Task  Popup */
+
+
+
+.editButton{
+  border-radius: 8px;
+  background-color: #2A3647;
+  padding: 5px;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+#btnHolder{
+  width: 100%;
+  height: 50%;
+  display: flex;
+/*   justify-content: flex-end;
+  align-items: flex-start; */
+
+}

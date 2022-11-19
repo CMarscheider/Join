@@ -110,23 +110,125 @@ function showOpenTaskPopup(i) {
   document.getElementById('titlePopup').innerHTML = allTasks[i].title;
   document.getElementById('descriptionPopup').innerHTML = allTasks[i].description;
   document.getElementById('datePopup').innerHTML = `<b>Due Date:</b> ${allTasks[i].date}`;
-  document.getElementById(
-    'prio'
-  ).innerHTML = `<div class="prio-container-popup"><b>Priority:</b> <span id="prio-status">${allTasks[i].prio} <img id="prio-icon" src="./assets/img/Prio_alta.png"></span></div>`;
+  document.getElementById('prio').innerHTML = `<div class="prio-container-popup"><b>Priority:</b> <span id="prio-status">${allTasks[i].prio} <img id="prio-icon" src="./assets/img/Prio_alta.png"></span></div>`;
+  document.getElementById('btnHolder').innerHTML =/*html*/`
+<img class="editButton" src="./assets/img/todo.png" alt="edit" onclick="editTask(${i})">
+  `;
   checkPriorityPopup(allTasks, i);
 
   let assigendToContent = document.getElementById('assigendToContainer');
   assigendToContent.innerHTML = '';
   for (let j = 0; j < allTasks[i].assigned.length; j++) {
     const assignedUser = allTasks[i].assigned[j];
+    let secondLetter = assignedUser.split(' ')[1].charAt(0);
+
     assigendToContent.innerHTML += /*html*/ `
    <div class="assigned-box"> 
-    <span id="firstLetterAssigned${j}">${assignedUser[0].toUpperCase()}</span>
+    <span id="firstLetterAssigned${j}">${assignedUser[0].toUpperCase()} ${secondLetter.toUpperCase()}</span>
     <span>${assignedUser}</span>
   </div>
     `;
     styleAssignedCircles(j);
   }
+}
+
+function editTask(i) {
+  let popup = document.getElementById('taskPopup');
+
+  popup.innerHTML = /*html*/`
+<span>Title</span>
+<input type="text" id="editTitle">
+<span>Description</span>
+<input type="text" id="editDescription">
+<span>Due Date</span>
+<input type="date" id="editDate">
+<span>Prio</span>
+<div class="prio-container">
+        <p><b>Prio</b></p>
+        <div class="button-container">
+          <button type="button" id="urgentButtonEdit" onclick="checkPriority('urgent'), changeColorofUrgentButtonEdit()">
+            <b id="urgentTextEdit">Urgent</b>
+            <img id="urgentImgEdit" src="assets/img/highprio.svg" alt="" />
+          </button>
+          <button type="button" id="mediumButtonEdit" onclick="checkPriority('medium'),changeColorofMediumButtonEdit()">
+            <b id="mediumTextEdit">Medium</b>
+            <img id="mediumImgEdit" src="assets/img/mediumprio.svg" alt="" />
+          </button>
+          <button type="button" id="lowButtonEdit" onclick="checkPriority('low'),changeColorofLowButtonEdit()">
+            <b id="lowTextEdit">Low</b>
+            <img id="lowImgEdit" src="assets/img/lowprio.svg" alt="" />
+          </button>
+        </div>
+      </div>
+<span>Assigned to</span> <!-- IDS aus Multiselect ändern -->
+<div class="multiselect">
+          <div class="selectBox" onclick="showCheckboxes()">
+            <select>
+              <option>Select contacts to assign</option>
+            </select>
+            <div class="overSelect"></div>
+          </div>
+          <div id="checkboxes">
+          </div>
+          <div class ="usercontainer" id="users">
+            
+          </div>
+        </div>
+`;
+  document.getElementById('editTitle').value = allTasks[i]['title'];
+  document.getElementById('editDescription').value = allTasks[i]['description'];
+  document.getElementById('editDate').value = allTasks[i]['date'];
+
+  setPrioColor(i);
+
+
+}
+
+
+function setPrioColor(i) {
+  if (allTasks[i]['prio'] == "low") {
+    changeColorofLowButtonEdit();
+  } else if (allTasks[i]['prio'] == "medium") {
+    changeColorofMediumButtonEdit();
+  } else {
+    changeColorofUrgentButtonEdit();
+  }
+}
+
+function changeColorofUrgentButtonEdit() {
+  document.getElementById('urgentButtonEdit').classList.add('urgentButtonBackground');
+  document.getElementById('mediumButtonEdit').classList.remove('mediumButtonBackground');
+  document.getElementById('lowButtonEdit').classList.remove('lowButtonBackground');
+  document.getElementById('urgentImgEdit').classList.add('prio-img-white');
+  document.getElementById('mediumImgEdit').classList.remove('prio-img-white');
+  document.getElementById('lowImgEdit').classList.remove('prio-img-white');
+  document.getElementById('urgentTextEdit').classList.add('white-text');
+  document.getElementById('mediumTextEdit').classList.remove('white-text');
+  document.getElementById('lowTextEdit').classList.remove('white-text');
+}
+
+function changeColorofMediumButtonEdit() {
+  document.getElementById('urgentButtonEdit').classList.remove('urgentButtonBackground');
+  document.getElementById('mediumButtonEdit').classList.add('mediumButtonBackground');
+  document.getElementById('lowButtonEdit').classList.remove('lowButtonBackground');
+  document.getElementById('urgentImgEdit').classList.remove('prio-img-white');
+  document.getElementById('mediumImgEdit').classList.add('prio-img-white');
+  document.getElementById('lowImgEdit').classList.remove('prio-img-white');
+  document.getElementById('urgentTextEdit').classList.remove('white-text');
+  document.getElementById('mediumTextEdit').classList.add('white-text');
+  document.getElementById('lowTextEdit').classList.remove('white-text');
+}
+
+function changeColorofLowButtonEdit() {
+  document.getElementById('urgentButtonEdit').classList.remove('urgentButtonBackground');
+  document.getElementById('mediumButtonEdit').classList.remove('mediumButtonBackground');
+  document.getElementById('lowButtonEdit').classList.add('lowButtonBackground');
+  document.getElementById('urgentImgEdit').classList.remove('prio-img-white');
+  document.getElementById('mediumImgEdit').classList.remove('prio-img-white');
+  document.getElementById('lowImgEdit').classList.add('prio-img-white');
+  document.getElementById('urgentTextEdit').classList.remove('white-text');
+  document.getElementById('mediumTextEdit').classList.remove('white-text');
+  document.getElementById('lowTextEdit').classList.add('white-text');
 }
 
 function styleAssignedCircles(j) {
