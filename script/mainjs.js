@@ -1,5 +1,7 @@
 let users;
 let user;
+let color;
+
 
 /**
  * This functin is used to initialize the webpage
@@ -57,4 +59,7 @@ function guestLogin() {
     window.location.href = 'summary.html';
 }
 
-
+function generateRandomColor() {
+    var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+    color = randomColor;
+}

@@ -1,7 +1,6 @@
 let letters = [];
 let splittedName = [];
 let contacts;
-let color;
 
 /* users in contacts pushen */
 
@@ -62,10 +61,7 @@ let icon = document.getElementById(`${id}`);
 icon.style.backgroundColor = color;
 }
 
-function generateRandomColor() {
-    var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
-    color = randomColor;
-}
+
 
 function checkForLetters(firstLetter, contactlist) {
     firstLetter = firstLetter.toUpperCase();
