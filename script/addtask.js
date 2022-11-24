@@ -1,7 +1,8 @@
 let allTasks = [];
 let prio;
 /* loadAllTasks(); */
-var expanded = false;
+var expandedAddTask = false;
+var expandedEditTask = false;
 let categoryExanded = false;
 let temporaryAssigned = [];
 let temporarySubTasks = [];
@@ -102,16 +103,29 @@ function checkPriority(priority) {
 }
 
 // Assigned to function
-function showCheckboxes() {
-  var checkboxes = document.getElementById('checkboxes');
-  if (!expanded) {
+function showCheckboxes(checkboxid) {
+  var checkboxes = document.getElementById(checkboxid);
+  if (checkboxid == "checkboxes") {
+    currentExpandedCheck = expandedAddTask;
+  } else {
+    currentExpandedCheck = expandedEditTask;
+  }
+
+  if (!currentExpandedCheck) {
     checkboxes.style.display = 'block';
-    expanded = true;
-    createAssignedToSelection();
+    currentExpandedCheck = true;
+    createAssignedToSelection(checkboxid);
   } else {
     checkboxes.style.display = 'none';
-    expanded = false;
+    currentExpandedCheck = false;
   }
+
+  if (checkboxid == "checkboxes") {
+    expandedAddTask = currentExpandedCheck;
+  } else {
+    expandedEditTask = currentExpandedCheck;
+  }
+
 }
 
 /* OPEN SUBTASKFIELD */
@@ -192,8 +206,8 @@ function changeColorofLowButton() {
   document.getElementById('lowText').classList.add('white-text');
 }
 
-function createAssignedToSelection() {
-  document.getElementById('checkboxes').innerHTML = ``;
+function createAssignedToSelection(checkboxid) {
+  document.getElementById(checkboxid).innerHTML = ``;
 
   for (let i = 0; i < users.length; i++) {
     const contactName = users[i]['name'];
@@ -202,7 +216,7 @@ function createAssignedToSelection() {
     let restFirstName = splittedName[0].slice(1);
     let restLastName = splittedName[1].slice(1);
 
-    document.getElementById('checkboxes').innerHTML += /*html*/ `
+    document.getElementById(checkboxid).innerHTML += /*html*/ `
     <div class="flex">
         <label for="checkbox${i}">
             ${splittedName[0].charAt(0).toUpperCase()}${restFirstName}

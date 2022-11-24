@@ -162,13 +162,13 @@ function editTask(i) {
       </div>
 <span>Assigned to</span> <!-- IDS aus Multiselect ändern -->
 <div class="multiselect">
-          <div class="selectBox" onclick="showCheckboxes()">
+          <div class="selectBox" onclick="showCheckboxes('editCheckBoxes')">
             <select>
               <option>Select contacts to assign</option>
             </select>
             <div class="overSelect"></div>
           </div>
-          <div id="checkboxes">
+          <div id="editCheckBoxes">
           </div>
           <div class ="usercontainer" id="users">
             
@@ -180,8 +180,6 @@ function editTask(i) {
   document.getElementById('editDate').value = allTasks[i]['date'];
 
   setPrioColor(i);
-
-
 }
 
 

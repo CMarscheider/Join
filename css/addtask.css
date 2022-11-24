@@ -240,11 +240,16 @@ option {
   border: 1px #dadada solid;
 }
 
-#checkboxes label {
+#editCheckBoxes{
+  display: none;
+  border: 1px #dadada solid;
+}
+
+#checkboxes#editCheckBoxes label {
   display: block;
 }
 
-#checkboxes label:hover {
+#checkboxes#editCheckBoxes label:hover {
   background-color: #1e90ff;
 }
 
