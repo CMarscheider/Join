@@ -14,6 +14,11 @@
   font-size: 60px;
 }
 
+.searchfield {
+  display: flex;
+  position: relative;
+}
+
 #boardSearch {
   outline: 0;
   border: 1px solid black;
@@ -24,9 +29,9 @@
 }
 
 .search-icon {
-  position: relative;
-  right: 35px;
-  top: 5px;
+  position: absolute;
+  right: 150px;
+  top: 7px;
 }
 
 #addTask-btn {
@@ -256,20 +261,18 @@ label {
 }
 /* Task  Popup */
 
-
-
-.editButton{
+.editButton {
   border-radius: 8px;
-  background-color: #2A3647;
+  background-color: #2a3647;
   padding: 5px;
   position: absolute;
   bottom: 5px;
   right: 5px;
 }
 
-.saveBtn{
+.saveBtn {
   border-radius: 8px;
-  background-color: #2A3647;
+  background-color: #2a3647;
   padding: 20px;
   position: absolute;
   bottom: 5px;
@@ -282,28 +285,27 @@ label {
   font-size: 20px;
 }
 
-.saveBtn p{
+.saveBtn p {
   margin: 0;
   padding: 0;
 }
 
-.saveBtn img{
+.saveBtn img {
   width: 20px;
   height: 20px;
   padding-left: 10px;
 }
 
-#btnHolder{
+#btnHolder {
   width: 100%;
   height: 50%;
   display: flex;
-/*   justify-content: flex-end;
+  /*   justify-content: flex-end;
   align-items: flex-start; */
-
 }
 
-input{
-  padding:15px;
+input {
+  padding: 15px;
 }
 
 .cancel-right {

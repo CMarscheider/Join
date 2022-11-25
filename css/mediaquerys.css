@@ -1,4 +1,19 @@
-@media (max-width: 575.98px) {}
+@media (max-width: 575.98px) {
+    .board{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .board div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .board div img {
+        width: 20px;
+        height: 20px;
+    }
+}
 
 @media (max-width: 767.98px) {
     .maincontainer {
@@ -37,6 +52,24 @@
     }
 
 }
+
+@media (max-width:850px){
+    .searchfield {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px
+    }
+
+    .search-icon {
+        right: 15px;
+    }
+
+
+    
+
+}
+
+
 
 @media (max-width: 991.98px) { 
 
