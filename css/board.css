@@ -267,6 +267,32 @@ label {
   right: 5px;
 }
 
+.saveBtn{
+  border-radius: 8px;
+  background-color: #2A3647;
+  padding: 20px;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.saveBtn p{
+  margin: 0;
+  padding: 0;
+}
+
+.saveBtn img{
+  width: 20px;
+  height: 20px;
+  padding-left: 10px;
+}
+
 #btnHolder{
   width: 100%;
   height: 50%;

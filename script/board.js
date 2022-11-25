@@ -197,14 +197,39 @@ function editTask(i) {
             
           </div>
         </div>
+        <div id="btnHolder">
+          <div class="saveBtn">
+            <p>Ok</p>  
+        <img  src="./assets/img/done.png" alt="save" onclick="pushEditTask(${i})">
+      </div>
+        
+</div>
 `;
   document.getElementById('editTitle').value = allTasks[i]['title'];
   document.getElementById('editDescription').value = allTasks[i]['description'];
   document.getElementById('editDate').value = allTasks[i]['date'];
-
+prio = allTasks[i]['prio'];
   setPrioColor(i);
 }
 
+
+
+
+
+async function pushEditTask(i) {
+
+  let taskInputTitle = document.getElementById('editTitle').value;
+  let dueDate = document.getElementById('editDate').value;
+  let description = document.getElementById('editDescription').value;
+  allTasks[i].title = taskInputTitle;
+  allTasks[i].description = description;
+  allTasks[i].date = dueDate;
+  allTasks[i].prio = prio;
+  /* allTasks[i].assignedTo = contactCheckedValue; */
+  await backend.setItem('allTasks', JSON.stringify(allTasks));
+
+  window.location.reload();
+}
 
 
 
@@ -213,8 +238,10 @@ function setPrioColor(i) {
     changeColorofLowButtonEdit();
   } else if (allTasks[i]['prio'] == "medium") {
     changeColorofMediumButtonEdit();
+
   } else {
     changeColorofUrgentButtonEdit();
+
   }
 }
 
