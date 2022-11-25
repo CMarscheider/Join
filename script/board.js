@@ -104,6 +104,26 @@ function styleCategory(printTask, b) {
 }
 
 function showOpenTaskPopup(i) {
+  document.getElementById('taskPopup').innerHTML = `
+<div class="cancel-container">
+<span class="category" id="categoryPopup"></span>
+<img src="./assets/img/cancelimg.svg" onclick="cancelTaskPopup()">
+</div>
+<h1 id="titlePopup"></h1>
+<p id="descriptionPopup"></p>
+<p id="datePopup"></p>
+<p id="prio"></p>
+
+<div class="assigend-popup">
+<span id="assigendCircels"></span>
+<div id="assigendToContainer">
+  <!-- <p id="assigendTo"></p>  -->
+
+</div>
+</div>
+<div id="btnHolder"></div>
+`;
+
   document.getElementById('taskPopup').classList.remove('d-none');
   document.getElementById('categoryPopup').innerHTML = allTasks[i].category.name;
   document.getElementById('categoryPopup').style.background = allTasks[i].category.color;
@@ -136,6 +156,9 @@ function editTask(i) {
   let popup = document.getElementById('taskPopup');
 
   popup.innerHTML = /*html*/`
+<div class="cancel-right">
+     <img src="./assets/img/cancelimg.svg" onclick="showOpenTaskPopup(${i})">
+</div>
 <span>Title</span>
 <input type="text" id="editTitle">
 <span>Description</span>
@@ -181,6 +204,8 @@ function editTask(i) {
 
   setPrioColor(i);
 }
+
+
 
 
 function setPrioColor(i) {

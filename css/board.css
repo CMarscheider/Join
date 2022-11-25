@@ -279,3 +279,10 @@ label {
 input{
   padding:15px;
 }
+
+.cancel-right {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
