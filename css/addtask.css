@@ -284,6 +284,7 @@ option {
 
 .subtaskInput {
   display: flex;
+  position: relative;
   background-color: white;
   border-radius: 10px;
   justify-content: space-between;
@@ -313,6 +314,9 @@ option {
 .subTaskImages {
   display: flex;
   align-items: center;
+  position: absolute;
+  right: 10px;
+  top: 11px;
 }
 
 .subTaskImages img {

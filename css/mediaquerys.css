@@ -32,7 +32,7 @@
 
     .links-container {
         flex-direction: row;
-        padding: 10px;
+        padding: 0px;
         justify-content: space-evenly;
     }
 
@@ -75,13 +75,45 @@
 
     .all-tasks-contnet {
         justify-content: center;
+        flex-direction: column;
     }
 
     .todo-content {
         width: 80%;
     }
 
-/*     #todoDoneContent .todo-content{
-        width: unset;
-    } */
+    .box-footer :first-child {
+        padding-left: 20px;
+    }
+
+    .box-footer :nth-child(2) {
+        margin-right: 100px;
+    }
+
+   .addtask-content {
+    flex-direction: column;
+    align-items: center;
+   }
+
+   .leftside-content div + input, .rightside-content div + input {
+    width: 100%;
+   }
+
+   .leftside-content, .rightside-content {
+    padding-left: 8%;
+    padding-right: 8%;
+    
+   }
+
+   .headline-addtask {
+    justify-content: center;
+    padding-left: 0;
+   }
+
+
+   .middleline {
+    display: none;
+   }
  }
+
+ 
