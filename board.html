@@ -37,65 +37,68 @@
         <div w3-include-html="./assets/templates/header.html" class=""></div>
       </div>
 
-      <div class="board">
-        <h1>Board</h1>
-        <div class="searchfield">
-          <div><input type="text" id="boardSearch" placeholder="Find Task" onkeyup="searchTasks(this.value)" />
-          <img class="search-icon" src="./assets/img/search-icon.png" />
-        </div>
-          <input type="button" id="addTask-btn" onclick="showInputsForm()" value="Add Task +">
-        </div>
-      </div>
+      <div class="wrapper">
 
-      <div class="all-tasks-contnet">
-
-        <div class="todo" ondrop="moveTo('open')" ondragover="allowDrop(event)">
-          <div class="create-todo">
-            <h2>Todo</h2>
-            <span onclick="showInputsForm()">+</span>
-          </div>
-
-          <div id="todoOpenContent">
-
-
+        <div class="board">
+          <h1>Board</h1>
+          <div class="searchfield">
+            <div><input type="text" id="boardSearch" placeholder="Find Task" onkeyup="searchTasks(this.value)" />
+              <img class="search-icon" src="./assets/img/search-icon.png" />
+            </div>
+            <input type="button" id="addTask-btn" onclick="showInputsForm()" value="Add Task +">
           </div>
         </div>
 
+        <div class="all-tasks-contnet">
 
-        <div class="todo" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
-          <div class="create-todo">
-            <h2>In Progress</h2>
-            <span onclick="showInputsForm()">+</span>
+          <div class="todo" ondrop="moveTo('open')" ondragover="allowDrop(event)">
+            <div class="create-todo">
+              <h2>Todo</h2>
+              <span onclick="showInputsForm()">+</span>
+            </div>
+
+            <div id="todoOpenContent">
+
+
+            </div>
           </div>
 
-          <div id="todoInProgressContent">
+
+          <div class="todo" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
+            <div class="create-todo">
+              <h2>In Progress</h2>
+              <span onclick="showInputsForm()">+</span>
+            </div>
+
+            <div id="todoInProgressContent">
 
 
-          </div>
-        </div>
-
-        <div class="todo" ondrop="moveTo('awaitingFeedback')" ondragover="allowDrop(event)">
-          <div class="create-todo">
-            <h2>Awaiting Feedback</h2>
-            <span onclick="showInputsForm()">+</span>
-          </div>
-
-          <div id="todoAwaitingFeedbackContent">
-
+            </div>
           </div>
 
-        </div>
+          <div class="todo" ondrop="moveTo('awaitingFeedback')" ondragover="allowDrop(event)">
+            <div class="create-todo">
+              <h2>Awaiting Feedback</h2>
+              <span onclick="showInputsForm()">+</span>
+            </div>
 
-        <div class="todo" ondrop="moveTo('done')" ondragover="allowDrop(event)">
-          <div class="create-todo">
-            <h2>Done</h2>
-            <span onclick="showInputsForm()">+</span>
-          </div>
+            <div id="todoAwaitingFeedbackContent">
 
-          <div id="todoDoneContent">
+            </div>
 
           </div>
 
+          <div class="todo" ondrop="moveTo('done')" ondragover="allowDrop(event)">
+            <div class="create-todo">
+              <h2>Done</h2>
+              <span onclick="showInputsForm()">+</span>
+            </div>
+
+            <div id="todoDoneContent">
+
+            </div>
+
+          </div>
         </div>
       </div>
 

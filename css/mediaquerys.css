@@ -1,5 +1,5 @@
 @media (max-width: 575.98px) {
-    .board{
+    .board {
         flex-direction: column;
         align-items: center;
     }
@@ -12,6 +12,10 @@
     .board div img {
         width: 20px;
         height: 20px;
+    }
+
+    .tasks h2, .box-text h3, #urgentTasks{
+        font-size: 2rem;
     }
 }
 
@@ -34,6 +38,7 @@
         flex-direction: row;
         padding: 0px;
         justify-content: space-evenly;
+        height: 10vh;
     }
 
     .links-container a {
@@ -51,9 +56,46 @@
         object-fit: contain;
     }
 
+    .wrapper {
+        height: 80vh;
+        overflow-y: scroll;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .greetings {
+        display: none;
+    }
+
+    .headline {
+        padding: 0;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .headline h1 {
+        border:unset;
+        padding: unset;
+        font-size: 2rem;
+    }
+
+    .headline span{
+        padding: 0;
+    }
+    .content{
+        padding: unset;
+        width: unset;
+    }
+
+    .contentbox{
+        justify-content: center;
+    }
+
+
 }
 
-@media (max-width:850px){
+@media (max-width:850px) {
     .searchfield {
         flex-direction: column;
         align-items: center;
@@ -65,13 +107,13 @@
     }
 
 
-    
+
 
 }
 
 
 
-@media (max-width: 991.98px) { 
+@media (max-width: 1027px) {
 
     .all-tasks-contnet {
         justify-content: center;
@@ -90,30 +132,52 @@
         margin-right: 100px;
     }
 
-   .addtask-content {
-    flex-direction: column;
-    align-items: center;
-   }
+    .addtask-content {
+        flex-direction: column;
+        align-items: center;
+    }
 
-   .leftside-content div + input, .rightside-content div + input {
-    width: 100%;
-   }
+    .leftside-content div+input,
+    .rightside-content div+input {
+        width: 100%;
+    }
 
-   .leftside-content, .rightside-content {
-    padding-left: 8%;
-    padding-right: 8%;
-    
-   }
+    .leftside-content,
+    .rightside-content {
+        padding-left: 8%;
+        padding-right: 8%;
 
-   .headline-addtask {
-    justify-content: center;
-    padding-left: 0;
-   }
+    }
+
+    .headline-addtask {
+        justify-content: center;
+        padding-left: 0;
+    }
 
 
-   .middleline {
-    display: none;
-   }
- }
+    .middleline {
+        display: none;
+    }
 
- 
+    #todoOpenContent,
+    #todoInProgressContent,
+    #todoAwaitingFeedbackContent,
+    #todoDoneContent {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+}
+
+
+@media (max-width: 1350px) {
+
+
+    .tasks{
+        padding: unset;
+    }
+
+}
