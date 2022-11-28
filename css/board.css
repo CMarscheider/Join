@@ -44,9 +44,34 @@
   transition: all 0.3s ease-in-out;
   margin-left: 10px;
   font-weight: bold;
+  width: 80px;
 }
 
-#addTask-btn:hover {
+.addTaskBTNmobile{
+  cursor: pointer;
+  background-color: #2a3647;
+  color: #fff;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+  height: 100%;
+  font-size: 35px;
+  font-weight: bold;
+  padding: 2px 8px;
+  display: none;
+}
+
+.addTaskBTNmobile p{
+  margin: unset;
+}
+
+.row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#addTask-btn:hover, .addTaskBTNmobile:hover {
   background-color: #03a9f4;
   transition: all 0.3s ease-in-out;
 }

@@ -1,18 +1,4 @@
 @media (max-width: 575.98px) {
-    .board {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .board div {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .board div img {
-        width: 20px;
-        height: 20px;
-    }
 
     .tasks h2, .box-text h3, #urgentTasks{
         font-size: 2rem;
@@ -95,22 +81,26 @@
 
 }
 
-@media (max-width:850px) {
-    .searchfield {
-        flex-direction: column;
-        align-items: center;
-        gap: 5px
+
+
+@media (max-width: 980px){
+    #addTask-btn{
+        display: none;
     }
 
     .search-icon {
-        right: 15px;
+        right: 11px;
     }
 
+    .addTaskBTNmobile{
+        display: flex;
+    }
 
-
-
+    .board {
+        flex-direction: column;
+        align-items: center;
+    }
 }
-
 
 
 @media (max-width: 1027px) {
@@ -174,7 +164,6 @@
 
 
 @media (max-width: 1350px) {
-
 
     .tasks{
         padding: unset;
