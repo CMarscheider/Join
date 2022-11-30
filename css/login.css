@@ -17,6 +17,26 @@ body {
     margin-right: 20px;
 }
 
+/* .slide-bck-tl {
+	-webkit-animation: slide-bck-tl 0.45s ease-in-out both;
+	        animation: slide-bck-tl 0.45s ease-in-out both;
+} */
+
+.slide-bck-tl {
+    animation: slide-out-bck-tl 1s cubic-bezier(.55, .085, .68, .53) .1s both
+}
+
+@keyframes slide-bck-tl {
+    0% {
+        transform: translateZ(0) translateY(calc(100vh / 2)) translateX(calc(100vw / 2));
+        opacity: 0.2
+    }
+    100% {
+          
+            opacity: 1
+        }
+    }
+  
 .logincontainer {
     display: flex;
     justify-content: center;

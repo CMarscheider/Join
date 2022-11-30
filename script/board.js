@@ -130,7 +130,7 @@ function showOpenTaskPopup(i) {
   document.getElementById('titlePopup').innerHTML = allTasks[i].title;
   document.getElementById('descriptionPopup').innerHTML = allTasks[i].description;
   document.getElementById('datePopup').innerHTML = `<b>Due Date:</b> ${allTasks[i].date}`;
-  document.getElementById('prio').innerHTML = `<div class="prio-container-popup"><b>Priority:</b> <span id="prio-status">${allTasks[i].prio} <img id="prio-icon" src="./assets/img/Prio_alta.png"></span></div>`;
+  document.getElementById('prio').innerHTML = `<div class="prio-container-popup"><b>Priority:</b> <span id="prio-status">${allTasks[i].prio} <img id="prioIcon${i}" src="./assets/img/Prio_alta.png"></span></div>`;
   document.getElementById('btnHolder').innerHTML =/*html*/`
 <img class="editButton" src="./assets/img/todo.png" alt="edit" onclick="editTask(${i})">
   `;
@@ -149,6 +149,9 @@ function showOpenTaskPopup(i) {
   </div>
     `;
     styleAssignedCircles(j);
+    printTask = allTasks[i];
+  checkTaskPrio(printTask, i);
+
   }
 }
 

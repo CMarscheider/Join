@@ -76,6 +76,10 @@
         justify-content: center;
     }
 
+    #taskPopup{
+        width: 93vw;
+        height: 95vh;
+    }
 
 }
 
