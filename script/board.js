@@ -123,7 +123,7 @@ function showOpenTaskPopup(i) {
 </div>
 <div id="btnHolder"></div>
 `;
-
+  document.getElementById('popUpBackground').classList.add('popUpBackground');
   document.getElementById('taskPopup').classList.remove('d-none');
   document.getElementById('categoryPopup').innerHTML = allTasks[i].category.name;
   document.getElementById('categoryPopup').style.background = allTasks[i].category.color;
@@ -293,6 +293,7 @@ function styleAssignedCircles(j) {
 }
 
 function cancelTaskPopup() {
+  document.getElementById('popUpBackground').classList.remove('popUpBackground');
   document.getElementById('taskPopup').classList.add('d-none');
 }
 

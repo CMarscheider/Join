@@ -5,7 +5,7 @@
     }
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 788.98px) {
     .maincontainer {
         flex-direction: column-reverse;
     }
@@ -45,8 +45,6 @@
     .wrapper {
         height: 80vh;
         overflow-y: scroll;
-        justify-content: center;
-        flex-direction: column;
     }
 
     .greetings {
