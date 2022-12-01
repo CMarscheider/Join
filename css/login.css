@@ -3,40 +3,105 @@ body {
     font-size: 0.7rem;
 }
 
-.header{
+.header {
+    position: relative;
     height: 20vh;
     background-color: lightgrey;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-right: 10%;
 }
 
-.header p{
+.header p {
     margin-right: 20px;
 }
 
-/* .slide-bck-tl {
-	-webkit-animation: slide-bck-tl 0.45s ease-in-out both;
-	        animation: slide-bck-tl 0.45s ease-in-out both;
-} */
 
-.slide-bck-tl {
-    animation: slide-out-bck-tl 1s cubic-bezier(.55, .085, .68, .53) .1s both
+.test {
+    padding-left: 10%;
+    position: absolute;
+    top: 0;
+    margin-top: 1rem;
+    width: 70px;
+    animation-name: logoToLeft;
+    animation-duration: 225ms;
+    animation-timing-function: linear;
+    z-index: 999;
+
 }
 
-@keyframes slide-bck-tl {
+.test img{
+    margin-left: 10%;
+}
+
+@keyframes logoToLeft {
     0% {
-        transform: translateZ(0) translateY(calc(100vh / 2)) translateX(calc(100vw / 2));
-        opacity: 0.2
+        left: 50%;
+        top: calc(50% + 10vh);
+        transform: translate(-50%, -50%);
+        transform: scale(3);
+        padding-left: 0%;
     }
+
+    50% {
+        left: 25%;
+        top: 25%;
+        transform: scale(2);
+        padding-left: 0%;
+    }
+
     100% {
-          
-            opacity: 1
-        }
+        left: 0px;
+        top: 0px;
+        transform: scale(1);
+        padding-left: 10%;
     }
-  
+}
+
+#animation{
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    z-index: 0;
+    background-color: white;
+    animation-name: loadIndexBG;
+    animation-duration: 800ms;
+    display: none;
+}
+
+
+@keyframes loadIndexBG{
+    0% {
+        background-color:#4589FF;
+        z-index: 50;
+    }
+    25% {
+        background-color:#4589FF;
+    }
+
+    50% {
+        background-color:#4589FF;
+
+    }
+
+    75% {
+        background-color: #4589FF;
+
+    }
+
+    100% {
+        background-color: white;
+        z-index: 0;
+    }
+}
+
+.relative{
+    position: relative;;
+}
+
 .logincontainer {
     display: flex;
     justify-content: center;
@@ -61,7 +126,7 @@ body {
 
 }
 
-.loginform a{
+.loginform a {
     text-decoration: none;
 }
 
@@ -70,7 +135,7 @@ body {
     flex-direction: column;
 }
 
-.logincontent{
+.logincontent {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -86,7 +151,7 @@ body {
     margin-bottom: 10px;
 }
 
-.input img{
+.input img {
     width: 20px;
     height: 20px;
 }
@@ -111,18 +176,18 @@ body {
     background-color: white;
 }
 
-.center{
+.center {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.buttons{
+.buttons {
     display: flex;
     justify-content: space-between;
 }
 
-.back{
+.back {
     position: absolute;
     top: 20px;
     left: 20px;
