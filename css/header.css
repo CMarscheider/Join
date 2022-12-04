@@ -14,11 +14,16 @@
     align-items: center;
 }
 
+.icons-header a{
+    display: block;
+    height: 30px;
+    width: 30px;
+}
+
 .profile-picture{
     width: 50px;
     height: 50px;
     border-radius: 100%;
-    border: 2px solid black;
     margin-left: 16px;
     margin-right: 16px;
 }
@@ -26,4 +31,10 @@
 .white {
     background-color: white;
     height: 60px;
+}
+
+.header-logo{
+    display: none;
+    height: 70px;
+    width: 60px;
 }

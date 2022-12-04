@@ -1,6 +1,24 @@
 body {
     margin: 0;
     font-size: 0.7rem;
+    animation-name: fadeIn;
+    animation-duration: 900ms;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    50%{
+        opacity: 0.5;
+    }
+
+    100%{
+        opacity: 1;
+
+    }
+
 }
 
 .header {
@@ -18,20 +36,20 @@ body {
 }
 
 
-.test {
+.logo-animation {
     padding-left: 10%;
     position: absolute;
     top: 0;
     margin-top: 1rem;
     width: 70px;
     animation-name: logoToLeft;
-    animation-duration: 225ms;
+    animation-duration: 450ms;
     animation-timing-function: linear;
     z-index: 999;
 
 }
 
-.test img{
+.logo-animation img{
     margin-left: 10%;
 }
 
@@ -59,7 +77,7 @@ body {
     }
 }
 
-#animation{
+.relative{
     position: fixed;
     align-items: center;
     justify-content: center;
@@ -68,7 +86,7 @@ body {
     z-index: 0;
     background-color: white;
     animation-name: loadIndexBG;
-    animation-duration: 800ms;
+    animation-duration: 460ms;
     display: none;
 }
 
@@ -77,6 +95,7 @@ body {
     0% {
         background-color:#4589FF;
         z-index: 50;
+        display: flex;
     }
     25% {
         background-color:#4589FF;
@@ -94,13 +113,12 @@ body {
 
     100% {
         background-color: white;
-        z-index: 0;
     }
 }
 
-.relative{
-    position: relative;;
-}
+/* .relative{
+    position: absolute;
+} */
 
 .logincontainer {
     display: flex;

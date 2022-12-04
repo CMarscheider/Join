@@ -45,6 +45,7 @@
     width: 300px;
     min-height: 100vh;
     min-width: 190px;
+    z-index: 1;
 }
 
 .aside img {
