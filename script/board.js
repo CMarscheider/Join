@@ -14,10 +14,10 @@ let fulfillment;
 function showInputsForm() {
   alert('Ausgeführt');
   if (window.location.href.indexOf("board") > -1) {
-    document.getElementById('boardform').classList.remove('d-none');
+    document.getElementById('form-board').classList.remove('d-none');
   } else if  
     (window.location.href.indexOf("contacts") > -1) {
-    document.getElementById('conactsform').classList.remove('d-none');
+    document.getElementById('form-contacts').classList.remove('d-none');
   }
 }
 
@@ -25,10 +25,10 @@ function closeInputsForm() {
 /*   document.getElementById('form').classList.add('d-none'); */
 
   if (window.location.href.indexOf("board") > -1) {
-    document.getElementById('boardform').classList.add('d-none');
+    document.getElementById('form-board').classList.add('d-none');
   } else if  
     (window.location.href.indexOf("contacts") > -1) {
-    document.getElementById('conactsform').classList.add('d-none');
+    document.getElementById('form-contacts').classList.add('d-none');
   }
 }
 
