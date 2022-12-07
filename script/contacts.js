@@ -57,8 +57,8 @@ function renderContacts(name, mail, firstLetter, i, id) {
 </div>
 `;
 
-let icon = document.getElementById(`${id}`);
-icon.style.backgroundColor = color;
+    let icon = document.getElementById(`${id}`);
+    icon.style.backgroundColor = color;
 }
 
 
@@ -89,22 +89,29 @@ function openContact(mail, name, backgroundColor) {
     </div>
     <div class="name-and-button">
         <h2>${splittedName[0].charAt(0).toUpperCase()}${splittedName[0].slice(1)} ${splittedName[1].charAt(0).toUpperCase()}${splittedName[1].slice(1)}</h2>
-        <p>+ Add Task</p>
+        <p onclick="showInputsForm()">+ Add Task</p>
     </div>
 
 </div>
-<div class="edit">
+<!-- <div class="edit">
     <p>Contact Information</p>
     <div class="editbutton">
         <img src="./assets/img/editbutton.png" alt="edit">
         <p>Edit Contact</p>
     </div>
-</div>
+</div> -->
 <div class="mail-and-phone">
     <h3>Email</h3>
     <p class="mail">${mail}</p>
     <h3>Phone</h3>
     <p>018475633948</p>
+</div>
+
+<div class="addcontact">
+    <div class="contactbutton">
+        <p>NEW CONTACT</p>
+        <img src="./assets/img/contactlogo.png" alt="">
+    </div>
 </div>
     `;
 

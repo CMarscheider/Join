@@ -111,8 +111,10 @@
     gap: 10px;
     width: 180px;
     font-weight: bold;
-    margin-top: 25%;
     margin-right: 10px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }
 
 .contactbutton:hover {
@@ -165,9 +167,7 @@
 }
 
 .displaycontactinfos {
-    width: 100px;
-    height: 100px;
-    animation: slide-bl 4s ease 0s 1 normal none;
+    animation: slide-bl 3s ease 0s 1 normal none;
 }
 
 @keyframes slide-bl {

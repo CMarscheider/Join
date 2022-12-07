@@ -12,7 +12,9 @@ let label;
 let fulfillment;
 
 function showInputsForm() {
-  document.getElementById('form').classList.remove('d-none');
+  alert('Ausgeführt');
+  console.log(document.querySelector(".hallo123"));
+  document.querySelectorAll(".hallo123").classList.remove('d-none');
 }
 
 function closeInputsForm() {

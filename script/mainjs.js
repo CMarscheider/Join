@@ -2,7 +2,6 @@ let users;
 let user;
 let color;
 
-
 /**
  * This functin is used to initialize the webpage
  * 
@@ -20,6 +19,8 @@ async function init() {
     if (window.location.href.indexOf("board") > -1) {
         startRendering();
     }
+
+
 
 }
 /**
