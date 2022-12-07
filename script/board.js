@@ -13,12 +13,23 @@ let fulfillment;
 
 function showInputsForm() {
   alert('Ausgeführt');
-  console.log(document.querySelector(".hallo123"));
-  document.querySelectorAll(".hallo123").classList.remove('d-none');
+  if (window.location.href.indexOf("board") > -1) {
+    document.getElementById('boardform').classList.remove('d-none');
+  } else if  
+    (window.location.href.indexOf("contacts") > -1) {
+    document.getElementById('conactsform').classList.remove('d-none');
+  }
 }
 
 function closeInputsForm() {
-  document.getElementById('form').classList.add('d-none');
+/*   document.getElementById('form').classList.add('d-none'); */
+
+  if (window.location.href.indexOf("board") > -1) {
+    document.getElementById('boardform').classList.add('d-none');
+  } else if  
+    (window.location.href.indexOf("contacts") > -1) {
+    document.getElementById('conactsform').classList.add('d-none');
+  }
 }
 
 function resetAllTasks(openTasksContent, inProgressTasksContent, awaitingFeedbackContent, doneTasksContent) {
@@ -152,7 +163,7 @@ function showOpenTaskPopup(i) {
     `;
     styleAssignedCircles(j);
     printTask = allTasks[i];
-  checkTaskPrio(printTask, i);
+    checkTaskPrio(printTask, i);
 
   }
 }
@@ -213,7 +224,7 @@ function editTask(i) {
   document.getElementById('editTitle').value = allTasks[i]['title'];
   document.getElementById('editDescription').value = allTasks[i]['description'];
   document.getElementById('editDate').value = allTasks[i]['date'];
-prio = allTasks[i]['prio'];
+  prio = allTasks[i]['prio'];
   setPrioColor(i);
 }
 
