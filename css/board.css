@@ -47,7 +47,7 @@
   width: 80px;
 }
 
-.addTaskBTNmobile{
+.addTaskBTNmobile {
   cursor: pointer;
   background-color: #2a3647;
   color: #fff;
@@ -60,18 +60,19 @@
   display: none;
 }
 
-.addTaskBTNmobile p{
+.addTaskBTNmobile p {
   margin: unset;
 }
 
-.row{
+.row {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 }
 
-#addTask-btn:hover, .addTaskBTNmobile:hover {
+#addTask-btn:hover,
+.addTaskBTNmobile:hover {
   background-color: #03a9f4;
   transition: all 0.3s ease-in-out;
 }
@@ -229,7 +230,7 @@ label {
   white-space: nowrap;
 }
 
-.popUpBackground{
+.popUpBackground {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -237,7 +238,7 @@ label {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.wrapper{
+.wrapper {
   position: relative;
 }
 
@@ -265,10 +266,13 @@ label {
   padding: 5px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
-#prio-icon {
+.prio-container-popup span img {
   filter: brightness(0) invert(1);
+  width: 20px;
+  height: 10px;
 }
 
 #assigendToContainer {
@@ -349,4 +353,3 @@ input {
   justify-content: flex-end;
   align-items: center;
 }
-
