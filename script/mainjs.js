@@ -64,3 +64,25 @@ function generateRandomColor() {
     var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
     color = randomColor;
 }
+
+
+//Header logout button
+
+var menuIsOpen = false;
+
+function onImageClick() {
+  if (menuIsOpen) {
+    // Schließen des Kontextmenüs
+    document.getElementById('context-menu').style.display = 'none';
+    menuIsOpen = false;
+  } else {
+    // Öffnen des Kontextmenüs
+    document.getElementById('context-menu').style.display = 'block';
+    menuIsOpen = true;
+  }
+}
+
+
+function logOutUser() {
+    window.location.href = './login.html';
+}
