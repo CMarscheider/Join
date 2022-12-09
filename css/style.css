@@ -1,13 +1,13 @@
 @font-face {
   font-family: 'inter';
-  src: url('./assets/fonts/inter.ttf');
+  src: url('../assets/fonts/inter.ttf');
 }
 
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'inter tight';
+  font-family: 'inter';
 }
 /* Scrollbar start */
 
@@ -18,19 +18,18 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #2A3647; 
-border-radius: 50px;
-
+  background: #2a3647;
+  border-radius: 50px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
 /* scrollbar end */
 
@@ -60,16 +59,16 @@ a {
   width: 100%;
 }
 
-.headline-mobile{
+.headline-mobile {
   display: none !important;
   padding: 12px !important;
 }
 
-.pipeline{
+.pipeline {
   height: 3px;
   width: 7rem;
   margin: 20px 0;
-  background-color: #29ABE2;
+  background-color: #29abe2;
   display: block;
 }
 
