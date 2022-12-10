@@ -354,3 +354,11 @@ input {
   justify-content: flex-end;
   align-items: center;
 }
+
+#form-board {
+  position: absolute;
+  top: 20%;
+  left: 15%;
+  width: 70%;
+  z-index: 2;
+}
