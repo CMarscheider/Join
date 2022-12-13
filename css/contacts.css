@@ -180,3 +180,12 @@
         transform: translateX(0);
     }
 }
+
+
+#form-contacts {
+    position: absolute;
+    top: 20%;
+    left: 15%;
+    width: 70%;
+    z-index: 2;
+}
