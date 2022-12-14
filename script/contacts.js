@@ -1,6 +1,7 @@
 let letters = [];
 let splittedName = [];
 let contacts;
+let contactsOpenForMobile = false;
 
 /* users in contacts pushen */
 
@@ -45,6 +46,8 @@ function splitName(name) {
 
 function renderContacts(name, mail, firstLetter, i, id) {
 
+
+
     document.getElementById(`${firstLetter.toUpperCase()}`).innerHTML +=/*html*/`
     <div class="singleContact" onclick="openContact('${mail}', '${name}', '${color}')">
         <div class="contactIcon" id="${id}">
@@ -81,8 +84,20 @@ function printLetters(firstLetter, contactlist) {
 }
 
 function openContact(mail, name, backgroundColor) {
+
+    if (window.innerWidth < 620) {
+        document.getElementById("contactlist").style.display = "none";
+        document.getElementById("contactinfo").style.width = "100%";
+        document.getElementById("contactinfo").style.display = "block";
+        document.getElementById("backarrow").style.display = "block";
+        contactsOpenForMobile = true;
+    }
+
+
+
     splitName(name);
     document.getElementById('displaycontactinfos').innerHTML =/*html*/`
+
     <div class="infocontainer" id="infocontainer">
     <div class="photo" id ="photo">
         <span>${splittedName[0].charAt(0).toUpperCase()}${splittedName[1].charAt(0).toUpperCase()}</span>
@@ -116,4 +131,42 @@ function openContact(mail, name, backgroundColor) {
     `;
 
     document.getElementById('photo').style.backgroundColor = backgroundColor;
+}
+
+
+function handleWindowResize() {
+    if (!contactsOpenForMobile) {
+        if (window.innerWidth < 620) {
+            /*       // blende das erste Fenster ein
+                  document.getElementById("first-window").style.display = "block"; */
+            // blende das zweite Fenster aus
+            document.getElementById("contactinfo").style.display = "none";
+            document.getElementById("contactlist").style.width = "100%";
+        } else {
+            /*       // blende das erste Fenster aus
+                  document.getElementById("first-window").style.display = "none"; */
+            // blende das zweite Fenster ein
+            document.getElementById("contactinfo").style.display = "block";
+            document.getElementById("contactlist").style.width = "40%";
+
+        }
+    } else{
+        console.log("ich mache nichts")
+    }
+
+
+}
+
+// füge den Event-Handler dem window-Objekt hinzu
+window.addEventListener("resize", handleWindowResize);
+
+function backToContactList(){
+    if (window.innerWidth < 620) {
+        document.getElementById("contactlist").style.display = "block";
+        document.getElementById("contactlist").style.width = "100%";
+        document.getElementById("contactinfo").style.display = "none";
+        document.getElementById("backarrow").style.display = "none";
+        contactsOpenForMobile = true;
+        handleWindowResize();
+    }
 }

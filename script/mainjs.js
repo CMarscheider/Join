@@ -85,4 +85,7 @@ function onImageClick() {
 
 function logOutUser() {
     window.location.href = './login.html';
+    user = undefined;
+    localStorage.clear();
+
 }
