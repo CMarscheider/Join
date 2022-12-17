@@ -150,8 +150,8 @@ function handleWindowResize() {
             document.getElementById("contactlist").style.width = "40%";
 
         }
-    } else{
-        console.log("ich mache nichts")
+    } else {
+        location.reload();
     }
 
 
@@ -160,7 +160,7 @@ function handleWindowResize() {
 // füge den Event-Handler dem window-Objekt hinzu
 window.addEventListener("resize", handleWindowResize);
 
-function backToContactList(){
+function backToContactList() {
     if (window.innerWidth < 620) {
         document.getElementById("contactlist").style.display = "block";
         document.getElementById("contactlist").style.width = "100%";
@@ -168,5 +168,8 @@ function backToContactList(){
         document.getElementById("backarrow").style.display = "none";
         contactsOpenForMobile = true;
         handleWindowResize();
+    }
+    else {
+        contactsOpenForMobile = false;
     }
 }

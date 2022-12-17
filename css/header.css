@@ -28,6 +28,10 @@
     margin-right: 16px;
 }
 
+.profile-picture:hover{
+    cursor: pointer;
+}
+
 .white {
     background-color: white;
     height: 60px;
@@ -54,6 +58,7 @@
     padding-right: 40px;
     padding-top: 20px;
     padding-bottom: 20px;
+    z-index: 999;
 }
 
 .logout:hover {

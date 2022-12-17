@@ -5,16 +5,23 @@ body {
     animation-duration: 900ms;
 }
 
+h1 {
+    font-size: 4rem;
+    margin: unset;
+    margin-bottom: 30px;
+
+}
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
     }
 
-    50%{
+    50% {
         opacity: 0.5;
     }
 
-    100%{
+    100% {
         opacity: 1;
 
     }
@@ -49,7 +56,7 @@ body {
 
 }
 
-.logo-animation img{
+.logo-animation img {
     margin-left: 10%;
 }
 
@@ -77,7 +84,7 @@ body {
     }
 }
 
-.relative{
+.relative {
     position: fixed;
     align-items: center;
     justify-content: center;
@@ -91,18 +98,19 @@ body {
 }
 
 
-@keyframes loadIndexBG{
+@keyframes loadIndexBG {
     0% {
-        background-color:#4589FF;
+        background-color: #4589FF;
         z-index: 50;
         display: flex;
     }
+
     25% {
-        background-color:#4589FF;
+        background-color: #4589FF;
     }
 
     50% {
-        background-color:#4589FF;
+        background-color: #4589FF;
 
     }
 
@@ -128,6 +136,17 @@ body {
     height: 80vh;
 }
 
+.logincontainer span {
+    height: 3px;
+    width: 170px;
+    background-color: #4589FF;
+    margin-bottom: 30px;
+}
+
+.forgotPassword{
+    color: #4589FF;
+}
+
 .loginform {
     position: relative;
     border-radius: 30px;
@@ -137,12 +156,13 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 50%;
-    height: 50%;
+    min-width: 600px;
+    min-height: 400px;
     background-color: white;
-    padding: 15px;
+    padding: 20px;
 
 }
+
 
 .loginform a {
     text-decoration: none;
@@ -162,11 +182,11 @@ body {
 
 .input {
     border-radius: 10px;
-    border: 1px solid grey;
+    border: 1px solid lightgrey;
     display: flex;
     justify-content: space-between;
     padding: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 
 .input img {
@@ -176,19 +196,23 @@ body {
 
 .input input {
     border: 0;
-    width: 100%;
+    width: 400px;
+}
+
+button {
+    border-radius: 4px;
+    width: 100px;
+    height: 35px;
 }
 
 .login-btn {
     border: 1px solid #2A3647;
     background-color: #2A3647;
     color: white;
-    border-radius: 8px;
     padding: 5px;
 }
 
 .guest-btn {
-    border-radius: 8px;
     border: 1px solid black;
     padding: 5px;
     background-color: white;

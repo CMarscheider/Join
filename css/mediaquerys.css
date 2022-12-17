@@ -10,13 +10,7 @@
 
 }
 
-@media (max-width: 630px) {
-
-
-
-
-
-}
+@media (max-width: 630px) {}
 
 @media (max-width: 788.98px) {
     .maincontainer {
@@ -102,6 +96,23 @@
         bottom: calc(10vh + 10px);
     }
 
+    .hide-in-mobile {
+        display: none;
+    }
+
+    .loginform {
+        min-width: unset;
+    }
+
+    .buttons{
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .input{
+        max-width: 250px;
+    }
 }
 
 
