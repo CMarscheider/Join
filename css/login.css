@@ -130,6 +130,7 @@ h1 {
 
 .logincontainer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: lightgrey;
@@ -233,4 +234,8 @@ button {
     position: absolute;
     top: 20px;
     left: 20px;
+}
+
+.hide-in-desktop{
+    display: none;
 }

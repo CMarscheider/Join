@@ -113,6 +113,14 @@
     .input{
         max-width: 250px;
     }
+
+    .hide-in-desktop{
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-between;
+        width: 270px;
+    }
+
 }
 
 
