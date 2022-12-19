@@ -239,3 +239,11 @@ a {
   width: 100vw !important;
   height: 100vh !important;
 }
+
+.d-block{
+  display: block;
+}
+
+.d-none{
+  display: none !important;
+}

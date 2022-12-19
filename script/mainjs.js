@@ -71,15 +71,15 @@ function generateRandomColor() {
 var menuIsOpen = false;
 
 function onImageClick() {
-  if (menuIsOpen) {
-    // Schließen des Kontextmenüs
-    document.getElementById('context-menu').style.display = 'none';
-    menuIsOpen = false;
-  } else {
-    // Öffnen des Kontextmenüs
-    document.getElementById('context-menu').style.display = 'block';
-    menuIsOpen = true;
-  }
+    if (menuIsOpen) {
+        // Schließen des Kontextmenüs
+        document.getElementById('context-menu').style.display = 'none';
+        menuIsOpen = false;
+    } else {
+        // Öffnen des Kontextmenüs
+        document.getElementById('context-menu').style.display = 'block';
+        menuIsOpen = true;
+    }
 }
 
 
@@ -88,4 +88,8 @@ function logOutUser() {
     user = undefined;
     localStorage.clear();
 
+}
+
+function resendPassword(){
+    
 }

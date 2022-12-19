@@ -88,7 +88,7 @@ function openContact(mail, name, backgroundColor) {
     if (window.innerWidth < 620) {
         document.getElementById("contactlist").style.display = "none";
         document.getElementById("contactinfo").style.width = "100%";
-        document.getElementById("contactinfo").style.display = "block";
+        document.getElementById("contactinfo").classList.remove('d-none');
         document.getElementById("backarrow").style.display = "block";
         contactsOpenForMobile = true;
     }
@@ -135,26 +135,32 @@ function openContact(mail, name, backgroundColor) {
 
 
 function handleWindowResize() {
-    if (!contactsOpenForMobile) {
-        if (window.innerWidth < 620) {
-            /*       // blende das erste Fenster ein
-                  document.getElementById("first-window").style.display = "block"; */
-            // blende das zweite Fenster aus
-            document.getElementById("contactinfo").style.display = "none";
-            document.getElementById("contactlist").style.width = "100%";
+
+    if (window.location.href.indexOf("contacts") > -1) {
+        if (!contactsOpenForMobile) {
+            if (window.innerWidth < 620) {
+                /*       // blende das erste Fenster ein
+                      document.getElementById("first-window").style.display = "block"; */
+                // blende das zweite Fenster aus
+                if (!document.getElementById("contactinfo").classList.contains('d-none')) {
+                    document.getElementById("contactinfo").classList.add('d-none')
+                }
+
+                document.getElementById("contactlist").style.width = "100%";
+            } else {
+                /*       // blende das erste Fenster aus
+                      document.getElementById("first-window").style.display = "none"; */
+                // blende das zweite Fenster ein
+                if (document.getElementById("contactinfo").classList.contains('d-none')) {
+                    document.getElementById("contactinfo").classList.remove('d-none')
+                }
+                document.getElementById("contactlist").style.width = "40%";
+
+            }
         } else {
-            /*       // blende das erste Fenster aus
-                  document.getElementById("first-window").style.display = "none"; */
-            // blende das zweite Fenster ein
-            document.getElementById("contactinfo").style.display = "block";
-            document.getElementById("contactlist").style.width = "40%";
-
+            location.reload();
         }
-    } else {
-        location.reload();
     }
-
-
 }
 
 // füge den Event-Handler dem window-Objekt hinzu
@@ -171,5 +177,6 @@ function backToContactList() {
     }
     else {
         contactsOpenForMobile = false;
+        handleWindowResize();
     }
 }

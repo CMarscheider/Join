@@ -129,6 +129,7 @@ h1 {
 } */
 
 .logincontainer {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -238,4 +239,45 @@ button {
 
 .hide-in-desktop{
     display: none;
+}
+
+.loginform h2{
+    text-align: center;
+}
+
+.buttons-forgot-password{
+    display: flex;
+    justify-content: center;
+}
+
+.forgot-btn{
+    width: auto;
+}
+
+.msgBox {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    bottom: 30px;
+    background-color: #2A3647;
+    color: white;
+    border-radius: 4px;
+    padding: 10px;
+    animation: slide-from-bottom 2s ease 0s 1 normal none;
+}
+
+@keyframes slide-from-bottom {
+
+    0% {
+        opacity: 0;
+        transform: translateY(1500px);
+    }
+
+    90%{
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
