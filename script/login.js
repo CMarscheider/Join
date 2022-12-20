@@ -20,6 +20,8 @@ function openSignUp() {
 function resendPassword() {
     document.getElementById('email-pw-forgot').value = "";
     document.getElementById('msgBox-forgot-password').classList.add('msgBox');
+    document.getElementById('msgBox-forgot-password').classList.remove('d-none');
+
 }
 
 function openResetPassword() {
@@ -29,7 +31,6 @@ function openResetPassword() {
 function resetPassword() {
     let password_1 = document.getElementById('email-reset-pw').value;
     let password_2 = document.getElementById('email-reset-pw1').value;
-
     if (password_1 == password_2) {
         document.getElementById('email-reset-pw').value = "";
         document.getElementById('email-reset-pw1').value = "";
