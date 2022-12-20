@@ -121,6 +121,10 @@
         width: 270px;
     }
 
+    .helpcontent {
+        height: calc(80vh - 4px);
+    }
+
 .hide-nav-in-desktop{
     display: block;
 }
