@@ -27,20 +27,18 @@ function openResetPassword() {
 }
 
 function resetPassword() {
-
     let password_1 = document.getElementById('email-reset-pw').value;
     let password_2 = document.getElementById('email-reset-pw1').value;
 
     if (password_1 == password_2) {
-        password_1 = "";
-        password_2 = "";
-        document.getElementById('msgBox-reset-password').classList.add('msgBox');
-
+        document.getElementById('email-reset-pw').value = "";
+        document.getElementById('email-reset-pw1').value = "";
+        document.getElementById('msgText').innerText ="You reset your password";
     } else {
-
-        document.getElementById('msgBox-reset-password').innerText == "The passwords do not match"
+        document.getElementById('msgText').innerText = "The passwords do not match";
         document.getElementById('msgBox-reset-password').classList.add('msgBox');
-
     }
+    document.getElementById('msgBox-reset-password').classList.add('msgBox');
+    document.getElementById('msgBox-reset-password').classList.remove('d-none');
 }
 
