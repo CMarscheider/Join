@@ -28,6 +28,9 @@ function closeInputsForm() {
   }
 }
 
+/**
+ * to empty all input fields
+ */
 function resetAllTasks(openTasksContent, inProgressTasksContent, awaitingFeedbackContent, doneTasksContent) {
   openTasksContent.innerHTML = '';
   inProgressTasksContent.innerHTML = '';
@@ -54,6 +57,9 @@ function startRendering() {
   }
 }
 
+/**
+ * to check the progressing of every task
+ */
 function checkProgressStatus(taskCategory, printTask, i, doneTasksContent, awaitingFeedbackContent, inProgressTasksContent, openTasksContent, ProgressbarValue, fulfillment) {
   if (printTask['status'] == 'open') {
     taskCategory = 'open';
@@ -78,6 +84,9 @@ function checkProgressStatus(taskCategory, printTask, i, doneTasksContent, await
   }
 }
 
+/**
+ * to reender all informations in the bottom of every task box
+ */
 function renderFooter(taskCategory, i, printTask) {
   let footer = document.getElementById(`footer${i}`);
   let assigend = printTask['assigned'][0];
@@ -91,6 +100,9 @@ function renderFooter(taskCategory, i, printTask) {
   }
 }
 
+/**
+ * to check the priorty status of every task and show the priority icon
+ */
 function checkTaskPrio(printTask, i) {
   let img = document.getElementById(`prioIcon${i}`);
   if (printTask.prio == 'urgent') {
@@ -102,6 +114,9 @@ function checkTaskPrio(printTask, i) {
   }
 }
 
+/**
+ * to give css style to the category information in every task box
+ */
 function styleCategory(printTask, b) {
   let cat = document.getElementById(`category${b}`);
   cat.style.backgroundColor = printTask.category.color;
@@ -114,6 +129,9 @@ function styleCategory(printTask, b) {
   cat.style.textTransform = 'uppercase';
 }
 
+/**
+ * to show the popup after click on the task box
+ */
 function showOpenTaskPopup(i) {
   document.getElementById('taskPopup').innerHTML = createTaskContentHTML();
   document.getElementById('popUpBackground').classList.add('popUpBackground');
@@ -138,6 +156,9 @@ function showOpenTaskPopup(i) {
   }
 }
 
+/**
+ * to update task entered tasks
+ */
 function editTask(i) {
   let popup = document.getElementById('taskPopup');
   popup.innerHTML = editTaskContent(i);
@@ -148,6 +169,9 @@ function editTask(i) {
   setPrioColor(i);
 }
 
+/**
+ * to show and save the edited task
+ */
 async function pushEditTask(i) {
   let taskInputTitle = document.getElementById('editTitle').value;
   let dueDate = document.getElementById('editDate').value;
@@ -211,10 +235,23 @@ function styleAssignedCircles(j) {
   assigendCircels.style.backgroundColor = 'hsla(' + Math.random() * 360 + ', 100%, 50%, 1)';
   assigendCircels.style.padding = '10px';
   assigendCircels.style.borderRadius = '50%';
-  assigendCircels.style.minWidth = '20px';
-  assigendCircels.style.minHeight = '20px';
+  assigendCircels.style.minWidth = '30px';
+  assigendCircels.style.minHeight = '30px';
   assigendCircels.style.textAlign = 'center';
-  assigendCircels.style.color = '#E1D9D1';
+  assigendCircels.style.color = '#fff';
+  assigendCircels.style.display = 'grid';
+  assigendCircels.style.placeContent = 'center';
+}
+
+function getRandomColor() {
+  var r = Math.floor(Math.random() * 256); // Generate a random number between 0 and 255
+  var g = Math.floor(Math.random() * 256); // Generate a random number between 0 and 255
+  var b = Math.floor(Math.random() * 256); // Generate a random number between 0 and 255
+
+  // Convert the values to hexadecimal strings and concatenate them to create a hexadecimal string representing the color
+  var color = '#' + r.toString(16) + g.toString(16) + b.toString(16);
+
+  return color;
 }
 
 function cancelTaskPopup() {
@@ -234,7 +271,6 @@ function checkPriorityPopup(allTasks, i) {
   }
 }
 
-//Drag and Drop
 function startDragging(id) {
   currentDraggedElement = id;
   currentCategory = allTasks[currentDraggedElement]['status'];
