@@ -12,8 +12,8 @@ async function sortContacts() {
         let y = b.name.toUpperCase();
         return x == y ? 0 : x > y ? 1 : -1;
     });
-    console.log(users);
     renderContactList();
+    handleWindowResize();
 }
 
 function renderContactList() {
@@ -138,7 +138,7 @@ function handleWindowResize() {
 
     if (window.location.href.indexOf("contacts") > -1) {
         if (!contactsOpenForMobile) {
-            if (window.innerWidth < 620) {
+            if (window.innerWidth < 800) {
                 /*       // blende das erste Fenster ein
                       document.getElementById("first-window").style.display = "block"; */
                 // blende das zweite Fenster aus
@@ -167,7 +167,7 @@ function handleWindowResize() {
 window.addEventListener("resize", handleWindowResize);
 
 function backToContactList() {
-    if (window.innerWidth < 620) {
+    if (window.innerWidth < 800) {
         document.getElementById("contactlist").style.display = "block";
         document.getElementById("contactlist").style.width = "100%";
         document.getElementById("contactinfo").style.display = "none";
