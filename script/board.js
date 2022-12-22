@@ -6,6 +6,7 @@ let ProgressbarValue;
 let label;
 let fulfillment;
 
+
 /**
  * open task popup when user clicks on task box
  */
@@ -47,10 +48,18 @@ function startRendering() {
   let awaitingFeedbackContent = document.getElementById('todoAwaitingFeedbackContent');
   let doneTasksContent = document.getElementById('todoDoneContent');
   resetAllTasks(openTasksContent, inProgressTasksContent, awaitingFeedbackContent, doneTasksContent);
+  renderTaskSection(openTasksContent, inProgressTasksContent, awaitingFeedbackContent, doneTasksContent);
+}
+
+/**
+ * render a single box
+ */
+
+function renderTaskSection(openTasksContent, inProgressTasksContent, awaitingFeedbackContent, doneTasksContent) {
   for (let i = 0; i < allTasks.length; i++) {
     printTask = allTasks[i];
     checkProgressStatus(taskCategory, printTask, i, doneTasksContent, awaitingFeedbackContent, inProgressTasksContent, openTasksContent, ProgressbarValue, label, fulfillment);
-    renderFooter(taskCategory, i, printTask);
+    renderFooter(i, printTask);
     styleCategory(printTask, i);
     ProgressbarValue = document.getElementById(`progressbar${i}`).value;
     label = document.getElementById(`label${i}`);
@@ -87,7 +96,7 @@ function checkProgressStatus(taskCategory, printTask, i, doneTasksContent, await
 /**
  * to reender all informations in the bottom of every task box
  */
-function renderFooter(taskCategory, i, printTask) {
+function renderFooter(i, printTask) {
   let footer = document.getElementById(`footer${i}`);
   let assigend = printTask['assigned'][0];
   let firstLetter = assigend.charAt(0);
@@ -297,7 +306,7 @@ function searchTasks(value) {
     const searchTask = allTasks[i];
     if (searchTask.title.toLowerCase().includes(value)) {
       checkProgressStatus(taskCategory, searchTask, i, doneTasksContent, awaitingFeedbackContent, inProgressTasksContent, openTasksContent);
-      renderFooter(taskCategory, i, searchTask);
+      renderFooter(i, searchTask);
       styleCategory(searchTask, i);
     }
   }

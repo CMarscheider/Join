@@ -1,3 +1,67 @@
+@media (max-width: 350px) {}
+
+.todo {
+    width: 280px;
+}
+
+@media (max-width: 450px) {
+
+
+    #subtask::placeholder {
+        font-size: 10px;
+    }
+
+    #subtask {
+        width: 100px;
+
+    }
+
+    .button-container-end {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .button-container {
+        flex-direction: column;
+    }
+
+    #urgentButton,
+    #mediumButton,
+    #lowButton {
+        margin-top: 10px;
+    }
+
+    .links-container {
+        font-size: 10px;
+    }
+
+    .row1 {
+        width: 250px;
+    }
+
+    .box img,
+    .box1 img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .tasks {
+        width: 80px;
+        height: 80px;
+    }
+
+    .tasks h2,
+    .box-text h3,
+    #urgentTasks {
+        font-size: 1rem;
+    }
+
+    .tasks span,
+    .deadline span {
+        font-size: 10px;
+    }
+}
+
 @media (max-width: 575.98px) {
 
     .tasks h2,
@@ -5,14 +69,11 @@
     #urgentTasks {
         font-size: 2rem;
     }
-
-
-
 }
 
-@media (max-width: 630px) {}
 
 @media (max-width: 788.98px) {
+
     .maincontainer {
         flex-direction: column-reverse;
     }
@@ -81,6 +142,8 @@
     .content {
         padding: unset;
         width: unset;
+        justify-content: center;
+        align-items: center;
     }
 
     .contentbox {
@@ -88,8 +151,10 @@
     }
 
     #taskPopup {
-        width: 93vw;
-        height: 95vh;
+        height: 100%;
+        width: 100%;
+        border-radius: 0;
+        padding: 0;
     }
 
     .contactbutton {
@@ -104,17 +169,17 @@
         min-width: unset;
     }
 
-    .buttons{
+    .buttons {
         flex-direction: column;
         align-items: center;
         gap: 20px;
     }
 
-    .input{
+    .input {
         max-width: 250px;
     }
 
-    .hide-in-desktop{
+    .hide-in-desktop {
         margin-top: 40px;
         display: flex;
         justify-content: space-between;
@@ -125,9 +190,9 @@
         height: calc(80vh - 4px);
     }
 
-.hide-nav-in-desktop{
-    display: block;
-}
+    .hide-nav-in-desktop {
+        display: block;
+    }
 
 }
 
@@ -157,6 +222,8 @@
 
 
 @media (max-width: 1027px) {
+
+
 
     .name-and-button h2 {
         font-size: unset;
@@ -194,11 +261,10 @@
 
     .all-tasks-contnet {
         justify-content: center;
-        flex-direction: column;
     }
 
     .todo-content {
-        width: 80%;
+        width: 80% !important;
     }
 
     .box-footer :first-child {
@@ -286,4 +352,10 @@ width: 100%;
         padding: unset;
     }
 
+}
+
+@media (max-width: 1680px) {
+    .todo-content {
+        width: unset;
+    }
 }
