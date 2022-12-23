@@ -1,4 +1,69 @@
+@media (max-width: 350px) {}
+
+.todo {
+    width: 280px;
+}
+
+@media (max-width: 450px) {
+
+
+    #subtask::placeholder {
+        font-size: 10px;
+    }
+
+    #subtask {
+        width: 100px;
+
+    }
+
+    .button-container-end {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .button-container {
+        flex-direction: column;
+    }
+
+    #urgentButton,
+    #mediumButton,
+    #lowButton {
+        margin-top: 10px;
+    }
+
+    .links-container {
+        font-size: 10px;
+    }
+
+    .row1 {
+        width: 250px;
+    }
+
+    .box img,
+    .box1 img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .tasks {
+        width: 80px;
+        height: 80px;
+    }
+
+    .tasks h2,
+    .box-text h3,
+    #urgentTasks {
+        font-size: 1rem;
+    }
+
+    .tasks span,
+    .deadline span {
+        font-size: 10px;
+    }
+}
+
 @media (max-width: 575.98px) {
+<<<<<<< HEAD
   .tasks h2,
   .box-text h3,
   #urgentTasks {
@@ -13,6 +78,22 @@
   .maincontainer {
     flex-direction: column-reverse;
   }
+=======
+
+    .tasks h2,
+    .box-text h3,
+    #urgentTasks {
+        font-size: 2rem;
+    }
+}
+
+
+@media (max-width: 788.98px) {
+
+    .maincontainer {
+        flex-direction: column-reverse;
+    }
+>>>>>>> 023b6156fe4fe330535771fcb985fc07788aef5f
 
   .contacts-content {
     height: calc(80vh - 4px);
@@ -80,18 +161,36 @@
     width: unset;
   }
 
+<<<<<<< HEAD
   .contentbox {
     justify-content: center;
   }
+=======
+    .content {
+        padding: unset;
+        width: unset;
+        justify-content: center;
+        align-items: center;
+    }
+>>>>>>> 023b6156fe4fe330535771fcb985fc07788aef5f
 
   #taskPopup {
     width: 93vw;
     height: 95vh;
   }
 
+<<<<<<< HEAD
   .contactbutton {
     bottom: calc(10vh + 10px);
   }
+=======
+    #taskPopup {
+        height: 100%;
+        width: 100%;
+        border-radius: 0;
+        padding: 0;
+    }
+>>>>>>> 023b6156fe4fe330535771fcb985fc07788aef5f
 
   .hide-in-mobile {
     display: none;
@@ -107,6 +206,7 @@
     gap: 20px;
   }
 
+<<<<<<< HEAD
   .input {
     max-width: 250px;
   }
@@ -126,6 +226,32 @@
     display: block;
   }
 }
+=======
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .input {
+        max-width: 250px;
+    }
+
+    .hide-in-desktop {
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-between;
+        width: 270px;
+    }
+
+    .helpcontent {
+        height: calc(80vh - 4px);
+    }
+
+    .hide-nav-in-desktop {
+        display: block;
+    }
+>>>>>>> 023b6156fe4fe330535771fcb985fc07788aef5f
 
 @media (max-width: 980px) {
   #addTask-btn {
@@ -151,6 +277,7 @@
     font-size: unset;
   }
 
+<<<<<<< HEAD
   .headline {
     padding: 0;
     padding-left: 8%;
@@ -158,6 +285,13 @@
     justify-content: flex-start;
     align-items: flex-start;
   }
+=======
+
+
+    .name-and-button h2 {
+        font-size: unset;
+    }
+>>>>>>> 023b6156fe4fe330535771fcb985fc07788aef5f
 
   .infocontainer {
     margin-top: 10px;
@@ -186,6 +320,7 @@
     flex-direction: column;
   }
 
+<<<<<<< HEAD
   .todo-content {
     width: 80%;
   }
@@ -193,6 +328,15 @@
   .box-footer :first-child {
     padding-left: 20px;
   }
+=======
+    .all-tasks-contnet {
+        justify-content: center;
+    }
+
+    .todo-content {
+        width: 80% !important;
+    }
+>>>>>>> 023b6156fe4fe330535771fcb985fc07788aef5f
 
   .box-footer :nth-child(2) {
     margin-right: 100px;
@@ -265,7 +409,22 @@ width: 100%;
 }
 
 @media (max-width: 1350px) {
+<<<<<<< HEAD
   .tasks {
     padding: unset;
   }
 }
+=======
+
+    .tasks {
+        padding: unset;
+    }
+
+}
+
+@media (max-width: 1680px) {
+    .todo-content {
+        width: unset;
+    }
+}
+>>>>>>> 023b6156fe4fe330535771fcb985fc07788aef5f

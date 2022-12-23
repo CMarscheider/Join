@@ -16,10 +16,10 @@ async function sortContacts() {
     handleWindowResize();
 }
 
+
 function renderContactList() {
     let contactlist = document.getElementById('contactlist');
     contactlist.innerHTML = "";
-
     for (let i = 0; i < users.length; i++) {
         const contact = users[i];
         let mail = contact['email'];
@@ -31,9 +31,10 @@ function renderContactList() {
         splitName(name);
         generateRandomColor();
         renderContacts(name, mail, firstLetter, i, id);
-
     }
 }
+
+
 
 function splitName(name) {
     splittedName = [];
@@ -46,9 +47,7 @@ function splitName(name) {
 
 function renderContacts(name, mail, firstLetter, i, id) {
 
-
-
-    document.getElementById(`${firstLetter.toUpperCase()}`).innerHTML +=/*html*/`
+    document.getElementById(`${firstLetter.toUpperCase()}`).innerHTML += /*html*/`
     <div class="singleContact" onclick="openContact('${mail}', '${name}', '${color}')">
         <div class="contactIcon" id="${id}">
             <span>${splittedName[0].charAt(0).toUpperCase()}${splittedName[1].charAt(0).toUpperCase()}</span>
@@ -59,11 +58,9 @@ function renderContacts(name, mail, firstLetter, i, id) {
         </div>
 </div>
 `;
-
     let icon = document.getElementById(`${id}`);
     icon.style.backgroundColor = color;
 }
-
 
 
 function checkForLetters(firstLetter, contactlist) {
@@ -139,27 +136,27 @@ function handleWindowResize() {
     if (window.location.href.indexOf("contacts") > -1) {
         if (!contactsOpenForMobile) {
             if (window.innerWidth < 800) {
-                /*       // blende das erste Fenster ein
-                      document.getElementById("first-window").style.display = "block"; */
-                // blende das zweite Fenster aus
-                if (!document.getElementById("contactinfo").classList.contains('d-none')) {
-                    document.getElementById("contactinfo").classList.add('d-none')
-                }
-
+                changeLayout();
                 document.getElementById("contactlist").style.width = "100%";
             } else {
-                /*       // blende das erste Fenster aus
-                      document.getElementById("first-window").style.display = "none"; */
-                // blende das zweite Fenster ein
-                if (document.getElementById("contactinfo").classList.contains('d-none')) {
-                    document.getElementById("contactinfo").classList.remove('d-none')
-                }
+                resetLayout();
                 document.getElementById("contactlist").style.width = "40%";
-
             }
         } else {
             location.reload();
         }
+    }
+}
+
+function changeLayout() {
+    if (!document.getElementById("contactinfo").classList.contains('d-none')) {
+        document.getElementById("contactinfo").classList.add('d-none')
+    }
+}
+
+function resetLayout() {
+    if (document.getElementById("contactinfo").classList.contains('d-none')) {
+        document.getElementById("contactinfo").classList.remove('d-none')
     }
 }
 
