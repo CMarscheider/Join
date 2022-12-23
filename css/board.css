@@ -304,16 +304,17 @@ label {
 .editButton {
   border-radius: 8px;
   background-color: #2a3647;
-  padding: 5px;
+  padding: 5px 10px;
   position: absolute;
   bottom: 5px;
-  right: 5px;
+  right: 8px;
+  cursor: pointer;
 }
 
 .saveBtn {
   border-radius: 8px;
   background-color: #2a3647;
-  padding: 20px;
+  padding: 10px 20px;
   position: absolute;
   bottom: 5px;
   right: 5px;

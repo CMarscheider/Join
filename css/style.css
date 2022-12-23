@@ -43,6 +43,7 @@ body {
   height: 150px !important;
   padding: 12px;
   padding: 30% 0;
+  cursor: pointer;
 }
 
 .blue {
@@ -231,7 +232,7 @@ a {
   margin-left: 10%;
 }
 
-.formcontainer{
+.formcontainer {
   position: absolute !important;
   top: 0 !important;
   left: 0 !important;
@@ -240,10 +241,10 @@ a {
   height: 100vh !important;
 }
 
-.d-block{
+.d-block {
   display: block;
 }
 
-.d-none{
+.d-none {
   display: none !important;
 }

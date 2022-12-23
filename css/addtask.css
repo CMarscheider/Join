@@ -5,9 +5,7 @@
 
 .addtask-content {
   display: flex;
-  
 }
-
 
 .leftside-content {
   display: flex;
@@ -17,7 +15,6 @@
   background-color: #f6f7f8;
   padding-left: 8%;
   padding-right: 5%;
-  
 }
 
 .rightside-content {
@@ -25,16 +22,16 @@
   flex-direction: column;
   width: 50%;
   height: 60vh;
-  background-color: #F6F7F8;
+  background-color: #f6f7f8;
   padding-right: 8%;
   padding-left: 5%;
 }
 
 .headline-addtask {
-  background-color: rgb(246,247,248);
-    font-size: 2rem;
-    display: flex;
-    padding-left: 8%;
+  background-color: rgb(246, 247, 248);
+  font-size: 2rem;
+  display: flex;
+  padding-left: 8%;
 }
 
 .title-container {
@@ -69,8 +66,6 @@
   height: 4vh;
 }
 
-
-
 .prio-container {
   display: flex;
   flex-direction: column;
@@ -85,7 +80,6 @@
   border-radius: 10px;
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  
 }
 
 .prio-container button img {
@@ -94,7 +88,7 @@
 
 .prio-container button:hover {
   cursor: pointer;
-  transition: box-shadow .225s;
+  transition: box-shadow 0.225s;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
   color: black;
 }
@@ -127,8 +121,6 @@
   margin-top: 170px;
   margin-left: 80px;
 }
-
-
 
 .button-container-end button {
   display: flex;
@@ -175,6 +167,7 @@ option {
 
 .clear-button {
   background-color: white;
+  cursor: pointer;
 }
 
 .clear-button:hover {
@@ -185,6 +178,7 @@ option {
 .create-button {
   background-color: #2a3647;
   color: white;
+  cursor: pointer;
 }
 
 .create-button:hover {
@@ -224,28 +218,24 @@ option {
   bottom: 0;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  
 }
 
 #date {
   padding-left: 20px;
   padding-right: 20px;
-  
 }
 
-#date::-webkit-calendar-picker-indicator { 
+#date::-webkit-calendar-picker-indicator {
   height: 25px;
   width: 25px;
-} 
-
-
+}
 
 #checkboxes {
   display: none;
   border: 1px #dadada solid;
 }
 
-#editCheckBoxes{
+#editCheckBoxes {
   display: none;
   border: 1px #dadada solid;
 }
@@ -265,27 +255,23 @@ option {
   padding: 20px;
 }
 
-.flex label{
-    width: 100%;
+.flex label {
+  width: 100%;
 }
 
 .urgentButtonBackground {
-  background-color: #FF3D00 !important;
+  background-color: #ff3d00 !important;
 }
 
 .mediumButtonBackground {
-  background-color: #FFA800 !important;
+  background-color: #ffa800 !important;
 }
 
 .lowButtonBackground {
-  background-color: #7AE229 !important;
+  background-color: #7ae229 !important;
 }
 
-
-
-
 /******* Assigned to ***************/
-
 
 .subtaskInput {
   display: flex;
@@ -295,7 +281,6 @@ option {
   justify-content: space-between;
   padding: 0px 5px;
   border: 1px solid rgba(0, 0, 0, 0.2);
-
 }
 
 #subtask {
@@ -363,7 +348,6 @@ option {
   justify-content: flex-end;
 }
 
-.usercontainer{
+.usercontainer {
   display: flex;
-  
 }
