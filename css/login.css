@@ -190,10 +190,12 @@ h1 {
 .input img {
   width: 20px;
   height: 20px;
+  object-fit: contain;
 }
 
 .input input {
   border: 0;
+  outline: 0;
   width: 400px;
 }
 

@@ -209,7 +209,7 @@ label {
 
 /* Task Popup */
 #taskPopup {
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   width: 500px;
