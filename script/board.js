@@ -184,7 +184,6 @@ function editTask(i) {
 async function pushEditTask(i) {
   checkBoxes();
 
-
   let taskInputTitle = document.getElementById('editTitle').value;
   let dueDate = document.getElementById('editDate').value;
   let description = document.getElementById('editDescription').value;
@@ -193,8 +192,9 @@ async function pushEditTask(i) {
   allTasks[i].date = dueDate;
   allTasks[i].prio = prio;
 
-  allTasks[i].assigned = temporaryAssigned;
-
+  if (temporaryAssigned.length > 0) {
+    allTasks[i].assigned = temporaryAssigned;
+  }
   await backend.setItem('allTasks', JSON.stringify(allTasks));
   window.location.reload();
 }
