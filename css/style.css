@@ -254,3 +254,8 @@ a {
   margin-bottom: 2em;
   cursor: pointer;
 }
+
+#editCheckBoxes{
+  height: 180px;
+  overflow-y: scroll;
+}

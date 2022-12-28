@@ -5,7 +5,7 @@ let printTask;
 let ProgressbarValue;
 let label;
 let fulfillment;
-
+let assigendEdit;
 
 /**
  * open task popup when user clicks on task box
@@ -182,6 +182,9 @@ function editTask(i) {
  * to show and save the edited task
  */
 async function pushEditTask(i) {
+  checkBoxes();
+
+
   let taskInputTitle = document.getElementById('editTitle').value;
   let dueDate = document.getElementById('editDate').value;
   let description = document.getElementById('editDescription').value;
@@ -189,9 +192,14 @@ async function pushEditTask(i) {
   allTasks[i].description = description;
   allTasks[i].date = dueDate;
   allTasks[i].prio = prio;
+
+  allTasks[i].assigned = temporaryAssigned;
+
   await backend.setItem('allTasks', JSON.stringify(allTasks));
   window.location.reload();
 }
+
+
 
 function setPrioColor(i) {
   if (allTasks[i]['prio'] == 'low') {

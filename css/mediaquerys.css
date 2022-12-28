@@ -69,6 +69,16 @@
 }
 
 @media (max-width: 788.98px) {
+  #assigendToContainer {
+    height: 100%;
+    overflow-y: scroll;
+  }
+
+  #editCheckBoxes{
+    height: 80%;
+    overflow-y: scroll;
+  }
+
   .maincontainer {
     flex-direction: column-reverse;
   }

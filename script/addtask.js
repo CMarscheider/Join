@@ -10,16 +10,7 @@ let allSubtasks = [];
 let subTaskCounter = 0;
 let category;
 let currentColor;
-let allCategorys = [
-  /*   {
-      name: "Sales",
-      color: "red"
-    },
-    {
-      name: "Backoffice",
-      color: "lightblue"
-    }, */
-];
+let allCategorys = [];
 
 
 function checkAllInputs() {

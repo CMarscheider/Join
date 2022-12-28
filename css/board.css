@@ -233,7 +233,7 @@ label {
 }
 
 .popUpBackground {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   z-index: 99999;
@@ -280,6 +280,8 @@ label {
 #assigendToContainer {
   display: flex;
   flex-direction: column;
+  height: 280px;
+  overflow-y: scroll;
 }
 
 .assigned-box {
