@@ -66,7 +66,6 @@ function editTaskContent(i) {
   <input type="date" id="editDate">
   <span>Prio</span>
   <div class="prio-container">
-          <p><b>Prio</b></p>
           <div class="button-container">
             <button type="button" id="urgentButtonEdit" onclick="checkPriority('urgent'), changeColorofUrgentButtonEdit()">
               <b id="urgentTextEdit">Urgent</b>
