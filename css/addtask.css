@@ -233,11 +233,15 @@ option {
 #checkboxes {
   display: none;
   border: 1px #dadada solid;
+  height: 180px;
+  overflow-y: scroll;
 }
 
 #editCheckBoxes {
   display: none;
   border: 1px #dadada solid;
+  height: 180px;
+  overflow-y: scroll;
 }
 
 #checkboxes#editCheckBoxes label {
@@ -329,6 +333,7 @@ option {
 
 .subtaskInput input {
   height: 4vh;
+  border: none;
 }
 
 .rotate {

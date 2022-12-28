@@ -249,14 +249,17 @@ function openCategorys() {
 
 function showCategorys() {
   renderCategorys();
-  var categorys = document.getElementById('categorys');
+  let categorys = document.getElementById('categorys');
   if (!categoryExanded) {
     categorys.style.display = 'block';
+    categorys.classList.add('category-open');
     categoryExanded = true;
     renderCategorys();
   } else {
     categorys.style.display = 'none';
     categoryExanded = false;
+    categorys.classList.remove('category-open');
+
   }
 }
 

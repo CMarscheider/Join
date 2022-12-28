@@ -255,7 +255,7 @@ a {
   cursor: pointer;
 }
 
-#editCheckBoxes{
-  height: 180px;
+.category-open{
+  height: 200px;
   overflow-y: scroll;
 }
