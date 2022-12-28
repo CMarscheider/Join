@@ -248,3 +248,9 @@ a {
 .d-none {
   display: none !important;
 }
+
+.back-img-container {
+  width: 100%;
+  margin-bottom: 2em;
+  cursor: pointer;
+}

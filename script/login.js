@@ -40,3 +40,7 @@ function resetPassword() {
   document.getElementById('msgBox-reset-password').classList.add('msgBox');
   document.getElementById('msgBox-reset-password').classList.remove('d-none');
 }
+
+function goBacK() {
+  window.location.href = 'login.html';
+}
