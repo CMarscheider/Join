@@ -8,7 +8,7 @@ function TaskCard(taskCategory, task, i, ProgressbarValue, fulfillment) {
               <!-- todo -->
               <div class="progress-bar-container" id ="progress-bar-container${i}">
               <progress class="progressbar" id="progressbar${i}" value="${ProgressbarValue}" max="100"></progress>
-                <label id="label${i}">Done&nbsp;${fulfillment}/3</label>
+                <!-- <label id="label${i}">Done&nbsp;${fulfillment}/3</label> -->
               </div>
     
               <div class="box-footer" id ="footer${i}">
@@ -23,7 +23,7 @@ function footerTemplate(firstLetter, secondLetter, restAssigendLength, printTask
   return /*html*/ `
       <div class="footer-circels">
             <span id="firstLettersContainer${i}">${firstLetter}${secondLetter}</span>
-            <span id="restLength${i}">${restAssigendLength}</span>
+            <span id="restLength${i}">+${restAssigendLength}</span>
           </div>
 
           <div class="footer-images-container">            
@@ -32,11 +32,11 @@ function footerTemplate(firstLetter, secondLetter, restAssigendLength, printTask
       `;
 }
 
-function createTaskContentHTML() {
+function createTaskContentHTML(i) {
   return /*html*/ `
   <div class="cancel-container">
-  <span class="category" id="categoryPopup"></span>
-  <img src="./assets/img/cancelimg.svg" onclick="cancelTaskPopup()">
+    <span class="category" id="categoryPopup"></span>
+    <img src="./assets/img/cancelimg.svg" onclick="cancelTaskPopup()">
   </div>
   <h1 id="titlePopup"></h1>
   <p id="descriptionPopup"></p>
@@ -44,10 +44,16 @@ function createTaskContentHTML() {
   <p id="prio"></p>
   
   <div class="assigend-popup">
-  <span id="assigendCircels"></span>
-  <div id="assigendToContainer">
-   
+    <span id="assigendCircels"></span>
+    <div id="assigendToContainer">
+      <b>Assigned To:</b>
+    </div>
   </div>
+  <div class="boardCategoryBtn">
+    <button id="popupstatusopen" onclick="moveTo('open', '${i}')" class="workplace">Todo</button>
+    <button id="popupstatusinprogress" onclick="moveTo('inProgress', '${i}')" class="workplace">In Progress</button>
+    <button id="popupstatusawaitingfeedback" onclick="moveTo('awaitingFeedback', '${i}')" class="workplace">Awaiting Feedback</button>
+    <button id="popupstatusdone" onclick="moveTo('done', '${i}')" class="workplace">Done</button>
   </div>
   <div id="btnHolder"></div>
   `;
@@ -69,15 +75,15 @@ function editTaskContent(i) {
           <div class="button-container">
             <button type="button" id="urgentButtonEdit" onclick="checkPriority('urgent'), changeColorofUrgentButtonEdit()">
               <b id="urgentTextEdit">Urgent</b>
-              <img id="urgentImgEdit" src="assets/img/highprio.svg" alt="" />
+              <img id="urgentImgEdit" src="./assets/img/highprio.svg" alt="" />
             </button>
             <button type="button" id="mediumButtonEdit" onclick="checkPriority('medium'),changeColorofMediumButtonEdit()">
               <b id="mediumTextEdit">Medium</b>
-              <img id="mediumImgEdit" src="assets/img/mediumprio.svg" alt="" />
+              <img id="mediumImgEdit" src="./assets/img/mediumprio.svg" alt="" />
             </button>
             <button type="button" id="lowButtonEdit" onclick="checkPriority('low'),changeColorofLowButtonEdit()">
               <b id="lowTextEdit">Low</b>
-              <img id="lowImgEdit" src="assets/img/lowprio.svg" alt="" />
+              <img id="lowImgEdit" src="./assets/img/lowprio.svg" alt="" />
             </button>
           </div>
         </div>
@@ -87,7 +93,7 @@ function editTaskContent(i) {
               <select>
                 <option>Select contacts to assign</option>
               </select>
-              <div class="overSelect"></div>
+              <div class="overSelect hover"></div>
             </div>
             <div id="editCheckBoxes">
             </div>
@@ -95,13 +101,12 @@ function editTaskContent(i) {
               
             </div>
           </div>
-          <div id="btnHolder">
+          <div id="btnHolder" onclick="pushEditTask(${i})">
             <div class="saveBtn">
               <p>Ok</p>  
-          <img  src="./assets/img/done.png" alt="save" onclick="pushEditTask(${i})">
+          <img  src="./assets/img/done.png" alt="save" >
         </div>
-          
-  </div>
+      </div>
   `;
 }
 
@@ -121,5 +126,6 @@ function prioContentHTML(allTasks, i) {
 function editTaskButton(i) {
   return /*html*/ `
   <img class="editButton" src="./assets/img/todo.png" alt="edit" onclick="editTask(${i})">
+  <img class="editButton deletebtn" src="./assets/img/trash.png" alt="delete" onclick="deleteTask(${i})">
     `;
 }

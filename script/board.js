@@ -7,12 +7,15 @@ let label;
 let fulfillment;
 let assigendEdit;
 
+let taskIsOpen = false;
+
 /**
  * open task popup when user clicks on task box
  */
 function showInputsForm() {
   if (window.location.href.indexOf('board') > -1) {
     document.getElementById('form-board').classList.remove('d-none');
+    document.getElementById('form-board').classList.add('scale-in-center');
   } else if (window.location.href.indexOf('contacts') > -1) {
     document.getElementById('form-contacts').classList.remove('d-none');
   }
@@ -73,22 +76,18 @@ function checkProgressStatus(taskCategory, printTask, i, doneTasksContent, await
   if (printTask['status'] == 'open') {
     taskCategory = 'open';
     ProgressbarValue = 0;
-    fulfillment = 0;
     openTasksContent.innerHTML += TaskCard(taskCategory, printTask, i, ProgressbarValue, fulfillment);
   } else if (printTask['status'] == 'inProgress') {
     taskCategory = 'inProgress';
     ProgressbarValue = 33.33;
-    fulfillment = 1;
     inProgressTasksContent.innerHTML += TaskCard(taskCategory, printTask, i, ProgressbarValue, fulfillment);
   } else if (printTask['status'] == 'awaitingFeedback') {
     taskCategory = 'awaitingFeedback';
     ProgressbarValue = 66.66;
-    fulfillment = 2;
     awaitingFeedbackContent.innerHTML += TaskCard(taskCategory, printTask, i, ProgressbarValue, fulfillment);
   } else {
     taskCategory = 'done';
     ProgressbarValue = 100;
-    fulfillment = 3;
     doneTasksContent.innerHTML += TaskCard(taskCategory, printTask, i, ProgressbarValue, fulfillment);
   }
 }
@@ -142,7 +141,8 @@ function styleCategory(printTask, b) {
  * to show the popup after click on the task box
  */
 function showOpenTaskPopup(i) {
-  document.getElementById('taskPopup').innerHTML = createTaskContentHTML();
+  taskIsOpen = true;
+  document.getElementById('taskPopup').innerHTML = createTaskContentHTML(i);
   document.getElementById('popUpBackground').classList.add('popUpBackground');
   document.getElementById('taskPopup').classList.remove('d-none');
   document.getElementById('categoryPopup').innerHTML = allTasks[i].category.name;
@@ -153,15 +153,30 @@ function showOpenTaskPopup(i) {
   document.getElementById('prio').innerHTML = prioContentHTML(allTasks, i);
   document.getElementById('btnHolder').innerHTML = editTaskButton(i);
   checkPriorityPopup(allTasks, i);
+  checkStatusPopup(allTasks, i);
   let assigendToContent = document.getElementById('assigendToContainer');
-  assigendToContent.innerHTML = '';
   for (let j = 0; j < allTasks[i].assigned.length; j++) {
     const assignedUser = allTasks[i].assigned[j];
     let secondLetter = assignedUser.split(' ')[1].charAt(0);
     assigendToContent.innerHTML += assigendContentHTML(j, assignedUser, secondLetter);
     styleAssignedCircles(j);
-    printTask = allTasks[i];
-    checkTaskPrio(printTask, i);
+  }
+  printTask = allTasks[i];
+  checkTaskPrio(printTask, i);
+}
+
+function checkStatusPopup(allTasks, i) {
+  if (allTasks[i].status === 'open') {
+    document.getElementById('popupstatusopen').style.background = '#50aadf';
+  }
+  if (allTasks[i].status === 'awaitingFeedback') {
+    document.getElementById('popupstatusawaitingfeedback').style.background = '#50aadf';
+  }
+  if (allTasks[i].status === 'inProgress') {
+    document.getElementById('popupstatusinprogress').style.background = '#50aadf';
+  }
+  if (allTasks[i].status === 'done') {
+    document.getElementById('popupstatusdone').style.background = '#50aadf';
   }
 }
 
@@ -183,7 +198,6 @@ function editTask(i) {
  */
 async function pushEditTask(i) {
   checkBoxes();
-
   let taskInputTitle = document.getElementById('editTitle').value;
   let dueDate = document.getElementById('editDate').value;
   let description = document.getElementById('editDescription').value;
@@ -191,15 +205,12 @@ async function pushEditTask(i) {
   allTasks[i].description = description;
   allTasks[i].date = dueDate;
   allTasks[i].prio = prio;
-
   if (temporaryAssigned.length > 0) {
     allTasks[i].assigned = temporaryAssigned;
   }
   await backend.setItem('allTasks', JSON.stringify(allTasks));
   window.location.reload();
 }
-
-
 
 function setPrioColor(i) {
   if (allTasks[i]['prio'] == 'low') {
@@ -297,10 +308,17 @@ function allowDrop(ev) {
   ev.preventDefault();
 }
 
-async function moveTo(category) {
-  allTasks[currentDraggedElement]['status'] = category;
-  await backend.setItem('allTasks', JSON.stringify(allTasks));
+async function moveTo(category, i) {
+  if (currentDraggedElement == undefined) {
+    allTasks[i]['status'] = category;
+    await backend.setItem('allTasks', JSON.stringify(allTasks));
+    cancelTaskPopup();
+  } else {
+    allTasks[currentDraggedElement]['status'] = category;
+    await backend.setItem('allTasks', JSON.stringify(allTasks));
+  }
   startRendering();
+  currentDraggedElement = undefined;
 }
 
 function searchTasks(value) {
@@ -318,4 +336,17 @@ function searchTasks(value) {
       styleCategory(searchTask, i);
     }
   }
+}
+
+function deleteTask(i) {
+  allTasks.splice(i, 1);
+  saveToLocalstorage();
+  startRendering();
+  setTimeout(() => {
+    location.reload();
+  }, 500);
+}
+
+async function saveToLocalstorage() {
+  await backend.setItem('allTasks', JSON.stringify(allTasks));
 }

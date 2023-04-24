@@ -96,12 +96,6 @@
   font-size: 1rem;
 }
 
-.addcontact {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: baseline;
-}
 
 .contactbutton {
   display: flex;
@@ -117,6 +111,7 @@
   position: absolute;
   bottom: 10px;
   right: 10px;
+  z-index: 2;
 }
 
 .contactbutton:hover {
@@ -163,10 +158,23 @@
   margin-right: 20px;
 }
 
+.contactIcon>span {
+  color: #fff;
+}
+
 .contactText {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.singleContact {
+  transition: all 0.5s ease-in-out;
+}
+
+.singleContact:hover {
+  transition: all 0.5s ease-in-out;
+  transform: scale(1.1);
 }
 
 .displaycontactinfos {
@@ -196,4 +204,31 @@
   position: absolute;
   right: 30px;
   top: 30px;
+}
+
+.contacts-inputs {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 50px;
+  margin-top: 30px;
+}
+
+.buttons button {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 50px;
+  width: 150px;
+  border-radius: 10px;
+}
+
+.backgroundpopupcolor {
+  background-color: #f6f7f8 !important;
 }

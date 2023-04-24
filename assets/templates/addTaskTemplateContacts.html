@@ -1,6 +1,6 @@
 <!-- Task Form -->
 <div class="formcontainer d-none" id="form-contacts">
-  <form onsubmit="checkAllInputs();return false">
+  <form onsubmit="checkAllInputs();return false" id="formcontacts">
     <div class="addtask-content">
 
 
@@ -25,12 +25,14 @@
           <!-- KATEGORIE -->
           <div class="subtaskInput d-none" id="openCategoryInput">
             <input id="inputCategory" placeholder="New category name" type="text" />
-            <div class="inputFieldColor">
-              <div class="color" id="inputFieldColor"></div>
-            </div>
-            <div class="subTaskImages">
-              <img class="cross rotate" src="./assets/img/add.png" alt="delete" onclick="closeCategoryInput()">
-              <img id="" class="accept" src="./assets/img/acceptimg.svg" onclick="createNewCategory()" alt="accept">
+            <div class="iconsWrapper">
+              <div class="inputFieldColor">
+                <div class="color" id="inputFieldColor"></div>
+              </div>
+              <div class="subTaskImages">
+                <img class="cross rotate" src="./assets/img/add.png" alt="delete" onclick="closeCategoryInput()">
+                <img id="" class="accept" src="./assets/img/acceptimg.svg" onclick="createNewCategory()" alt="accept">
+              </div>
             </div>
           </div>
 
@@ -49,7 +51,7 @@
               <select>
                 <option id="displayCategory">Select a category</option>
               </select>
-              <div class="overSelect"></div>
+              <div class="overSelect hover"></div>
             </div>
             <div id="categorys">
             </div>
@@ -65,7 +67,7 @@
               <select>
                 <option>Select contacts to assign</option>
               </select>
-              <div class="overSelect"></div>
+              <div class="overSelect hover"></div>
             </div>
             <div id="checkboxes">
             </div>
@@ -79,7 +81,7 @@
       <div class="rightside-content">
         <div class="date-container">
           <p><b>Due date</b></p>
-          <input required id="date" type="date" />
+          <input required id="date" type="date"class="hover"/>
         </div>
 
         <div class="prio-container">
@@ -124,11 +126,11 @@
         <div class="button-container-end">
           <button onclick="closeInputsForm()" type="button" class="clear-button">
             <b>Cancel</b>
-            <img src="assets/img/cancelimg.svg" alt="cancel" />
+            <img src="./assets/img/cancelimg.svg" alt="cancel" />
           </button>
           <button type="submit" class="create-button">
             <b>Create task</b>
-            <img src="assets/img/acceptimg.svg" alt="cancel" />
+            <img src="./assets/img/acceptimg.svg" alt="cancel" />
           </button>
 
 
