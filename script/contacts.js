@@ -16,9 +16,13 @@ async function sortContacts() {
   renderContactList();
   handleWindowResize();
 }
+<<<<<<< HEAD
 /**
  * create contacts list
  */
+=======
+
+>>>>>>> bbb128634f2918832b7d5238df0c1e83c1c9f255
 function renderContactList() {
   let contactlist = document.getElementById('contactlist');
   contactlist.innerHTML = '';
@@ -36,11 +40,14 @@ function renderContactList() {
   }
 }
 
+<<<<<<< HEAD
 /**
  *
  * @param {Array} splitName
  * to seprate names and put it in splittedName array
  */
+=======
+>>>>>>> bbb128634f2918832b7d5238df0c1e83c1c9f255
 function splitName(name) {
   splittedName = [];
   if (name.includes(' ')) {
@@ -116,9 +123,13 @@ function resetLayout() {
   }
 }
 
+<<<<<<< HEAD
 /**
  * add Event-Handler to window-Objekt when user resize window
  */
+=======
+// füge den Event-Handler dem window-Objekt hinzu
+>>>>>>> bbb128634f2918832b7d5238df0c1e83c1c9f255
 window.addEventListener('resize', handleWindowResize);
 
 function backToContactList() {
@@ -134,6 +145,7 @@ function backToContactList() {
     handleWindowResize();
   }
 }
+<<<<<<< HEAD
 
 function addNewContact() {
   document.getElementById('popUpBackgroundContacts').classList.add('popUpBackground');
@@ -153,3 +165,5 @@ function closeNewContactPopUp() {
   document.getElementById('popUpBackgroundContacts').classList.remove('popUpBackground');
   document.getElementById('taskPopupContacts').classList.add('d-none');
 }
+=======
+>>>>>>> bbb128634f2918832b7d5238df0c1e83c1c9f255
