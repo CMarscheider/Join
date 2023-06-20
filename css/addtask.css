@@ -21,7 +21,6 @@
   display: flex;
   flex-direction: column;
   width: 50%;
-  /* height: 60vh; */
   background-color: #f6f7f8;
   padding-right: 8%;
   padding-left: 5%;
@@ -32,6 +31,11 @@
   font-size: 2rem;
   display: flex;
   padding-left: 8%;
+}
+
+.headline-addtask h1 {
+  margin-block-end: auto;
+  margin-block-start: auto;
 }
 
 .title-container {
@@ -71,22 +75,21 @@
   flex-direction: column;
 }
 
-.prio-container button {
+.prio-container button, .button-container button {
   display: flex;
   justify-content: space-around;
   align-items: center;
   height: 4vh;
-  /* width: 80px; */
   border-radius: 10px;
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.prio-container button img {
+.prio-container button img, .button-container button img {
   padding-left: 10px;
 }
 
-.prio-container button:hover {
+.prio-container button:hover, .button-container button:hover {
   cursor: pointer;
   transition: box-shadow 0.225s;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
@@ -171,9 +174,16 @@ option {
   cursor: pointer;
 }
 
-.clear-button:hover {
+/* .clear-button:hover {
   border-color: #29abe2;
   transition: all 0.3s ease-in-out;
+} */
+
+.clear-button:hover{
+  transition: all 0.3s ease-in-out;
+  border: 2px solid lightgrey;
+  background-color: lightgrey;
+
 }
 
 .create-button {
@@ -186,6 +196,7 @@ option {
   background-color: #29abe2;
   border-color: #29abe2;
   transition: all 0.3s ease-in-out;
+  border-color: black;
 }
 
 .prio-img-white {
@@ -378,10 +389,11 @@ option {
   left: 15%;
   width: 70%;
   z-index: 2;
-  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 }
 
 #myForm {
   overflow-x: hidden;
+  height: 80vh;
 }
-

@@ -96,7 +96,6 @@
   font-size: 1rem;
 }
 
-
 .contactbutton {
   display: flex;
   justify-content: center;
@@ -178,7 +177,7 @@
 }
 
 .displaycontactinfos {
-  animation: slide-bl 3s ease 0s 1 normal none;
+  animation: slide-bl 1s ease 0s 1 normal none;
 }
 
 @keyframes slide-bl {

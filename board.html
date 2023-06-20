@@ -13,31 +13,33 @@
   <link rel="stylesheet" href="./css/addtask.css" />
   <link rel="stylesheet" href="./css/contacts.css" />
   <link rel="stylesheet" href="./css/mediaquerys.css" />
-   <!-- JS Files -->
-   <script src="./script/main.js"></script>
-   <script src="./script/board.js"></script>
-   <script src="./script/board-template.js"></script>
-   <script src="./script/mini_backend.js"></script>
-   <script src="./script/addtask-template.js"></script>
-   <script src="./script/addtask.js"></script>
-   <script src="./script/login.js"></script>
-   <script src="./script/contacts.js"></script>
-   <script>setURL('https://christian-marscheider.developerakademie.net/Join/smallest_backend_ever');</script>
-   <!-- Favicon -->
-   <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
-   <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
-   <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
-   <link rel="manifest" href="./favicon/site.webmanifest">
-   <link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#5bbad5">
-   <meta name="msapplication-TileColor" content="#da532c">
-   <meta name="theme-color" content="#ffffff">
+  <!-- JS Files -->
+  <script src="./script/main.js"></script>
+  <script src="./script/board.js"></script>
+  <script src="./script/board-template.js"></script>
+  <script src="./script/mini_backend.js"></script>
+  <script src="./script/addtask-template.js"></script>
+  <script src="./script/addtask.js"></script>
+  <script src="./script/login.js"></script>
+  <script src="./script/contacts.js"></script>
+  <script>setURL('https://christian-marscheider.developerakademie.net/Join/smallest_backend_ever');</script>
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+  <link rel="manifest" href="./favicon/site.webmanifest">
+  <link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
   <title>Join-Board</title>
 </head>
+
 <body onload="init();">
   <div class="maincontainer">
-    <div id="popUpBackground"class="" onclick="/* cancelTaskPopup() */">
-      <div class="task-popup d-none" id="taskPopup">
+    
+    <div id="popUpBackground" class="">
 
+      <div class="task-popup d-none" id="taskPopup">
 
       </div>
     </div>
@@ -49,7 +51,7 @@
 
       <div class="wrapper">
 
-        
+
         <div class="board">
           <div class="row">
             <h1>Board</h1>
@@ -65,13 +67,13 @@
             <input type="button" id="addTask-btn" onclick="showInputsForm()" value="Add Task +">
           </div>
         </div>
-
-        <div class="all-tasks-contnet">
+        
+        <div class="all-tasks-contnet" id="content">
 
           <div class="todo" ondrop="moveTo('open')" ondragover="allowDrop(event)">
             <div class="create-todo">
               <h2>Todo</h2>
-              <span onclick="showInputsForm()">+</span>
+              <span onclick="showInputsForm('open')">+</span>
             </div>
 
             <div id="todoOpenContent">
@@ -84,7 +86,7 @@
           <div class="todo" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
             <div class="create-todo">
               <h2>In Progress</h2>
-              <span onclick="showInputsForm()">+</span>
+              <span onclick="showInputsForm('inProgress')">+</span>
             </div>
 
             <div id="todoInProgressContent">
@@ -96,7 +98,7 @@
           <div class="todo" ondrop="moveTo('awaitingFeedback')" ondragover="allowDrop(event)">
             <div class="create-todo">
               <h2>Awaiting Feedback</h2>
-              <span onclick="showInputsForm()">+</span>
+              <span onclick="showInputsForm('awaitingFeedback')">+</span>
             </div>
 
             <div id="todoAwaitingFeedbackContent">
@@ -108,7 +110,7 @@
           <div class="todo" ondrop="moveTo('done')" ondragover="allowDrop(event)">
             <div class="create-todo">
               <h2>Done</h2>
-              <span onclick="showInputsForm()">+</span>
+              <span onclick="showInputsForm('done')">+</span>
             </div>
 
             <div id="todoDoneContent">
@@ -119,9 +121,9 @@
         </div>
       </div>
 
-      
-        <div w3-include-html="./assets/templates/addTaskTemplateBoard.html" class=""></div>
-    
+
+      <div w3-include-html="./assets/templates/addTaskTemplateBoard.html" class=""></div>
+
 
 </body>
 

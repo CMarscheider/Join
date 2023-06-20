@@ -20,13 +20,13 @@
     width: 100px;
   }
 
-  .button-container-end {
-    flex-direction: column;
-    align-items: center;
+  .button-container-end button {
+    width: 120px;
   }
 
-  .button-container {
-    flex-direction: column;
+  #myForm p {
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
   }
 
   #urgentButton,
@@ -85,6 +85,26 @@
 }
 
 @media (max-width: 788.98px) {
+
+  #formcontacts {
+    top: 0px !important;
+    left: 0px !important;
+    width: 100%;
+  }
+
+  .cancel-container img {
+    position: absolute;
+    right: 32px;
+  }
+
+  .right-container {
+    height: 90vh;
+  }
+
+  .headline-addtask h1 {
+    font-size: 2.5rem;
+  }
+
   .contactbutton {
     bottom: 125px;
   }
@@ -99,14 +119,27 @@
     padding: 20px 30px;
     white-space: nowrap;
   }
-  .cancel-container {
-    width: 95%;
+
+  #editTitle,
+  #editDescription,
+  #editDate {
+    width: calc(100% - 76px);
   }
+
+  .multiselect,
+  .prio-container {
+    width: calc(100% - 36px);
+  }
+
+  .mobileHelper {
+    width: 100% !important;
+  }
+
   .create-button img {
     margin-left: 5px;
   }
   .cancel-right {
-    width: 95%;
+    width: calc(100% - 32px);
   }
 
   #taskPopup span {
@@ -114,17 +147,12 @@
     margin-top: 5px;
   }
 
-  #taskPopup input,
-  .button-container {
-    width: 80%;
-  }
-
   .overSelect {
     width: 89%;
   }
 
   #assigendToContainer {
-    height: 100%;
+    max-height: 180px;
     overflow-y: scroll;
   }
 
@@ -146,14 +174,24 @@
   }
 
   .header-logo {
-    display: unset;    
+    display: unset;
     width: 30px;
     height: 40px;
-
   }
 
-  .editButton {
-    bottom: 32px;
+  .logo-animation img,
+  .header2 img {
+    width: 30px;
+    height: 40px;
+  }
+
+  .contact-btns {
+    margin-top: 65px !important;
+  }
+
+  .editButton,
+  .saveBtn {
+    bottom: calc(10% + 32px);
     right: 32px;
   }
 
@@ -198,7 +236,6 @@
 
   .wrapper {
     height: 80vh;
-    overflow-y: scroll;
     overflow-x: hidden;
   }
 
@@ -242,6 +279,10 @@
     min-width: unset;
   }
 
+  .loginform h1 {
+    font-size: 3rem;
+  }
+
   .buttons {
     flex-direction: column;
     align-items: center;
@@ -252,7 +293,7 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    margin-top: 75px;
+    margin-top: 10px;
   }
 
   .input {
@@ -331,8 +372,8 @@
 
 @media (max-width: 1027px) {
   #form-board {
-    left: -6px;
-    top: 2% !important;
+    left: 0px !important;
+    overflow-y: scroll;
   }
 
   .name-and-button h2 {
@@ -375,8 +416,7 @@
   }
 
   .todo-content {
-    min-width: 280px;
-    max-width: 280px;
+    width: 250px;
   }
 
   .box-footer :nth-child(2) {
@@ -395,8 +435,8 @@
 
   .leftside-content,
   .rightside-content {
-    padding-left: 8%;
-    padding-right: 8%;
+    padding-left: 8% !important;
+    padding-right: 8% !important;
   }
 
   .headline-addtask {
@@ -430,17 +470,21 @@
     height: unset !important;
   }
 
-  #form-board,
-  #form-contacts {
+  #form-board {
     height: 100vh;
-    width: 100%;
-    top: 0;
-    bottom: 0;
+    width: 100% !important;
+    top: 0 !important;
+    bottom: 0 !important;
   }
 
   .button-container-end {
     margin: 10px 0 !important;
+    margin-bottom: 25% !important;
     padding: 10px;
+  }
+
+  .aside {
+    z-index: 7777;
   }
 }
 

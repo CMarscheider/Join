@@ -1,5 +1,5 @@
 <!-- Task Form -->
-<div class="formcontainer d-none" id="form-contacts">
+<!-- <div class="formcontainer d-none" id="form-contacts"> -->
   <form onsubmit="checkAllInputs();return false" id="formcontacts">
     <div class="addtask-content">
 
@@ -87,15 +87,15 @@
         <div class="prio-container">
           <p><b>Prio</b></p>
           <div class="button-container">
-            <button type="button" id="urgentButton" onclick="checkPriority('urgent'), changeColorofUrgentButton()">
+            <button type="button" id="urgentButton" onclick="checkPriority('urgent'), changeButtons('urgent', false)">
               <b id="urgentText">Urgent</b>
               <img id="urgentImg" src="assets/img/highprio.svg" alt="" />
             </button>
-            <button type="button" id="mediumButton" onclick="checkPriority('medium'),changeColorofMediumButton()">
+            <button type="button" id="mediumButton" onclick="checkPriority('medium'), changeButtons('medium', false)">
               <b id="mediumText">Medium</b>
               <img id="mediumImg" src="assets/img/mediumprio.svg" alt="" />
             </button>
-            <button type="button" id="lowButton" onclick="checkPriority('low'),changeColorofLowButton()">
+            <button type="button" id="lowButton" onclick="checkPriority('low'), changeButtons('low', false)">
               <b id="lowText">Low</b>
               <img id="lowImg" src="assets/img/lowprio.svg" alt="" />
             </button>
@@ -138,7 +138,7 @@
         </div>
       </div>
   </form>
-</div>
+<!-- </div> -->
 
 <!-- //Task Form// -->
 

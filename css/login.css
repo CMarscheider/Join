@@ -62,9 +62,7 @@ h1 {
   z-index: 999;
 }
 
-.logo-animation img {
-  margin-left: 10%;
-}
+
 
 @keyframes logoToLeft {
   0% {
@@ -165,6 +163,7 @@ h1 {
   min-height: 400px;
   background-color: white;
   padding: 20px;
+  text-align: center;
 }
 
 .loginform a {
@@ -178,7 +177,7 @@ h1 {
 
 .logincontent {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   margin-bottom: 10px;
 }
@@ -217,10 +216,23 @@ button {
   padding: 5px;
 }
 
+.login-btn:hover {
+  transition: all 0.3s ease-in-out;
+  border: 2px solid #03a9f4;
+  background-color: #03a9f4;
+}
+
 .guest-btn {
   border: 1px solid black;
   padding: 5px;
   background-color: white;
+}
+
+.guest-btn:hover{
+  transition: all 0.3s ease-in-out;
+  border: 2px solid lightgrey;
+  background-color: lightgrey;
+
 }
 
 .center {
@@ -231,7 +243,7 @@ button {
 
 .buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .back {

@@ -271,6 +271,8 @@ label {
 
 .wrapper {
   position: relative;
+  overflow-y: scroll;
+  height: 90vh;
 }
 
 .cancel-container {
@@ -281,6 +283,7 @@ label {
 
 .cancel-container img {
   cursor: pointer;
+  right: 32px;
 }
 
 .prio-container-popup {
@@ -344,9 +347,14 @@ label {
   background-color: #2a3647;
   padding: 5px 10px;
   position: absolute;
-  bottom: 5px;
-  right: 8px;
+  bottom: 16px;
+  right: 32px;
   cursor: pointer;
+}
+
+.editButton:hover {
+  border: 2px solid #03a9f4;
+  background-color: #03a9f4;
 }
 
 .deletebtn {
@@ -354,6 +362,11 @@ label {
   background-color: rgb(134, 16, 16);
   right: 80px !important;
   cursor: pointer;
+}
+
+.deletebtn:hover { 
+  border: 2px solid #ff0000;
+  background-color: #ff0000;
 }
 
 .saveBtn {
@@ -370,6 +383,11 @@ label {
   font-weight: bold;
   font-size: 20px;
   cursor: pointer;
+}
+
+.saveBtn:hover {
+  border: 2px solid #03a9f4;
+  background-color: #03a9f4;
 }
 
 .saveBtn p {
@@ -408,7 +426,9 @@ input {
   width: 70%;
   z-index: 2;
   /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; */
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 progress {

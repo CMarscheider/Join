@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: summary.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: summary.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>let myTasks = [];
+let urgentTasks = [];
+let tasksInBoard = 0;
+let tasksInProgess = [];
+let tasksAwaitingFeedback = [];
+let tasksDone = [];
+let tasksToDo = [];
+let formatted_date;
+
+/**
+ * Loads the summary page by performing the necessary initialization steps,
+ * loading the summary content, showing the current time, and checking if the user is included in tasks.
+ */
+
+async function loadSummary() {
+  await init();
+  loadContentSummary();
+  showTime();
+  checkIfUserIsIncluded();
+}
+
+/**
+ * Loads the content for the summary page by setting the greeting name element to the user's name.
+ */
+
+function loadContentSummary() {
+  let name = user["name"];
+  document.getElementById("greetingName").innerHTML = `${name}`;
+}
+
+/**
+ * Displays a greeting based on the current time of the day.
+ */
+
+function showTime() {
+  let d = new Date();
+  let time = d.getHours();
+  let greetingBox = document.getElementById("time");
+
+  if (time &lt;= 11) {
+    greetingBox.innerHTML = `Good morning,`;
+  }
+  if (time > 11 &amp;&amp; time &lt;= 14) {
+    greetingBox.innerHTML = `Have a nice Lunch,`;
+  }
+  if (time > 14 &amp;&amp; time &lt;= 17) {
+    greetingBox.innerHTML = `Good afternoon,`;
+  }
+  if (time > 17) {
+    greetingBox.innerHTML = `Good evening,`;
+  }
+}
+
+/**
+ * hecks if the current user is included in any of the tasks and adds them to the 'myTasks' array.
+ * Calls the 'checkmyTasks' function to perform further processing.
+ */
+
+function checkIfUserIsIncluded() {
+  for (let i = 0; i &lt; allTasks.length; i++) {
+    const task = allTasks[i];
+
+    if (task.assigned.includes(user.name)) {
+      myTasks.push(task);
+    }
+  }
+  checkmyTasks();
+}
+
+/**
+Performs various checks and processing on the 'myTasks' array.
+Calls the 'checkForUrgent' function for each task to check if it is marked as urgent.
+Calls the 'pushAssignedTasks' function for each task to push it to the 'assignedTasks' array.
+Calls the 'checkForLowerDate' function to check for tasks with a lower due date.
+Calls the 'fillContent' function to fill the content of the summary page.
+*/
+
+function checkmyTasks() {
+  for (let i = 0; i &lt; allTasks.length; i++) {
+    const task = allTasks[i];
+    checkForUrgent(task);
+    pushAssignedTasks(task);
+  }
+  checkForLowerDate();
+  fillContent();
+}
+
+/**
+ * Pushes the given task into the appropriate array based on its status.
+ * If the status is 'inProgress', the task is pushed into the 'tasksInProgess' array.
+ * If the status is 'awaitingFeedback', the task is pushed into the 'tasksAwaitingFeedback' array.
+ * If the status is 'done', the task is pushed into the 'tasksDone' array.
+ * For any other status, the task is pushed into the 'tasksToDo' array.
+ * @param {Object} task - The task to be pushed into the corresponding array.
+ */
+
+function pushAssignedTasks(task) {
+  switch (task.status) {
+    case "inProgress":
+      tasksInProgess.push(task);
+      break;
+    case "awaitingFeedback":
+      tasksAwaitingFeedback.push(task);
+      break;
+    case "done":
+      tasksDone.push(task);
+      break;
+    default:
+      tasksToDo.push(task);
+      break;
+  }
+}
+
+/**
+ * Checks if the given task is marked as urgent.
+ * If the task is marked as urgent and its status is not 'done', it is added to the 'urgentTasks' array.
+ * @param {Object} task - The task to be checked for urgency.
+ */
+
+function checkForUrgent(task) {
+  if (task.prio == "urgent") {
+    if (task["status"] == "done") {
+    } else {
+      urgentTasks.push(task);
+    }
+  }
+}
+
+/**
+ * Checks for tasks marked as urgent and finds the lowest date among them.
+ *If there are urgent tasks with a date lower than today, the lowest date is rendered.
+ */
+
+function checkForLowerDate() {
+  if (urgentTasks.length > 0) {
+    let lowestDate = null;
+    for (let i = 0; i &lt; urgentTasks.length; i++) {
+      let date = urgentTasks[i]["date"];
+      if (checkDateLowerThanToday(date)) {
+        if (lowestDate == null || lowestDate > date) {
+          lowestDate = date;
+        }
+      }
+    }
+    if (lowestDate != null) {
+      renderDate(lowestDate);
+    }
+  }
+}
+
+/**
+ * Checks if a given date is later than today's date.
+ * @param {string} date - The date to compare in the format "YYYY-MM-DD".
+ * @returns {boolean} - True if the date is later than today, false otherwise.
+ */
+
+function checkDateLowerThanToday(date) {
+  let today = new Date().toISOString().slice(0, 10);
+  return date > today;
+}
+
+/**
+ * Renders a formatted date string based on the given date.
+ * @param {string} date - The date to render in the format "YYYY-MM-DD".
+ * @returns {string} - The formatted date string in the format "Month Day, Year".
+ */
+
+function renderDate(date) {
+  let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  let splitDate = date.split("-");
+  let month = parseInt(splitDate[1]);
+  let year = splitDate[0];
+  let day = splitDate[2];
+
+  let formatDate = () => {
+    formatted_date = months[month - 1] + " " + day + ", " + year;
+    return formatted_date;
+  };
+  formatDate();
+}
+
+/**
+ * Updates the content on the webpage with the task statistics and formatted date.
+ * It retrieves the required elements by their IDs and sets their innerHTML/innerText
+ * to the corresponding values from the task arrays and formatted_date variable.
+ * If formatted_date is falsy, "No" is displayed for the date.
+ */
+
+function fillContent() {
+  document.getElementById("tasksInBoard").innerHTML = `${allTasks.length}`;
+  document.getElementById("tasksInProgress").innerHTML = `${tasksInProgess.length}`;
+  document.getElementById("tasksAwaitingFeedback").innerHTML = `${tasksAwaitingFeedback.length}`;
+  document.getElementById("urgentTasks").innerHTML = `${urgentTasks.length}`;
+  document.getElementById("tasksToDo").innerHTML = `${tasksToDo.length}`;
+  document.getElementById("tasksDone").innerHTML = ` ${tasksDone.length}`;
+  document.getElementById("date").innerHTML = formatted_date ? formatted_date : "No";
+}
+
+/**
+ *Redirects the user to the board.html page.
+ */
+
+function forwardToBoard() {
+  window.location.href = "board.html";
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addNewContact">addNewContact</a></li><li><a href="global.html#addTask">addTask</a></li><li><a href="global.html#addUser">addUser</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#assigendContentHTML">assigendContentHTML</a></li><li><a href="global.html#backToContactList">backToContactList</a></li><li><a href="global.html#cancelTaskPopup">cancelTaskPopup</a></li><li><a href="global.html#categoryContentHTML">categoryContentHTML</a></li><li><a href="global.html#categoryListHTML">categoryListHTML</a></li><li><a href="global.html#changeButtons">changeButtons</a></li><li><a href="global.html#changeIDandClasses">changeIDandClasses</a></li><li><a href="global.html#changeLocation">changeLocation</a></li><li><a href="global.html#checkAllInputs">checkAllInputs</a></li><li><a href="global.html#checkBoxes">checkBoxes</a></li><li><a href="global.html#checkboxesTaskHTML">checkboxesTaskHTML</a></li><li><a href="global.html#checkBoxInputs">checkBoxInputs</a></li><li><a href="global.html#checkDateLowerThanToday">checkDateLowerThanToday</a></li><li><a href="global.html#checkForLetters">checkForLetters</a></li><li><a href="global.html#checkForLowerDate">checkForLowerDate</a></li><li><a href="global.html#checkForUrgent">checkForUrgent</a></li><li><a href="global.html#checkIfUserIsIncluded">checkIfUserIsIncluded</a></li><li><a href="global.html#checkInputValue">checkInputValue</a></li><li><a href="global.html#checkmyTasks">checkmyTasks</a></li><li><a href="global.html#checkPage">checkPage</a></li><li><a href="global.html#checkPriority">checkPriority</a></li><li><a href="global.html#checkPriorityPopup">checkPriorityPopup</a></li><li><a href="global.html#checkProgressStatus">checkProgressStatus</a></li><li><a href="global.html#checkStatusPopup">checkStatusPopup</a></li><li><a href="global.html#checkTaskPrio">checkTaskPrio</a></li><li><a href="global.html#checkUserBox">checkUserBox</a></li><li><a href="global.html#clearForm">clearForm</a></li><li><a href="global.html#closeCategoryInput">closeCategoryInput</a></li><li><a href="global.html#closeInputsForm">closeInputsForm</a></li><li><a href="global.html#closeNewContactPopUp">closeNewContactPopUp</a></li><li><a href="global.html#contactsHTML">contactsHTML</a></li><li><a href="global.html#createAssignedToSelection">createAssignedToSelection</a></li><li><a href="global.html#createAssignedUser">createAssignedUser</a></li><li><a href="global.html#createIcon">createIcon</a></li><li><a href="global.html#createNewCategory">createNewCategory</a></li><li><a href="global.html#createNewContactContainer">createNewContactContainer</a></li><li><a href="global.html#createSubtask">createSubtask</a></li><li><a href="global.html#createTaskContentHTML">createTaskContentHTML</a></li><li><a href="global.html#createUserIcons">createUserIcons</a></li><li><a href="global.html#deleteTask">deleteTask</a></li><li><a href="global.html#delightOtherButtons">delightOtherButtons</a></li><li><a href="global.html#disableMediumAndLow">disableMediumAndLow</a></li><li><a href="global.html#disableMediumAndUrgent">disableMediumAndUrgent</a></li><li><a href="global.html#disableUrgentAndLow">disableUrgentAndLow</a></li><li><a href="global.html#dNoneToContactinfo">dNoneToContactinfo</a></li><li><a href="global.html#editContent">editContent</a></li><li><a href="global.html#editTask">editTask</a></li><li><a href="global.html#editTaskButton">editTaskButton</a></li><li><a href="global.html#editTaskContent">editTaskContent</a></li><li><a href="global.html#fillContent">fillContent</a></li><li><a href="global.html#footerTemplate">footerTemplate</a></li><li><a href="global.html#formatContactName">formatContactName</a></li><li><a href="global.html#forwardingToSummary">forwardingToSummary</a></li><li><a href="global.html#forwardToBoard">forwardToBoard</a></li><li><a href="global.html#generateRandomColor">generateRandomColor</a></li><li><a href="global.html#getAssignedUsers">getAssignedUsers</a></li><li><a href="global.html#getRandomColor">getRandomColor</a></li><li><a href="global.html#goBacK">goBacK</a></li><li><a href="global.html#guestLogin">guestLogin</a></li><li><a href="global.html#handleWindowResize">handleWindowResize</a></li><li><a href="global.html#highlightButton">highlightButton</a></li><li><a href="global.html#highlightNavBar">highlightNavBar</a></li><li><a href="global.html#includeHTML">includeHTML</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#loadContentSummary">loadContentSummary</a></li><li><a href="global.html#loadJSONFromServer">loadJSONFromServer</a></li><li><a href="global.html#loadSummary">loadSummary</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#logOutUser">logOutUser</a></li><li><a href="global.html#loopAllTasks">loopAllTasks</a></li><li><a href="global.html#menuIsOpen">menuIsOpen</a></li><li><a href="global.html#moveTo">moveTo</a></li><li><a href="global.html#onImageClick">onImageClick</a></li><li><a href="global.html#onload">onload</a></li><li><a href="global.html#openCategoryInput">openCategoryInput</a></li><li><a href="global.html#openCategorys">openCategorys</a></li><li><a href="global.html#openContact">openContact</a></li><li><a href="global.html#openContactHTML">openContactHTML</a></li><li><a href="global.html#openInputfield">openInputfield</a></li><li><a href="global.html#openLogin">openLogin</a></li><li><a href="global.html#openResetPassword">openResetPassword</a></li><li><a href="global.html#openSignUp">openSignUp</a></li><li><a href="global.html#pickColor">pickColor</a></li><li><a href="global.html#printLetters">printLetters</a></li><li><a href="global.html#prioContentHTML">prioContentHTML</a></li><li><a href="global.html#pushAssignedTasks">pushAssignedTasks</a></li><li><a href="global.html#pushContactToArray">pushContactToArray</a></li><li><a href="global.html#pushEditTask">pushEditTask</a></li><li><a href="global.html#removeDNoneContactinfo">removeDNoneContactinfo</a></li><li><a href="global.html#renderCategorys">renderCategorys</a></li><li><a href="global.html#renderCheckboxes">renderCheckboxes</a></li><li><a href="global.html#renderContactList">renderContactList</a></li><li><a href="global.html#renderContacts">renderContacts</a></li><li><a href="global.html#renderDate">renderDate</a></li><li><a href="global.html#renderFooter">renderFooter</a></li><li><a href="global.html#renderTaskSection">renderTaskSection</a></li><li><a href="global.html#resendPassword">resendPassword</a></li><li><a href="global.html#resetAddTask">resetAddTask</a></li><li><a href="global.html#resetAllTasks">resetAllTasks</a></li><li><a href="global.html#resetInputsContact">resetInputsContact</a></li><li><a href="global.html#resetPassword">resetPassword</a></li><li><a href="global.html#resetPrioBtns">resetPrioBtns</a></li><li><a href="global.html#returnIconText">returnIconText</a></li><li><a href="global.html#saveJSONToServer">saveJSONToServer</a></li><li><a href="global.html#saveToLocalstorage">saveToLocalstorage</a></li><li><a href="global.html#selectCategory">selectCategory</a></li><li><a href="global.html#setPrioColor">setPrioColor</a></li><li><a href="global.html#showAndHideUserIcons">showAndHideUserIcons</a></li><li><a href="global.html#showCategorys">showCategorys</a></li><li><a href="global.html#showCheckboxes">showCheckboxes</a></li><li><a href="global.html#showInputsForm">showInputsForm</a></li><li><a href="global.html#showNoCategory">showNoCategory</a></li><li><a href="global.html#showNoEmployee">showNoEmployee</a></li><li><a href="global.html#showNoPrio">showNoPrio</a></li><li><a href="global.html#showOpenTaskPopup">showOpenTaskPopup</a></li><li><a href="global.html#showTime">showTime</a></li><li><a href="global.html#sortContacts">sortContacts</a></li><li><a href="global.html#splitName">splitName</a></li><li><a href="global.html#startDragging">startDragging</a></li><li><a href="global.html#startRendering">startRendering</a></li><li><a href="global.html#styleAssignedCircles">styleAssignedCircles</a></li><li><a href="global.html#styleCategory">styleCategory</a></li><li><a href="global.html#subtaskCheckboxesHTML">subtaskCheckboxesHTML</a></li><li><a href="global.html#TaskCard">TaskCard</a></li><li><a href="global.html#taskCategoryHTML">taskCategoryHTML</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Sun Jun 18 2023 21:57:07 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

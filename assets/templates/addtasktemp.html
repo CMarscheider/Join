@@ -46,7 +46,7 @@
         </div>
         <!-- KATEGORIE ENDE -->
 
-        <div class="multiselect" id="categoryDropdown">
+        <div class="multiselect mobileHelper" id="categoryDropdown">
           <div class="selectBox" onclick="showCategorys()">
             <select>
               <option id="displayCategory">Select a category</option>
@@ -62,7 +62,7 @@
 
       <div id="assigned-container" class="category-container">
         <p><b>Assigned to</b></p>
-        <div class="multiselect">
+        <div class="multiselect mobileHelper">
           <div class="selectBox" onclick="showCheckboxes('checkboxes')">
             <select>
               <option>Select contacts to assign</option>
@@ -82,18 +82,18 @@
         <input required id="date" type="date" class="hover"/>
       </div>
 
-      <div class="prio-container">
+      <div class=" mobileHelper">
         <p><b>Prio</b></p>
         <div class="button-container">
-          <button type="button" id="urgentButton" onclick="checkPriority('urgent'), changeColorofUrgentButton()">
+          <button type="button" id="urgentButton" onclick="checkPriority('urgent'), changeButtons('urgent', false)">
             <b id="urgentText">Urgent</b>
             <img id="urgentImg" src="assets/img/highprio.svg" alt="" />
           </button>
-          <button type="button" id="mediumButton" onclick="checkPriority('medium'),changeColorofMediumButton()">
+          <button type="button" id="mediumButton" onclick="checkPriority('medium'), changeButtons('medium', false)">
             <b id="mediumText">Medium</b>
             <img id="mediumImg" src="assets/img/mediumprio.svg" alt="" />
           </button>
-          <button type="button" id="lowButton" onclick="checkPriority('low'),changeColorofLowButton()">
+          <button type="button" id="lowButton" onclick="checkPriority('low'), changeButtons('low', false)">
             <b id="lowText">Low</b>
             <img id="lowImg" src="assets/img/lowprio.svg" alt="" />
           </button>
