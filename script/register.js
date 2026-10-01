@@ -1,6 +1,3 @@
-setURL('https://christian-marscheider.developerakademie.net/Join/smallest_backend_ever');
-
-
 /**
 * Adds a new user by retrieving the email, password, name, and phone input values.
 * Pushes a new user object to the 'users' array.

@@ -39,9 +39,6 @@ async function downloadFromServer() {
     jsonFromServer = (rows[0] && rows[0].data) || {};
 }
 
-// Wird von anderen Scripten (z.B. register.js) aufgerufen, ist fuer Supabase aber nicht noetig.
-function setURL(url) {}
-
 function saveJSONToServer() {
     return fetch(SUPABASE_URL + '/rest/v1/app_state?id=eq.1', {
         method: 'PATCH',
