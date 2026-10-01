@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: board.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: board.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>let currentDraggedElement;
+let currentCategory;
+let taskCategory;
+let printTask;
+let ProgressbarValue;
+let label;
+let fulfillment;
+let assigendEdit;
+let taskIsOpen = false;
+
+/**
+ * Shows the inputs form for creating a new task.
+ * @param {string} status - The status of the task.
+ * The status can be one of the following values: "open", "inProgress", "awaitingFeedback", "done".
+ */
+
+function showInputsForm(status) {
+  document.getElementById("form-board").classList.remove("d-none");
+  document.getElementById("form-board").classList.add("scale-in-center");
+  window.scrollTo(0, 0);
+
+  taskStatus = status;
+  checkUserBox(status);
+}
+
+/**
+ * Closes the inputs form and clears the users container.
+ */
+function closeInputsForm() {
+  document.getElementById("form-board").classList.add("d-none");
+  document.getElementById("users").innerHTML = "";
+}
+
+/**
+ * Resets the content of all task sections.
+ * @param {HTMLElement} openTasksContent - The element representing the open tasks section.
+ * @param {HTMLElement} inProgressTasksContent - The element representing the in-progress tasks section.
+ * @param {HTMLElement} awaitingFeedbackContent - The element representing the awaiting feedback tasks section.
+ * @param {HTMLElement} doneTasksContent - The element representing the done tasks section.
+ */
+function resetAllTasks(openTasksContent, inProgressTasksContent, awaitingFeedbackContent, doneTasksContent) {
+  openTasksContent.innerHTML = "";
+  inProgressTasksContent.innerHTML = "";
+  awaitingFeedbackContent.innerHTML = "";
+  doneTasksContent.innerHTML = "";
+}
+
+/**
+ * The `startRendering` function is responsible for initiating the rendering process for the task sections.
+ * It retrieves the necessary content elements for the open tasks, in-progress tasks, awaiting feedback tasks, and done tasks.
+ * Then, it resets the content of all task sections using the `resetAllTasks` function.
+ * Finally, it calls the `renderTaskSection` function to populate the sections with tasks.
+ */
+function startRendering() {
+  let openTasksContent = document.getElementById("todoOpenContent");
+  let inProgressTasksContent = document.getElementById("todoInProgressContent");
+  let awaitingFeedbackContent = document.getElementById("todoAwaitingFeedbackContent");
+  let doneTasksContent = document.getElementById("todoDoneContent");
+  resetAllTasks(openTasksContent, inProgressTasksContent, awaitingFeedbackContent, doneTasksContent);
+  renderTaskSection(openTasksContent, inProgressTasksContent, awaitingFeedbackContent, doneTasksContent);
+}
+
+/**
+ * Renders the task sections with tasks by iterating over allTasks array.
+ * Updates the progress bar value and label element for each task.
+ * Applies styling to the task category and renders the task footer.
+ * @param {HTMLElement} openTasksContent - Element for open tasks content.
+ * @param {HTMLElement} inProgressTasksContent - Element for in-progress tasks content.
+ * @param {HTMLElement} awaitingFeedbackContent - Element for awaiting feedback tasks content.
+ * @param {HTMLElement} doneTasksContent - Element for done tasks content.
+ */
+
+function renderTaskSection(openTasksContent, inProgressTasksContent, awaitingFeedbackContent, doneTasksContent) {
+  for (let i = 0; i &lt; allTasks.length; i++) {
+    printTask = allTasks[i];
+    checkProgressStatus(taskCategory, printTask, i, doneTasksContent, awaitingFeedbackContent, inProgressTasksContent, openTasksContent, ProgressbarValue, label, fulfillment);
+    renderFooter(i, printTask);
+    styleCategory(printTask, i);
+    ProgressbarValue = document.getElementById(`progressbar${i}`).value;
+    label = document.getElementById(`label${i}`);
+  }
+}
+
+/**
+ * Checks the task category and updates the progress status based on the category.
+ * Renders the task card in the corresponding task section based on the category.
+ * @param {string} taskCategory - The category of the task.
+ * @param {object} printTask - The task object to be rendered.
+ * @param {number} i - The index of the task.
+ * @param {HTMLElement} doneTasksContent - Element for done tasks content.
+ * @param {HTMLElement} awaitingFeedbackContent - Element for awaiting feedback tasks content.
+ * @param {HTMLElement} inProgressTasksContent - Element for in-progress tasks content.
+ * @param {HTMLElement} openTasksContent - Element for open tasks content.
+ * @param {number} ProgressbarValue - The value of the progress bar.
+ * @param {object} fulfillment - The fulfillment of the task.
+ */
+
+async function checkProgressStatus(taskCategory, printTask, i, doneTasksContent, awaitingFeedbackContent, inProgressTasksContent, openTasksContent, ProgressbarValue, fulfillment) {
+  taskCategory = printTask["status"];
+  if (taskCategory == "open") {
+    ProgressbarValue = 0;
+    openTasksContent.innerHTML += TaskCard(taskCategory, printTask, i, ProgressbarValue, fulfillment);
+  } else if (taskCategory == "inProgress") {
+    ProgressbarValue = 33.33;
+    inProgressTasksContent.innerHTML += TaskCard(taskCategory, printTask, i, ProgressbarValue, fulfillment);
+  } else if (taskCategory == "awaitingFeedback") {
+    ProgressbarValue = 66.66;
+    awaitingFeedbackContent.innerHTML += TaskCard(taskCategory, printTask, i, ProgressbarValue, fulfillment);
+  } else {
+    ProgressbarValue = 100;
+    doneTasksContent.innerHTML += TaskCard(taskCategory, printTask, i, ProgressbarValue, fulfillment);
+  }
+}
+
+/**
+ * Renders the footer section of a task card.
+ * Retrieves the necessary data from the task object and updates the footer content.
+ * Checks the task priority and updates the styling accordingly.
+ * @param {number} i - The index of the task.
+ * @param {object} printTask - The task object.
+ */
+
+function renderFooter(i, printTask) {
+  let footer = document.getElementById(`footer${i}`);
+  let assigend = printTask["assigned"][0];
+  let firstLetter = assigend.charAt(0);
+  let secondLetter = assigend.split(" ")[1].charAt(0);
+  let restAssigendLength = printTask["assigned"].length - 1;
+
+  footer.innerHTML += footerTemplate(firstLetter, secondLetter, restAssigendLength, printTask, i);
+  checkTaskPrio(printTask, i);
+  
+  if (restAssigendLength == 0) {
+    document.getElementById(`restLength${i}`).classList.add("d-none");
+  }
+}
+
+
+/**
+ * Checks the task priority and updates the priority icon accordingly.
+ * @param {object} printTask - The task object.
+ * @param {number} i - The index of the task.
+ */
+
+function checkTaskPrio(printTask, i) {
+  let img = document.getElementById(`prioIcon${i}`);
+  if (printTask.prio == "urgent") {
+    img.src = "./assets/img/Prio_alta.png";
+  } else if (printTask.prio == "medium") {
+    img.src = "./assets/img/Prio_media.png";
+  } else {
+    img.src = "./assets/img/Prio_baja.png";
+  }
+}
+
+/**
+ * Styles the category element of a task based on the task's category color.
+ * @param {object} printTask - The task object.
+ * @param {number} taskindex - The index of the task.
+ */
+
+function styleCategory(printTask, taskindex) {
+  let cat = document.getElementById(`category${taskindex}`);
+  cat.style.backgroundColor = printTask.category.color;
+  cat.style.color = "#fff";
+  cat.style.maxWidth = "170px";
+  cat.style.textAlign = "center";
+  cat.style.padding = "5px";
+  cat.style.borderRadius = "8px";
+  cat.style.whiteSpace = "nowrap";
+  cat.style.textTransform = "uppercase";
+}
+
+/**
+ * Displays the popup for an opend task with the corresponding task details.
+ * @param {number} i - The index of the task.
+ */
+
+function showOpenTaskPopup(i) {
+  taskIsOpen = true;
+  editContent(i);
+  checkPriorityPopup(allTasks, i);
+  checkStatusPopup(allTasks, i);
+  createAssignedUser(i);
+  printTask = allTasks[i];
+  checkTaskPrio(printTask, i);
+}
+
+/**
+ * Creates the assigned user section in the task popup.
+ * @param {number} i - The index of the task.
+ */
+
+function createAssignedUser(i) {
+  let assigendToContent = document.getElementById("assigendToContainer");
+  for (let j = 0; j &lt; allTasks[i].assigned.length; j++) {
+    const assignedUser = allTasks[i].assigned[j];
+    let secondLetter = assignedUser.split(" ")[1].charAt(0);
+    assigendToContent.innerHTML += assigendContentHTML(j, assignedUser, secondLetter);
+    styleAssignedCircles(j);
+  }
+}
+
+/**
+ * Updates the task popup content for editing a specific task.
+ * Modifies the HTML content of the task popup to display the details of the task for editing.
+ * It sets the appropriate values for the category, title, description, due date, priority, and buttons.
+ * The task details are retrieved from the `allTasks` array based on the provided task index (`i`).
+ * @param {number} i - The index of the task to be edited.
+ */
+
+function editContent(i) {
+  document.getElementById("taskPopup").innerHTML = createTaskContentHTML(i);
+  document.getElementById("popUpBackground").classList.add("popUpBackground");
+  document.getElementById("taskPopup").classList.remove("d-none");
+  document.getElementById("categoryPopup").innerHTML = allTasks[i].category.name;
+  document.getElementById("categoryPopup").style.background = allTasks[i].category.color;
+  document.getElementById("titlePopup").innerHTML = allTasks[i].title;
+  document.getElementById("descriptionPopup").innerHTML = allTasks[i].description;
+  document.getElementById("datePopup").innerHTML = `&lt;b>Due Date:&lt;/b> ${allTasks[i].date}`;
+  document.getElementById("prio").innerHTML = prioContentHTML(allTasks, i);
+  document.getElementById("btnHolder").innerHTML = editTaskButton(i);
+}
+
+/**
+ * Updates the status indicator in the task popup based on the task's status.
+ *
+ * @param {Array} allTasks - The array containing all tasks.
+ * @param {number} i - The index of the task to update the status indicator.
+ */
+
+function checkStatusPopup(allTasks, i) {
+  let statusElements = {
+    open: "popupstatusopen",
+    awaitingFeedback: "popupstatusawaitingfeedback",
+    inProgress: "popupstatusinprogress",
+    done: "popupstatusdone"
+  };
+  let taskStatus = allTasks[i].status;
+
+  for (let status in statusElements) {
+    let elementId = statusElements[status];
+    let element = document.getElementById(elementId);
+    element.style.background = taskStatus === status ? "#50aadf" : "";
+  }
+}
+
+/**
+ * Handles the editing of a task.
+ * @param {number} i - The index of the task to edit.
+ */
+
+function editTask(i) {
+  let popup = document.getElementById("taskPopup");
+  popup.innerHTML = editTaskContent(i);
+  document.getElementById("editTitle").value = allTasks[i]["title"];
+  document.getElementById("editDescription").value = allTasks[i]["description"];
+  document.getElementById("editDate").value = allTasks[i]["date"];
+  prio = allTasks[i]["prio"];
+  setPrioColor(i);
+}
+
+/**
+ * Updates the edited task with the new input values and saves the changes.
+ * @param {number} i - The index of the task to update.
+ */
+
+async function pushEditTask(i) {
+  let taskInputTitle = document.getElementById("editTitle").value;
+  let dueDate = document.getElementById("editDate").value;
+  let description = document.getElementById("editDescription").value;
+  allTasks[i].title = taskInputTitle;
+  allTasks[i].description = description;
+  allTasks[i].date = dueDate;
+  allTasks[i].prio = prio;
+  if (temporaryAssigned.length > 0) {
+    allTasks[i].assigned = temporaryAssigned;
+    await backend.setItem("allTasks", JSON.stringify(allTasks));
+    window.location.reload();
+  } else {
+    showNoEmployee();
+  }
+}
+
+/**
+ * Sets the color of the priority buttons based on the priority value of the task.
+ * @param {number} i - The index of the task to update the priority buttons for.
+ */
+
+async function setPrioColor(i) {
+  await changeButtons(allTasks[i]["prio"], true);
+}
+
+/**
+ * Styles the assigned user circles.
+ * @param {number} j - The index of the assigned user circle to style.
+ */
+
+function styleAssignedCircles(j) {
+  let assigendCircels = document.getElementById(`firstLetterAssigned${j}`);
+  assigendCircels.style.backgroundColor = "hsla(" + Math.random() * 360 + ", 100%, 50%, 1)";
+  assigendCircels.style.padding = "10px";
+  assigendCircels.style.borderRadius = "50%";
+  assigendCircels.style.minWidth = "30px";
+  assigendCircels.style.minHeight = "30px";
+  assigendCircels.style.textAlign = "center";
+  assigendCircels.style.color = "#fff";
+  assigendCircels.style.display = "grid";
+  assigendCircels.style.placeContent = "center";
+}
+
+/**
+ * Generates a random color in hexadecimal format.
+ * @returns {string} A randomly generated color in hexadecimal format.
+ */
+
+function getRandomColor() {
+  var r = Math.floor(Math.random() * 256);
+  var g = Math.floor(Math.random() * 256);
+  var b = Math.floor(Math.random() * 256);
+
+  var color = "#" + r.toString(16) + g.toString(16) + b.toString(16);
+  return color;
+}
+
+/**
+ * Cancels the task popup by removing the background overlay and hiding the task popup.
+ */
+
+function cancelTaskPopup() {
+  document.getElementById("popUpBackground").classList.remove("popUpBackground");
+  document.getElementById("taskPopup").classList.add("d-none");
+}
+
+/**
+ * Checks and sets the priority color in the task popup based on the task's priority level.
+ * @param {Array} allTasks - The array of all tasks.
+ * @param {number} i - The index of the current task.
+ */
+
+function checkPriorityPopup(allTasks, i) {
+  const priorityElement = document.getElementById("prio-status");
+  const priority = allTasks[i].prio;
+  priorityElement.style.background = priority === "urgent" ? "red" : priority === "medium" ? "orange" : priority === "low" ? "green" : "";
+}
+
+/**
+* Starts the dragging process for a given element.
+* @param {number} id - The ID of the element being dragged.
+*/
+
+function startDragging(id) {
+  currentDraggedElement = id;
+  currentCategory = allTasks[currentDraggedElement]["status"];
+}
+
+/**
+ * Allows dropping of draggable elements by preventing the default behavior of the drop event.
+ */
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+/**
+ * Moves a task to the specified category.
+ * If a task is currently being dragged (identified by currentDraggedElement),
+ * its status will be updated accordingly. Otherwise, the status of the task at index i will be updated.
+ * @param {string} category - The category to move the task to.
+ * @param {number} i - The index of the task to move.
+ * @returns {Promise&lt;void>} - A promise that resolves once the task has been moved and the UI is updated.
+ */
+
+async function moveTo(category, i) {
+  if (currentDraggedElement == undefined) {
+    allTasks[i]["status"] = category;
+    await backend.setItem("allTasks", JSON.stringify(allTasks));
+    cancelTaskPopup();
+  } else {
+    allTasks[currentDraggedElement]["status"] = category;
+    await backend.setItem("allTasks", JSON.stringify(allTasks));
+  }
+  startRendering();
+  currentDraggedElement = undefined;
+}
+
+function searchTasks(value) {
+  value = value.toLowerCase();
+  let openTasksContent = document.getElementById("todoOpenContent");
+  let inProgressTasksContent = document.getElementById("todoInProgressContent");
+  let awaitingFeedbackContent = document.getElementById("todoAwaitingFeedbackContent");
+  let doneTasksContent = document.getElementById("todoDoneContent");
+  resetAllTasks(openTasksContent, inProgressTasksContent, awaitingFeedbackContent, doneTasksContent);
+  loopAllTasks(value, openTasksContent, inProgressTasksContent, awaitingFeedbackContent, doneTasksContent);
+}
+
+/**
+ * Searches tasks based on the specified value and updates the UI accordingly.
+ * @param {string} value - The search value to match against task titles.
+ * @returns {void} - This function does not return a value.
+ */
+
+function loopAllTasks(value, openTasksContent, inProgressTasksContent, awaitingFeedbackContent, doneTasksContent) {
+  for (let i = 0; i &lt; allTasks.length; i++) {
+    const searchTask = allTasks[i];
+    if (searchTask.title.toLowerCase().includes(value)) {
+      checkProgressStatus(taskCategory, searchTask, i, doneTasksContent, awaitingFeedbackContent, inProgressTasksContent, openTasksContent);
+      renderFooter(i, searchTask);
+      styleCategory(searchTask, i);
+    }
+  }
+}
+
+/**
+ * Deletes a task at the specified index from the task list and updates the UI.
+ * @param {number} i - The index of the task to delete.
+ * @returns {void} - This function does not return a value.
+ */
+
+function deleteTask(i) {
+  allTasks.splice(i, 1);
+  saveToLocalstorage();
+  startRendering();
+  cancelTaskPopup();
+}
+
+/**
+ * Saves the task list to the local storage.
+ * @returns {Promise&lt;void>} - A promise that resolves when the task list is saved to the local storage.
+ */
+
+async function saveToLocalstorage() {
+  await backend.setItem("allTasks", JSON.stringify(allTasks));
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addNewContact">addNewContact</a></li><li><a href="global.html#addTask">addTask</a></li><li><a href="global.html#addUser">addUser</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#assigendContentHTML">assigendContentHTML</a></li><li><a href="global.html#backToContactList">backToContactList</a></li><li><a href="global.html#cancelTaskPopup">cancelTaskPopup</a></li><li><a href="global.html#categoryContentHTML">categoryContentHTML</a></li><li><a href="global.html#categoryListHTML">categoryListHTML</a></li><li><a href="global.html#changeButtons">changeButtons</a></li><li><a href="global.html#changeIDandClasses">changeIDandClasses</a></li><li><a href="global.html#changeLocation">changeLocation</a></li><li><a href="global.html#checkAllInputs">checkAllInputs</a></li><li><a href="global.html#checkBoxes">checkBoxes</a></li><li><a href="global.html#checkboxesTaskHTML">checkboxesTaskHTML</a></li><li><a href="global.html#checkBoxInputs">checkBoxInputs</a></li><li><a href="global.html#checkDateLowerThanToday">checkDateLowerThanToday</a></li><li><a href="global.html#checkForLetters">checkForLetters</a></li><li><a href="global.html#checkForLowerDate">checkForLowerDate</a></li><li><a href="global.html#checkForUrgent">checkForUrgent</a></li><li><a href="global.html#checkIfUserIsIncluded">checkIfUserIsIncluded</a></li><li><a href="global.html#checkInputValue">checkInputValue</a></li><li><a href="global.html#checkmyTasks">checkmyTasks</a></li><li><a href="global.html#checkPage">checkPage</a></li><li><a href="global.html#checkPriority">checkPriority</a></li><li><a href="global.html#checkPriorityPopup">checkPriorityPopup</a></li><li><a href="global.html#checkProgressStatus">checkProgressStatus</a></li><li><a href="global.html#checkStatusPopup">checkStatusPopup</a></li><li><a href="global.html#checkTaskPrio">checkTaskPrio</a></li><li><a href="global.html#checkUserBox">checkUserBox</a></li><li><a href="global.html#clearForm">clearForm</a></li><li><a href="global.html#closeCategoryInput">closeCategoryInput</a></li><li><a href="global.html#closeInputsForm">closeInputsForm</a></li><li><a href="global.html#closeNewContactPopUp">closeNewContactPopUp</a></li><li><a href="global.html#contactsHTML">contactsHTML</a></li><li><a href="global.html#createAssignedToSelection">createAssignedToSelection</a></li><li><a href="global.html#createAssignedUser">createAssignedUser</a></li><li><a href="global.html#createIcon">createIcon</a></li><li><a href="global.html#createNewCategory">createNewCategory</a></li><li><a href="global.html#createNewContactContainer">createNewContactContainer</a></li><li><a href="global.html#createSubtask">createSubtask</a></li><li><a href="global.html#createTaskContentHTML">createTaskContentHTML</a></li><li><a href="global.html#createUserIcons">createUserIcons</a></li><li><a href="global.html#deleteTask">deleteTask</a></li><li><a href="global.html#delightOtherButtons">delightOtherButtons</a></li><li><a href="global.html#disableMediumAndLow">disableMediumAndLow</a></li><li><a href="global.html#disableMediumAndUrgent">disableMediumAndUrgent</a></li><li><a href="global.html#disableUrgentAndLow">disableUrgentAndLow</a></li><li><a href="global.html#dNoneToContactinfo">dNoneToContactinfo</a></li><li><a href="global.html#editContent">editContent</a></li><li><a href="global.html#editTask">editTask</a></li><li><a href="global.html#editTaskButton">editTaskButton</a></li><li><a href="global.html#editTaskContent">editTaskContent</a></li><li><a href="global.html#fillContent">fillContent</a></li><li><a href="global.html#footerTemplate">footerTemplate</a></li><li><a href="global.html#formatContactName">formatContactName</a></li><li><a href="global.html#forwardingToSummary">forwardingToSummary</a></li><li><a href="global.html#forwardToBoard">forwardToBoard</a></li><li><a href="global.html#generateRandomColor">generateRandomColor</a></li><li><a href="global.html#getAssignedUsers">getAssignedUsers</a></li><li><a href="global.html#getRandomColor">getRandomColor</a></li><li><a href="global.html#goBacK">goBacK</a></li><li><a href="global.html#guestLogin">guestLogin</a></li><li><a href="global.html#handleWindowResize">handleWindowResize</a></li><li><a href="global.html#highlightButton">highlightButton</a></li><li><a href="global.html#highlightNavBar">highlightNavBar</a></li><li><a href="global.html#includeHTML">includeHTML</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#loadContentSummary">loadContentSummary</a></li><li><a href="global.html#loadJSONFromServer">loadJSONFromServer</a></li><li><a href="global.html#loadSummary">loadSummary</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#logOutUser">logOutUser</a></li><li><a href="global.html#loopAllTasks">loopAllTasks</a></li><li><a href="global.html#menuIsOpen">menuIsOpen</a></li><li><a href="global.html#moveTo">moveTo</a></li><li><a href="global.html#onImageClick">onImageClick</a></li><li><a href="global.html#onload">onload</a></li><li><a href="global.html#openCategoryInput">openCategoryInput</a></li><li><a href="global.html#openCategorys">openCategorys</a></li><li><a href="global.html#openContact">openContact</a></li><li><a href="global.html#openContactHTML">openContactHTML</a></li><li><a href="global.html#openInputfield">openInputfield</a></li><li><a href="global.html#openLogin">openLogin</a></li><li><a href="global.html#openResetPassword">openResetPassword</a></li><li><a href="global.html#openSignUp">openSignUp</a></li><li><a href="global.html#pickColor">pickColor</a></li><li><a href="global.html#printLetters">printLetters</a></li><li><a href="global.html#prioContentHTML">prioContentHTML</a></li><li><a href="global.html#pushAssignedTasks">pushAssignedTasks</a></li><li><a href="global.html#pushContactToArray">pushContactToArray</a></li><li><a href="global.html#pushEditTask">pushEditTask</a></li><li><a href="global.html#removeDNoneContactinfo">removeDNoneContactinfo</a></li><li><a href="global.html#renderCategorys">renderCategorys</a></li><li><a href="global.html#renderCheckboxes">renderCheckboxes</a></li><li><a href="global.html#renderContactList">renderContactList</a></li><li><a href="global.html#renderContacts">renderContacts</a></li><li><a href="global.html#renderDate">renderDate</a></li><li><a href="global.html#renderFooter">renderFooter</a></li><li><a href="global.html#renderTaskSection">renderTaskSection</a></li><li><a href="global.html#resendPassword">resendPassword</a></li><li><a href="global.html#resetAddTask">resetAddTask</a></li><li><a href="global.html#resetAllTasks">resetAllTasks</a></li><li><a href="global.html#resetInputsContact">resetInputsContact</a></li><li><a href="global.html#resetPassword">resetPassword</a></li><li><a href="global.html#resetPrioBtns">resetPrioBtns</a></li><li><a href="global.html#returnIconText">returnIconText</a></li><li><a href="global.html#saveJSONToServer">saveJSONToServer</a></li><li><a href="global.html#saveToLocalstorage">saveToLocalstorage</a></li><li><a href="global.html#selectCategory">selectCategory</a></li><li><a href="global.html#setPrioColor">setPrioColor</a></li><li><a href="global.html#showAndHideUserIcons">showAndHideUserIcons</a></li><li><a href="global.html#showCategorys">showCategorys</a></li><li><a href="global.html#showCheckboxes">showCheckboxes</a></li><li><a href="global.html#showInputsForm">showInputsForm</a></li><li><a href="global.html#showNoCategory">showNoCategory</a></li><li><a href="global.html#showNoEmployee">showNoEmployee</a></li><li><a href="global.html#showNoPrio">showNoPrio</a></li><li><a href="global.html#showOpenTaskPopup">showOpenTaskPopup</a></li><li><a href="global.html#showTime">showTime</a></li><li><a href="global.html#sortContacts">sortContacts</a></li><li><a href="global.html#splitName">splitName</a></li><li><a href="global.html#startDragging">startDragging</a></li><li><a href="global.html#startRendering">startRendering</a></li><li><a href="global.html#styleAssignedCircles">styleAssignedCircles</a></li><li><a href="global.html#styleCategory">styleCategory</a></li><li><a href="global.html#subtaskCheckboxesHTML">subtaskCheckboxesHTML</a></li><li><a href="global.html#TaskCard">TaskCard</a></li><li><a href="global.html#taskCategoryHTML">taskCategoryHTML</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Sun Jun 18 2023 21:57:07 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
