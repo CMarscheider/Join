@@ -27,10 +27,11 @@ function contactsHTML(mail, name, color, splittedName, i, id) {
  * Generates HTML markup for displaying contact details.
  * @param {string[]} splittedName - An array containing the first and last name of the contact.
  * @param {string} mail - The email address of the contact.
+ * @param {string} phone - The phone number of the contact.
  * @returns {string} - The HTML markup for displaying contact details.
  */
 
-function openContactHTML(splittedName, mail) {
+function openContactHTML(splittedName, mail, phone) {
   return /*html*/ `<div class="infocontainer" id="infocontainer">
     <div class="photo" id ="photo">
         <span>${splittedName[0].charAt(0).toUpperCase()}${splittedName[1].charAt(0).toUpperCase()}</span>
@@ -44,7 +45,7 @@ function openContactHTML(splittedName, mail) {
     <h3>Email</h3>
     <p class="mail">${mail}</p>
     <h3>Phone</h3>
-    <p>018475633948</p>
+    <p>${phone || '-'}</p>
 </div>
     `;
 }

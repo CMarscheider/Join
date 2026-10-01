@@ -158,7 +158,7 @@ function openContact(mail, name, backgroundColor, i) {
   }
 
   openUser = i;
-  document.getElementById("displaycontactinfos").innerHTML = openContactHTML(splittedName, mail);
+  document.getElementById("displaycontactinfos").innerHTML = openContactHTML(splittedName, mail, users[i].phone);
   document.getElementById("photo").style.backgroundColor = backgroundColor;
 }
 
