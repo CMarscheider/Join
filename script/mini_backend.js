@@ -1,7 +1,11 @@
-// Hinweis: Diese Datei stammt als Vorlage von der Developer Akademie und wurde nicht selbst geschrieben.
+// Hinweis: Das urspruengliche Backend (Vorlage der Developer Akademie) ist nicht mehr erreichbar.
+// Diese Datei spricht stattdessen gegen ein eigenes Supabase-Projekt, behaelt aber dieselbe
+// backend.setItem/getItem/deleteItem-Schnittstelle bei, damit der restliche App-Code unveraendert bleibt.
+
+const SUPABASE_URL = 'https://fmbyewfmrdsvxikahlqu.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_xRS99mj-aXimBtZ5A7NJ8A_1rvVYvVT';
 
 let jsonFromServer = {};
-let BASE_SERVER_URL;
 
 const backend = {
     setItem: function(key, item) {
@@ -19,95 +23,33 @@ const backend = {
         return saveJSONToServer();
     }
 };
+
 window.onload = async function() {
     downloadFromServer();
 }
 
 async function downloadFromServer() {
-    let result = await loadJSONFromServer();
-    jsonFromServer = JSON.parse(result);
-    console.log('Loaded', result);
-}
-
-function setURL(url) {
-    BASE_SERVER_URL = url;
-}
-
-/**
- * Loads a JSON or JSON Array to the Server
- * payload {JSON | Array} - The payload you want to store
- */
-
-async function loadJSONFromServer() {
-    let response = await fetch(BASE_SERVER_URL + '/nocors.php?json=database&noache=' + (new Date().getTime()));
-    return await response.text();
-
-}
-
-function loadJSONFromServerOld() {
-    return new Promise(function(resolve, reject) {
-        let xhttp = new XMLHttpRequest();
-        let proxy = determineProxySettings();
-        let serverURL = proxy + BASE_SERVER_URL + '/nocors.php?json=database&noache=' + (new Date().getTime());
-
-
-
-
-        xhttp.open('GET', serverURL);
-
-        xhttp.onreadystatechange = function(oEvent) {
-            if (xhttp.readyState === 4) {
-                if (xhttp.status >= 200 && xhttp.status <= 399) {
-                    resolve(xhttp.responseText);
-                } else {
-                    reject(xhttp.statusText);
-                }
-            }
-        };
-
-        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        xhttp.send();
-
+    let response = await fetch(SUPABASE_URL + '/rest/v1/app_state?id=eq.1&select=data', {
+        headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_KEY
+        }
     });
+    let rows = await response.json();
+    jsonFromServer = (rows[0] && rows[0].data) || {};
 }
 
+// Wird von anderen Scripten (z.B. register.js) aufgerufen, ist fuer Supabase aber nicht noetig.
+function setURL(url) {}
 
-
-
-
-/**
- * Saves a JSON or JSON Array to the Server
- */
 function saveJSONToServer() {
-    return new Promise(function(resolve, reject) {
-        let xhttp = new XMLHttpRequest();
-        let proxy = determineProxySettings();
-        let serverURL = proxy + BASE_SERVER_URL + '/save_json.php';
-        xhttp.open('POST', serverURL);
-
-        xhttp.onreadystatechange = function(oEvent) {
-            if (xhttp.readyState === 4) {
-                if (xhttp.status >= 200 && xhttp.status <= 399) {
-                    resolve(xhttp.responseText);
-                } else {
-                    reject(xhttp.statusText);
-                }
-            }
-        };
-
-        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        xhttp.send(JSON.stringify(jsonFromServer));
-
+    return fetch(SUPABASE_URL + '/rest/v1/app_state?id=eq.1', {
+        method: 'PATCH',
+        headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_KEY,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ data: jsonFromServer })
     });
-}
-
-
-function determineProxySettings() {
-    return '';
-
-    if (window.location.href.indexOf('.developerakademie.com') > -1) {
-        return '';
-    } else {
-        return 'https://cors-anywhere.herokuapp.com/';
-    }
 }
