@@ -18,9 +18,9 @@ Hinweis: Team-Projekt.
 
 - Vanilla JavaScript, HTML, CSS
 - Komponenten-Includes über ein eigenes `w3-include-html`-Pattern
-- Datenhaltung über eine kleine Backend-Abstraktion (`script/mini_backend.js`, als Vorlage von der Developer Akademie, nicht selbst geschrieben), die Daten als ein JSON-Objekt liest/schreibt
+- Datenhaltung über eine kleine Backend-Abstraktion (`script/mini_backend.js`, als Vorlage übernommen, nicht selbst geschrieben), die Daten als ein JSON-Objekt liest/schreibt
 
-> Hinweis: Der ursprüngliche Übungsserver der Developer Akademie ist nicht mehr erreichbar. Die Live-Demo nutzt stattdessen ein eigenes Supabase-Projekt als Ersatz-Backend (ohne Änderungen an der restlichen App-Logik), daher sind Login, Registrierung und Speichern funktionsfähig. Es gibt keine echte Nutzer-Authentifizierung auf Server-Seite – das war schon im ursprünglichen Übungsprojekt so.
+> Hinweis: Der ursprüngliche Übungsserver ist nicht mehr erreichbar. Die Live-Demo nutzt stattdessen ein eigenes Supabase-Projekt als Ersatz-Backend (ohne Änderungen an der restlichen App-Logik), daher sind Login, Registrierung und Speichern funktionsfähig. Es gibt keine echte Nutzer-Authentifizierung auf Server-Seite – das war schon im ursprünglichen Übungsprojekt so.
 
 ## Lokal starten
 
