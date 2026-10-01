@@ -8,16 +8,19 @@ Hinweis: Team-Projekt.
 
 ## Features
 
+- Login/Registrierung sowie Gast-Login
 - Board mit Drag & Drop zwischen Aufgaben-Status
 - Aufgaben mit Titel, Beschreibung, Fälligkeitsdatum, Priorität und Kategorie anlegen
 - Kontaktverwaltung
-- Modulare Seitenstruktur (Board, Add Task, Contacts, Help, Legal Notice)
+- Modulare Seitenstruktur (Summary, Board, Add Task, Contacts, Help, Legal Notice)
 
 ## Tech-Stack
 
 - Vanilla JavaScript, HTML, CSS
-- Bootstrap für Basis-Styling
 - Komponenten-Includes über ein eigenes `w3-include-html`-Pattern
+- Datenhaltung über ein kleines eigenes Backend (`script/mini_backend.js`, als Vorlage von der Developer Akademie, nicht selbst geschrieben)
+
+> Hinweis: Der ursprüngliche Übungsserver für das Backend ist nicht mehr erreichbar, daher funktionieren Login/Speichern in der Live-Demo aktuell nicht – die Oberfläche lässt sich aber vollständig ansehen.
 
 ## Lokal starten
 
@@ -27,4 +30,4 @@ Da das Projekt ohne Build-Step auskommt, reicht ein einfacher statischer Server:
 npx serve .
 ```
 
-Anschließend `index.html` im Browser öffnen.
+Anschließend `login.html` im Browser öffnen.
