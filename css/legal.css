@@ -1,17 +1,46 @@
-.legalcontent {
-    padding-left: 8%;
-    padding-right: 8%;
+.legal-page {
+    display: flex;
+    flex-direction: column;
     height: 100vh;
+}
+
+.legalcontent {
+    flex: 1;
+    min-height: 0;
     overflow-y: auto;
-    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-wrap: anywhere;
+    padding: 0 8% 32px;
+}
+
+.legalcontent a {
+    display: inline;
+    padding: 0;
+    color: #29abe2;
 }
 
 .legalHeadline {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 16px;
+}
+
+.legalHeadline h1 {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.legalHeadline img {
+    flex-shrink: 0;
 }
 
 img:hover {
     cursor: pointer;
     }
+
+@media (max-width: 450px) {
+    .legalHeadline h1 {
+        font-size: 1.6rem;
+    }
+}

@@ -114,6 +114,12 @@ a {
   font-size: 4rem;
 }
 
+.summary-wrapper {
+  height: 90vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 .contentbox {
   display: flex;
   flex-direction: row;

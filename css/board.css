@@ -273,6 +273,8 @@ label {
   position: relative;
   overflow-y: scroll;
   height: 90vh;
+  padding-bottom: 32px;
+  box-sizing: border-box;
 }
 
 .cancel-container {
