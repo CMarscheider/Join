@@ -1,6 +1,9 @@
 .legalcontent {
     padding-left: 8%;
     padding-right: 8%;
+    height: 100vh;
+    overflow-y: auto;
+    box-sizing: border-box;
 }
 
 .legalHeadline {
