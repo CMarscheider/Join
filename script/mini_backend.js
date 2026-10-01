@@ -1,4 +1,4 @@
-// Hinweis: Das urspruengliche Backend (Vorlage der Developer Akademie) ist nicht mehr erreichbar.
+// Hinweis: Das urspruengliche Backend (als Vorlage uebernommen, nicht selbst geschrieben) ist nicht mehr erreichbar.
 // Diese Datei spricht stattdessen gegen ein eigenes Supabase-Projekt, behaelt aber dieselbe
 // backend.setItem/getItem/deleteItem-Schnittstelle bei, damit der restliche App-Code unveraendert bleibt.
 
