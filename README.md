@@ -4,6 +4,8 @@ Ein Kanban-Board zur Aufgabenverwaltung im Team, angelehnt an Tools wie Trello. 
 
 Hinweis: Team-Projekt.
 
+**Live-Demo:** https://cmarscheider.github.io/Join/
+
 ## Features
 
 - Board mit Drag & Drop zwischen Aufgaben-Status
